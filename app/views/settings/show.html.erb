@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Companie:</strong>
+  <%= @setting.companie_id %>
+</p>
+
+<p>
+  <strong>Schedule interval:</strong>
+  <%= @setting.schedule_interval %>
+</p>
+
+<p>
+  <strong>Min antecedence:</strong>
+  <%= @setting.min_antecedence %>
+</p>
+
+<p>
+  <strong>Max antecedence:</strong>
+  <%= @setting.max_antecedence %>
+</p>
+
+<%= link_to 'Edit', edit_setting_path(@setting) %> |
+<%= link_to 'Back', settings_path %>

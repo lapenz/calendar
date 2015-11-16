@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  companie_id: 1
+  schedule_interval: 2015-10-04 21:21:10
+  min_antecedence: 2015-10-04 21:21:10
+  max_antecedence: 2015-10-04 21:21:10
+
+two:
+  companie_id: 1
+  schedule_interval: 2015-10-04 21:21:10
+  min_antecedence: 2015-10-04 21:21:10
+  max_antecedence: 2015-10-04 21:21:10

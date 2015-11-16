@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  plan_id: 1
+  slogan: MyString
+  logo: MyString
+  website: MyString
+  minipage_url: MyString
+
+two:
+  user_id: 1
+  plan_id: 1
+  slogan: MyString
+  logo: MyString
+  website: MyString
+  minipage_url: MyString

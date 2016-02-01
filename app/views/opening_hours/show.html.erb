@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Companie:</strong>
+  <%= @opening_hour.companie_id %>
+</p>
+
+<p>
+  <strong>Provider:</strong>
+  <%= @opening_hour.provider_id %>
+</p>
+
+<p>
+  <strong>Weekday:</strong>
+  <%= @opening_hour.weekday %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @opening_hour.from %>
+</p>
+
+<p>
+  <strong>To:</strong>
+  <%= @opening_hour.to %>
+</p>
+
+<%= link_to 'Edit', edit_opening_hour_path(@opening_hour) %> |
+<%= link_to 'Back', opening_hours_path %>

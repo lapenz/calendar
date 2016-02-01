@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Companie:</strong>
+  <%= @companies_service.companie_id %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @companies_service.service_id %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @companies_service.duration %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @companies_service.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @companies_service.price %>
+</p>
+
+<%= link_to 'Edit', edit_companies_service_path(@companies_service) %> |
+<%= link_to 'Back', companies_services_path %>

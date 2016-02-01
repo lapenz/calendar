@@ -22,3 +22,23 @@
 en:
   hello: "Hello world"
   save: "Save"
+  providers: "Providers"
+  activerecord:
+      models:
+        provider: "Provider"
+      attributes:
+        companie:
+          minipage_url: "Minipage"
+  devise:
+    sessions:
+      signed_in: 'Signed in successfully.'
+      user:
+        signed_in: 'Welcome user, you are signed in.'
+      admin:
+        signed_in: 'Hello admin!'
+    mailer:
+      confirmation_instructions:
+        subject: 'Hello everybody!'
+        user_subject: 'Hello User! Please confirm your email'
+      reset_password_instructions:
+        subject: 'Reset instructions'

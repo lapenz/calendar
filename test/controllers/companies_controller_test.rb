@@ -17,8 +17,8 @@ class CompaniesControllerTest < ActionController::TestCase
   end
 
   test "should create company" do
-    assert_difference('Companie.count') do
-      post :create, company: { logo: @company.logo, minipage_url: @company.minipage_url, plan_id: @company.plan_id, slogan: @company.slogan, user_id: @company.user_id, website: @company.website }
+    assert_difference('Company.count') do
+      post :create, company: { city: @company.city, logo: @company.logo, minipage_url: @company.minipage_url, name: @company.name, phone: @company.phone, plan_id: @company.plan_id, setting_id: @company.setting_id, slogan: @company.slogan, street: @company.street, user_id: @company.user_id, website: @company.website }
     end
 
     assert_redirected_to company_path(assigns(:company))
@@ -35,12 +35,12 @@ class CompaniesControllerTest < ActionController::TestCase
   end
 
   test "should update company" do
-    patch :update, id: @company, company: { logo: @company.logo, minipage_url: @company.minipage_url, plan_id: @company.plan_id, slogan: @company.slogan, user_id: @company.user_id, website: @company.website }
+    patch :update, id: @company, company: { city: @company.city, logo: @company.logo, minipage_url: @company.minipage_url, name: @company.name, phone: @company.phone, plan_id: @company.plan_id, setting_id: @company.setting_id, slogan: @company.slogan, street: @company.street, user_id: @company.user_id, website: @company.website }
     assert_redirected_to company_path(assigns(:company))
   end
 
   test "should destroy company" do
-    assert_difference('Companie.count', -1) do
+    assert_difference('Company.count', -1) do
       delete :destroy, id: @company
     end
 

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  companie_id: 1
+  provider_id: 1
+  weekday: 1
+  from: 2016-01-31 20:28:32
+  to: 2016-01-31 20:28:32
+
+two:
+  companie_id: 1
+  provider_id: 1
+  weekday: 1
+  from: 2016-01-31 20:28:32
+  to: 2016-01-31 20:28:32

@@ -2,11 +2,13 @@
 
 <h1>Listing Providers</h1>
 
-<table class="table">
+<table>
   <thead>
     <tr>
       <th>Companie</th>
-      <th>User</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +17,9 @@
     <% @providers.each do |provider| %>
       <tr>
         <td><%= provider.companie_id %></td>
-        <td><%= provider.user_id %></td>
+        <td><%= provider.name %></td>
+        <td><%= provider.email %></td>
+        <td><%= provider.phone %></td>
         <td><%= link_to 'Show', provider %></td>
         <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
         <td><%= link_to 'Destroy', provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Provider', new_provider_path, :class => 'btn btn-primary' %>
+<%= link_to 'New Provider', new_provider_path %>

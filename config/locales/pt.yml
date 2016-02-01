@@ -1,3 +1,10 @@
-pt-br:
+pt:
   hello: "Ola mundo"
   save: "Salvar"
+  providers: "Provedores"
+  activerecord:
+      models:
+        provider: "Provedor"
+      attributes:
+        companie:
+          minipage_url: "Minipagina"

@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Companie.all
+    @companies = Company.all
   end
 
   # GET /companies/1
@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    @company = Companie.new
+    @company = Company.new
   end
 
   # GET /companies/1/edit
@@ -24,11 +24,11 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    @company = Companie.new(company_params)
+    @company = Company.new(company_params)
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to @company, notice: 'Companie was successfully created.' }
+        format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Companie was successfully updated.' }
+        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Companie was successfully destroyed.' }
+      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +64,11 @@ class CompaniesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
-      @company = Companie.find(params[:id])
+      @company = Company.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:user_id, :plan_id, :slogan, :logo, :website, :minipage_url)
+      params.require(:company).permit(:user_id, :plan_id, :setting_id, :slogan, :logo, :website, :minipage_url, :name, :phone, :street, :city)
     end
 end

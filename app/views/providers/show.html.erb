@@ -6,8 +6,18 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @provider.user_id %>
+  <strong>Name:</strong>
+  <%= @provider.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @provider.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @provider.phone %>
 </p>
 
 <%= link_to 'Edit', edit_provider_path(@provider) %> |

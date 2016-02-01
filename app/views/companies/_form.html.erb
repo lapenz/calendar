@@ -20,6 +20,10 @@
     <%= f.number_field :plan_id %>
   </div>
   <div class="field">
+    <%= f.label :setting_id %><br>
+    <%= f.number_field :setting_id %>
+  </div>
+  <div class="field">
     <%= f.label :slogan %><br>
     <%= f.text_field :slogan %>
   </div>
@@ -35,7 +39,23 @@
     <%= f.label :minipage_url %><br>
     <%= f.text_field :minipage_url %>
   </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :street %><br>
+    <%= f.text_field :street %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
   <div class="actions">
-    <%= f.submit t('save'), class: 'btn btn-primary' %>
+    <%= f.submit %>
   </div>
 <% end %>

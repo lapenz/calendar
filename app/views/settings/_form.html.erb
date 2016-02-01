@@ -12,20 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :companie_id %><br>
-    <%= f.number_field :companie_id %>
+    <%= f.label :key %><br>
+    <%= f.text_field :key %>
   </div>
   <div class="field">
-    <%= f.label :schedule_interval %><br>
-    <%= f.time_select :schedule_interval %>
-  </div>
-  <div class="field">
-    <%= f.label :min_antecedence %><br>
-    <%= f.time_select :min_antecedence %>
-  </div>
-  <div class="field">
-    <%= f.label :max_antecedence %><br>
-    <%= f.time_select :max_antecedence %>
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
   </div>
   <div class="actions">
     <%= f.submit %>

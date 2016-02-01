@@ -5,10 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Companie</th>
-      <th>Schedule interval</th>
-      <th>Min antecedence</th>
-      <th>Max antecedence</th>
+      <th>Key</th>
+      <th>Value</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +14,8 @@
   <tbody>
     <% @settings.each do |setting| %>
       <tr>
-        <td><%= setting.companie_id %></td>
-        <td><%= setting.schedule_interval %></td>
-        <td><%= setting.min_antecedence %></td>
-        <td><%= setting.max_antecedence %></td>
+        <td><%= setting.key %></td>
+        <td><%= setting.value %></td>
         <td><%= link_to 'Show', setting %></td>
         <td><%= link_to 'Edit', edit_setting_path(setting) %></td>
         <td><%= link_to 'Destroy', setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>

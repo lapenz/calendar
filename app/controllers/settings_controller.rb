@@ -69,6 +69,6 @@ class SettingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def setting_params
-      params.require(:setting).permit(:companie_id, :schedule_interval, :min_antecedence, :max_antecedence)
+      params.require(:setting).permit(:key, :value)
     end
 end

@@ -18,7 +18,7 @@ class SettingsControllerTest < ActionController::TestCase
 
   test "should create setting" do
     assert_difference('Setting.count') do
-      post :create, setting: { companie_id: @setting.companie_id, max_antecedence: @setting.max_antecedence, min_antecedence: @setting.min_antecedence, schedule_interval: @setting.schedule_interval }
+      post :create, setting: { key: @setting.key, value: @setting.value }
     end
 
     assert_redirected_to setting_path(assigns(:setting))
@@ -35,7 +35,7 @@ class SettingsControllerTest < ActionController::TestCase
   end
 
   test "should update setting" do
-    patch :update, id: @setting, setting: { companie_id: @setting.companie_id, max_antecedence: @setting.max_antecedence, min_antecedence: @setting.min_antecedence, schedule_interval: @setting.schedule_interval }
+    patch :update, id: @setting, setting: { key: @setting.key, value: @setting.value }
     assert_redirected_to setting_path(assigns(:setting))
   end
 

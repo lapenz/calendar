@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calendar</title>
+  <title>AgendaCard</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
+
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -20,7 +21,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Agendacard</a>
+      <a class="navbar-brand" href="#">AgendaCard</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,8 +30,23 @@
         <li><%= nav_link("Providers", providers_path) %></li>
         <li><%= nav_link("Companies", companies_path) %></li>
         <li><%= nav_link("Settings", settings_path) %></li>
+        <li><%= nav_link("Clients", clients_path) %></li>
+        <li><%= nav_link("Services", services_path) %></li>
+        <li><%= nav_link("Opening hours", opening_hours_path) %></li>
+        <li><%= nav_link("Companie services", companies_services_path) %></li>
+        <li><%= nav_link("Appointments", appointments_path) %></li>
       </ul>
 
+      <p class="navbar-text pull-right">
+        <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+            <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+        <% end %>
+      </p>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

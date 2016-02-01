@@ -3,15 +3,25 @@
 one:
   user_id: 1
   plan_id: 1
+  setting_id: 1
   slogan: MyString
   logo: MyString
   website: MyString
   minipage_url: MyString
+  name: MyString
+  phone: MyString
+  street: MyString
+  city: MyString
 
 two:
   user_id: 1
   plan_id: 1
+  setting_id: 1
   slogan: MyString
   logo: MyString
   website: MyString
   minipage_url: MyString
+  name: MyString
+  phone: MyString
+  street: MyString
+  city: MyString

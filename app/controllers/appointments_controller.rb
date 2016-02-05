@@ -3,8 +3,9 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   # GET /appointments.json
+  #/myfeed.php?start=2013-12-01&end=2014-01-12&_=1386054751381
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.where(:start => params[:start]..params[:end])
   end
 
   # GET /appointments/1

@@ -2,9 +2,11 @@ pt:
   hello: "Ola mundo"
   save: "Salvar"
   providers: "Provedores"
+  appointments: "Agendamentos"
   activerecord:
       models:
         provider: "Provedor"
+        appointment: "Agendamento"
       attributes:
         companie:
           minipage_url: "Minipagina"

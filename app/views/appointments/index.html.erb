@@ -14,6 +14,10 @@
             eventClick: function(event) {
                 window.open('<%= Rails.application.routes.url_helpers.appointments_path %>/'+event.id+'/edit');
                 return false;
+            },
+            dayClick: function(date, jsEvent, view) {
+                //TODO window.open('<%= Rails.application.routes.url_helpers.appointments_path %>?start='+date.format());
+                return false;
             }
         });
     });

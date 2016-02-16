@@ -1,7 +1,7 @@
 class CreateAppointments < ActiveRecord::Migration
   def change
     create_table :appointments do |t|
-      t.integer :companie_id, :limit => 3
+      t.integer :company_id, :limit => 3
       t.integer :provider_service_id, :limit => 3
       t.integer :client_id, :limit => 3
       t.string :title, :limit => 45
@@ -14,7 +14,7 @@ class CreateAppointments < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :appointments, :companie_id
+    add_index :appointments, :company_id
     add_index :appointments, :provider_service_id
     add_index :appointments, :client_id
   end

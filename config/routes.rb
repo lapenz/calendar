@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :providers_services
   resources :appointments
   resources :companies_services
   resources :opening_hours

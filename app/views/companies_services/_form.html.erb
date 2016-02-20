@@ -11,27 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :companie_id %><br>
-    <%= f.number_field :companie_id %>
+  <div class="form-group">
+    <%= f.label :company_id %><br>
+    <%= f.number_field :company_id, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :service_id %><br>
-    <%= f.number_field :service_id %>
-  </div>
-  <div class="field">
+    <div class="form-group">
+      <%= f.label :service_id %><br>
+      <%= f.text_field :service_name, :class => 'form-control' %>
+      <%= f.hidden_field :service_id %>
+    </div>
+
+
+    <div class="form-group">
     <%= f.label :duration %><br>
-    <%= f.time_select :duration %>
+    <%= f.time_select :duration, {minute_step: 5}, prompt: true %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_area :description, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :price %><br>
-    <%= f.text_field :price %>
+    <%= f.text_field :price, :class => 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

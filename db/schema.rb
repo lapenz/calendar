@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201001433) do
+ActiveRecord::Schema.define(version: 20160220193512) do
 
   create_table "appointments", force: :cascade do |t|
-    t.integer  "companie_id",         limit: 3
+    t.integer  "company_id",          limit: 3
     t.integer  "provider_service_id", limit: 3
     t.integer  "client_id",           limit: 3
     t.string   "title",               limit: 45
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160201001433) do
   end
 
   add_index "appointments", ["client_id"], name: "index_appointments_on_client_id", using: :btree
-  add_index "appointments", ["companie_id"], name: "index_appointments_on_companie_id", using: :btree
+  add_index "appointments", ["company_id"], name: "index_appointments_on_company_id", using: :btree
   add_index "appointments", ["provider_service_id"], name: "index_appointments_on_provider_service_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 20160201001433) do
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true, using: :btree
 
   create_table "companies", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.integer  "plan_id",      limit: 4
-    t.integer  "setting_id",   limit: 4
+    t.integer  "user_id",      limit: 3
+    t.integer  "plan_id",      limit: 3
+    t.integer  "setting_id",   limit: 3
     t.string   "name",         limit: 150
     t.string   "email",        limit: 150
     t.string   "phone",        limit: 40
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20160201001433) do
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "companies_services", force: :cascade do |t|
-    t.integer  "companie_id", limit: 3
+    t.integer  "company_id",  limit: 3
     t.integer  "service_id",  limit: 3
     t.time     "duration"
     t.string   "description", limit: 150
@@ -72,11 +72,11 @@ ActiveRecord::Schema.define(version: 20160201001433) do
     t.datetime "updated_at",                                       null: false
   end
 
-  add_index "companies_services", ["companie_id"], name: "index_companies_services_on_companie_id", using: :btree
+  add_index "companies_services", ["company_id"], name: "index_companies_services_on_company_id", using: :btree
   add_index "companies_services", ["service_id"], name: "index_companies_services_on_service_id", using: :btree
 
   create_table "opening_hours", force: :cascade do |t|
-    t.integer  "companie_id", limit: 3
+    t.integer  "company_id",  limit: 3
     t.integer  "provider_id", limit: 3
     t.integer  "weekday",     limit: 1
     t.time     "from"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20160201001433) do
     t.datetime "updated_at",            null: false
   end
 
-  add_index "opening_hours", ["companie_id"], name: "index_opening_hours_on_companie_id", using: :btree
+  add_index "opening_hours", ["company_id"], name: "index_opening_hours_on_company_id", using: :btree
   add_index "opening_hours", ["provider_id"], name: "index_opening_hours_on_provider_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
@@ -95,13 +95,25 @@ ActiveRecord::Schema.define(version: 20160201001433) do
   end
 
   create_table "providers", force: :cascade do |t|
-    t.integer  "companie_id", limit: 3
-    t.string   "name",        limit: 150
-    t.string   "email",       limit: 200
-    t.string   "phone",       limit: 40
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "company_id", limit: 3
+    t.string   "name",       limit: 150
+    t.string   "email",      limit: 200
+    t.string   "phone",      limit: 40
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  add_index "providers", ["company_id"], name: "index_providers_on_company_id", using: :btree
+
+  create_table "providers_services", force: :cascade do |t|
+    t.integer  "provider_id",        limit: 3
+    t.integer  "company_service_id", limit: 3
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "providers_services", ["company_service_id"], name: "index_providers_services_on_company_service_id", using: :btree
+  add_index "providers_services", ["provider_id"], name: "index_providers_services_on_provider_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "name",       limit: 100

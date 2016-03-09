@@ -1,3 +1,3 @@
 class Company < ActiveRecord::Base
-  has_many :companies_service
+  has_many :companies_services
 end

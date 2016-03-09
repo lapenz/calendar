@@ -19,6 +19,7 @@
 //= require fullcalendar
 //= require fullcalendar/gcal
 //= require fullcalendar/lang-all
+//= require bootstrap-multiselect
 //= require_tree .
 
 

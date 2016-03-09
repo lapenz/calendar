@@ -18,9 +18,13 @@
     <div class="form-group">
       <%= f.label :service_id %><br>
       <%= f.text_field :service_name, :class => 'form-control' %>
-      <%= f.hidden_field :service_id %>
+      <!--<%= f.hidden_field :service_id %>-->
     </div>
 
+    <div class="form-group">
+      <%= f.label :provider_ids %><br>
+      <%= f.collection_select :provider_ids, Provider.order(:name), :id, :name, {include_hidden: false}, {multiple: true} %>
+      </div>
 
     <div class="form-group">
     <%= f.label :duration %><br>
@@ -38,3 +42,13 @@
     <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Cria o combo multiselect bootstrap
+        $('#companies_service_provider_ids').multiselect({
+            includeSelectAllOption: true,
+            selectAllText: '<%=t :select_all %>'
+        });
+    });
+</script>

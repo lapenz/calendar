@@ -18,10 +18,15 @@ gem 'autoprefixer-rails'
 
 gem 'devise'
 
+# Biblioteca necessaria para o fullcalendar
 gem 'momentjs-rails'
+# Plugin que exibe o calendario da agenda
 gem 'fullcalendar-rails'
 
 gem 'jquery-ui-rails'
+
+# Usado pra criar um select com checkbox para multipla escolha
+gem 'bootstrap-multiselect_rails', '~> 0.9.4'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

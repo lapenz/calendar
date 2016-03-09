@@ -26,6 +26,12 @@ class CompaniesServicesController < ApplicationController
   def create
     @companies_service = CompaniesService.new(companies_service_params)
 
+    service = Service.find_by(name: companies_service_params['service_name'])
+    if service.nil?
+      service = Service.create(:name => companies_service_params['service_name'])
+    end
+    @companies_service.service_id = service.id
+
     respond_to do |format|
       if @companies_service.save
         format.html { redirect_to @companies_service, notice: 'Companies service was successfully created.' }
@@ -69,6 +75,6 @@ class CompaniesServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def companies_service_params
-      params.require(:companies_service).permit(:companie_id, :service_id, :duration, :description, :price)
+      params.require(:companies_service).permit(:company_id, :service_name, :duration, :description, :price, :provider_ids => [])
     end
 end

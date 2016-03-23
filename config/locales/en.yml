@@ -22,7 +22,9 @@
 en:
   hello: "Hello world"
   save: "Save"
+  select_all: "Select all"
   providers: "Providers"
+  appointments: "Appointments"
   activerecord:
       models:
         provider: "Provider"

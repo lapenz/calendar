@@ -1,6 +1,7 @@
 pt:
   hello: "Ola mundo"
   save: "Salvar"
+  select_all: "Selecionar todos"
   providers: "Provedores"
   appointments: "Agendamentos"
   activerecord:

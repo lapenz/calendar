@@ -3,7 +3,7 @@ class CreateOpeningHours < ActiveRecord::Migration
     create_table :opening_hours do |t|
       t.integer :company_id, :limit => 3
       t.integer :provider_id, :limit => 3
-      t.integer :weekday, :limit => 1
+      t.string :weekdays, :limit => 13
       t.time :from
       t.time :to
 

@@ -12,16 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :companie_id %><br>
-    <%= f.number_field :companie_id %>
+    <%= f.label :company_id %><br>
+    <%= f.number_field :company_id %>
   </div>
+
+
   <div class="field">
-    <%= f.label :provider_id %><br>
-    <%= f.number_field :provider_id %>
-  </div>
-  <div class="field">
-    <%= f.label :weekday %><br>
-    <%= f.number_field :weekday %>
+    <%= f.label :weekdays %><br>
+    <% Date::DAYNAMES.each do |day| %>
+        <%= f.check_box :weekdays, {}, day %>
+        <%= day %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :from %><br>

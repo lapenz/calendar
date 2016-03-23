@@ -14,22 +14,22 @@
 ActiveRecord::Schema.define(version: 20160220193512) do
 
   create_table "appointments", force: :cascade do |t|
-    t.integer  "company_id",          limit: 3
-    t.integer  "provider_service_id", limit: 3
-    t.integer  "client_id",           limit: 3
-    t.string   "title",               limit: 45
+    t.integer  "provider_id", limit: 3
+    t.integer  "service_id",  limit: 3
+    t.integer  "client_id",   limit: 3
+    t.string   "title",       limit: 45
     t.datetime "start"
     t.datetime "end"
-    t.integer  "all_day",             limit: 1
-    t.string   "obs",                 limit: 200
-    t.decimal  "price",                           precision: 10, scale: 2
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.integer  "all_day",     limit: 1
+    t.string   "obs",         limit: 200
+    t.decimal  "price",                   precision: 10, scale: 2
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   add_index "appointments", ["client_id"], name: "index_appointments_on_client_id", using: :btree
-  add_index "appointments", ["company_id"], name: "index_appointments_on_company_id", using: :btree
-  add_index "appointments", ["provider_service_id"], name: "index_appointments_on_provider_service_id", using: :btree
+  add_index "appointments", ["provider_id"], name: "index_appointments_on_provider_id", using: :btree
+  add_index "appointments", ["service_id"], name: "index_appointments_on_service_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",       limit: 150
@@ -75,14 +75,24 @@ ActiveRecord::Schema.define(version: 20160220193512) do
   add_index "companies_services", ["company_id"], name: "index_companies_services_on_company_id", using: :btree
   add_index "companies_services", ["service_id"], name: "index_companies_services_on_service_id", using: :btree
 
+  create_table "companies_services_providers", force: :cascade do |t|
+    t.integer  "provider_id",          limit: 3
+    t.integer  "companies_service_id", limit: 3
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "companies_services_providers", ["companies_service_id"], name: "index_companies_services_providers_on_companies_service_id", using: :btree
+  add_index "companies_services_providers", ["provider_id"], name: "index_companies_services_providers_on_provider_id", using: :btree
+
   create_table "opening_hours", force: :cascade do |t|
     t.integer  "company_id",  limit: 3
     t.integer  "provider_id", limit: 3
-    t.integer  "weekday",     limit: 1
+    t.string   "weekdays",    limit: 13
     t.time     "from"
     t.time     "to"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "opening_hours", ["company_id"], name: "index_opening_hours_on_company_id", using: :btree
@@ -104,16 +114,6 @@ ActiveRecord::Schema.define(version: 20160220193512) do
   end
 
   add_index "providers", ["company_id"], name: "index_providers_on_company_id", using: :btree
-
-  create_table "providers_services", force: :cascade do |t|
-    t.integer  "provider_id",        limit: 3
-    t.integer  "company_service_id", limit: 3
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
-  add_index "providers_services", ["company_service_id"], name: "index_providers_services_on_company_service_id", using: :btree
-  add_index "providers_services", ["provider_id"], name: "index_providers_services_on_provider_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "name",       limit: 100

@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root :to => "clients#index"
 
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: { sessions: "users/sessions", :registrations => "users/registrations" }
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

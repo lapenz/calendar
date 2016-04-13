@@ -16,12 +16,11 @@
     <%= f.number_field :company_id %>
   </div>
 
-
   <div class="field">
     <%= f.label :weekdays %><br>
-    <% Date::DAYNAMES.each do |day| %>
-        <%= f.check_box :weekdays, {}, day %>
-        <%= day %>
+    <% Date::DAYNAMES.each_with_index do |day, index| %>
+        <%= check_box_tag "opening_hour[weekdays][]", index, @opening_hour.weekdays.nil? ? false : @opening_hour.weekdays.include?(index.to_s) %>
+        <%= t day %>
     <% end %>
   </div>
   <div class="field">
@@ -36,3 +35,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+

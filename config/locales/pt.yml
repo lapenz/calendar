@@ -11,3 +11,17 @@ pt:
       attributes:
         companie:
           minipage_url: "Minipagina"
+
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+
+  Sunday: "Domingo"
+  Monday: "Segunda"
+  Tuesday: "Terca"
+  Wednesday: "Quarta"
+  Thursday: "Quinta"
+  Friday: "Sexta"
+  Saturday: "Sábado"

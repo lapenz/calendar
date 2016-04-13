@@ -21,6 +21,22 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+
+    <%= f.fields_for :company, resource.build_company do |c| %>
+
+        <div class="field">
+          <%= c.label :name %><br>
+          <%= c.text_field :name %>
+        </div>
+        <div class="field">
+          <%= c.label :phone %><br>
+          <%= c.text_field :phone %>
+        </div>
+    <% end %>
+
+
+
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

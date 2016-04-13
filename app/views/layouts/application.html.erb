@@ -35,16 +35,15 @@
         <li class="dropdown">
           <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Business <span class="caret"></span> </a>
           <ul class="dropdown-menu" aria-labelledby="drop1">
+            <li><%= nav_link("Business details", companies_path) %></li>
             <li><%= nav_link("Providers", providers_path) %></li>
-            <li><%= nav_link("Settings", settings_path) %></li>
             <li><%= nav_link("Opening hours", opening_hours_path) %></li>
-            <li><%= nav_link("Services", services_path) %></li>
             <li><%= nav_link("Companie services", companies_services_path) %></li>
           </ul>
         </li>
 
 
-        <li><%= nav_link("Promote", companies_path) %></li>
+
 
       </ul>
 

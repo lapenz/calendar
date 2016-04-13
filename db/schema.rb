@@ -42,24 +42,26 @@ ActiveRecord::Schema.define(version: 20160220193512) do
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true, using: :btree
 
   create_table "companies", force: :cascade do |t|
-    t.integer  "user_id",      limit: 3
-    t.integer  "plan_id",      limit: 3
-    t.integer  "setting_id",   limit: 3
-    t.string   "name",         limit: 150
-    t.string   "email",        limit: 150
-    t.string   "phone",        limit: 40
-    t.string   "street",       limit: 200
-    t.string   "city",         limit: 200
-    t.string   "slogan",       limit: 100
-    t.string   "logo",         limit: 2083
-    t.string   "website",      limit: 2083
-    t.string   "minipage_url", limit: 2083
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "user_id",           limit: 3
+    t.integer  "plan_id",           limit: 3
+    t.integer  "setting_id",        limit: 3
+    t.string   "name",              limit: 150
+    t.string   "email",             limit: 150
+    t.string   "phone",             limit: 40
+    t.string   "street",            limit: 200
+    t.string   "city",              limit: 200
+    t.string   "slogan",            limit: 100
+    t.string   "logo",              limit: 2083
+    t.string   "website",           limit: 2083
+    t.string   "minipage_url",      limit: 2083
+    t.time     "schedule_interval",              default: '2000-01-01 00:15:00'
+    t.time     "min_antecedence",                default: '2000-01-01 01:00:00'
+    t.time     "max_antecedence"
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
   end
 
   add_index "companies", ["plan_id"], name: "index_companies_on_plan_id", using: :btree
-  add_index "companies", ["setting_id"], name: "index_companies_on_setting_id", using: :btree
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "companies_services", force: :cascade do |t|
@@ -117,13 +119,6 @@ ActiveRecord::Schema.define(version: 20160220193512) do
 
   create_table "services", force: :cascade do |t|
     t.string   "name",       limit: 100
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "settings", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.string   "value",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

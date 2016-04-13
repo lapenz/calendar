@@ -1,5 +1,6 @@
 class OpeningHoursController < ApplicationController
   before_action :set_opening_hour, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /opening_hours
   # GET /opening_hours.json
@@ -25,7 +26,6 @@ class OpeningHoursController < ApplicationController
   # POST /opening_hours.json
   def create
     @opening_hour = OpeningHour.new(opening_hour_params)
-
     respond_to do |format|
       if @opening_hour.save
         format.html { redirect_to @opening_hour, notice: 'Opening hour was successfully created.' }
@@ -69,6 +69,6 @@ class OpeningHoursController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def opening_hour_params
-      params.require(:opening_hour).permit(:company_id, :provider_id, :weekdays, :from, :to)
+      params.require(:opening_hour).permit(:company_id, :provider_id, :from, :to, :weekdays => [])
     end
 end

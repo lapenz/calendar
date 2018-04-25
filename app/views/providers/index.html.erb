@@ -2,27 +2,29 @@
 
 <h1>Listing Providers</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Company</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @providers.each do |provider| %>
       <tr>
-        <td><%= provider.company_id %></td>
         <td><%= provider.name %></td>
         <td><%= provider.email %></td>
         <td><%= provider.phone %></td>
-        <td><%= link_to 'Show', provider %></td>
-        <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
-        <td><%= link_to 'Destroy', provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <div class="btn-group btn-group-sm" role="group">
+            <%= link_to 'Edit', edit_provider_path(provider), :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to 'Show',provider , :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to 'Destroy', provider, :class => 'btn btn-danger', :role => 'button', method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Provider', new_provider_path %>
+<%= link_to 'New Provider', new_provider_path, :class => 'btn btn-default' %>

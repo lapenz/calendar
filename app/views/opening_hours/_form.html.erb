@@ -11,28 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.number_field :company_id %>
-  </div>
+    <%= f.hidden_field :company_id %>
 
-  <div class="field">
+    <div class="form-group">
     <%= f.label :weekdays %><br>
     <% Date::DAYNAMES.each_with_index do |day, index| %>
         <%= check_box_tag "opening_hour[weekdays][]", index, @opening_hour.weekdays.nil? ? false : @opening_hour.weekdays.include?(index.to_s) %>
-        <%= t day %>
+        <%= t('date.day_names')[index] %>
     <% end %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :from %><br>
-    <%= f.time_select :from %>
+    <%= f.time_select :from, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :to %><br>
-    <%= f.time_select :to %>
+    <%= f.time_select :to, :class => 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit :class => 'btn btn-primary' %>
+    </div>
 <% end %>
 

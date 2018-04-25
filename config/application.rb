@@ -22,5 +22,13 @@ module Calendar
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.time_zone = 'Brasilia' # altera o time zone para a aplicação
+    config.active_record.default_timezone = :local # altera o ActiveRecord pra gravar os campos mágicos com o mesmo time zone da aplicação
+
+    config.i18n.default_locale = :en
+
+    # Whitelist locales available for the application
+    I18n.available_locales = [:en, :pt]
   end
 end

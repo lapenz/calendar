@@ -2,7 +2,7 @@
 
 <h1>Listing Opening Hours</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Companie</th>
@@ -10,7 +10,7 @@
       <th>Weekdays</th>
       <th>From</th>
       <th>To</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -19,12 +19,18 @@
       <tr>
         <td><%= opening_hour.company_id %></td>
         <td><%= opening_hour.provider_id %></td>
-        <td><%= opening_hour.weekdays %></td>
-        <td><%= opening_hour.from %></td>
-        <td><%= opening_hour.to %></td>
-        <td><%= link_to 'Show', opening_hour %></td>
-        <td><%= link_to 'Edit', edit_opening_hour_path(opening_hour) %></td>
-        <td><%= link_to 'Destroy', opening_hour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% opening_hour.weekdays.each do |day_number| %>
+              <%= t Date::DAYNAMES[day_number.to_i] + ', ' %>
+          <% end %></td>
+        <td><%= time_format opening_hour.from %></td>
+        <td><%= time_format opening_hour.to %></td>
+        <td>
+          <div class="btn-group btn-group-sm" role="group">
+            <%= link_to 'Edit', edit_opening_hour_path(opening_hour), :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to 'Show',opening_hour , :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to 'Destroy', opening_hour, :class => 'btn btn-danger', :role => 'button', method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Opening hour', new_opening_hour_path %>
+<%= link_to 'New Opening hour', new_opening_hour_path, :class => 'btn btn-default' %>

@@ -11,25 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220193512) do
+ActiveRecord::Schema.define(version: 20160507204823) do
 
   create_table "appointments", force: :cascade do |t|
-    t.integer  "provider_id", limit: 3
-    t.integer  "service_id",  limit: 3
-    t.integer  "client_id",   limit: 3
-    t.string   "title",       limit: 45
+    t.integer  "provider_id",          limit: 3
+    t.integer  "companies_service_id", limit: 3
+    t.integer  "client_id",            limit: 3
+    t.string   "title",                limit: 45
     t.datetime "start"
     t.datetime "end"
-    t.integer  "all_day",     limit: 1
-    t.string   "obs",         limit: 200
-    t.decimal  "price",                   precision: 10, scale: 2
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.integer  "all_day",              limit: 1
+    t.string   "obs",                  limit: 200
+    t.decimal  "price",                            precision: 10, scale: 2
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   add_index "appointments", ["client_id"], name: "index_appointments_on_client_id", using: :btree
+  add_index "appointments", ["companies_service_id"], name: "index_appointments_on_companies_service_id", using: :btree
   add_index "appointments", ["provider_id"], name: "index_appointments_on_provider_id", using: :btree
-  add_index "appointments", ["service_id"], name: "index_appointments_on_service_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",       limit: 150
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20160220193512) do
   create_table "companies", force: :cascade do |t|
     t.integer  "user_id",           limit: 3
     t.integer  "plan_id",           limit: 3
-    t.integer  "setting_id",        limit: 3
     t.string   "name",              limit: 150
     t.string   "email",             limit: 150
     t.string   "phone",             limit: 40
@@ -54,11 +53,11 @@ ActiveRecord::Schema.define(version: 20160220193512) do
     t.string   "logo",              limit: 2083
     t.string   "website",           limit: 2083
     t.string   "minipage_url",      limit: 2083
-    t.time     "schedule_interval",              default: '2000-01-01 00:15:00'
-    t.time     "min_antecedence",                default: '2000-01-01 01:00:00'
-    t.time     "max_antecedence"
-    t.datetime "created_at",                                                     null: false
-    t.datetime "updated_at",                                                     null: false
+    t.integer  "schedule_interval", limit: 2,    default: 900
+    t.integer  "min_antecedence",   limit: 3,    default: 3600
+    t.integer  "max_antecedence",   limit: 4,    default: 2592000
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   add_index "companies", ["plan_id"], name: "index_companies_on_plan_id", using: :btree
@@ -67,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160220193512) do
   create_table "companies_services", force: :cascade do |t|
     t.integer  "company_id",  limit: 3
     t.integer  "service_id",  limit: 3
-    t.time     "duration"
+    t.integer  "duration",    limit: 4,                            null: false
     t.string   "description", limit: 150
     t.decimal  "price",                   precision: 10, scale: 2
     t.datetime "created_at",                                       null: false
@@ -90,7 +89,7 @@ ActiveRecord::Schema.define(version: 20160220193512) do
   create_table "opening_hours", force: :cascade do |t|
     t.integer  "company_id",  limit: 3
     t.integer  "provider_id", limit: 3
-    t.string   "weekdays",    limit: 13
+    t.string   "weekdays",    limit: 50
     t.time     "from"
     t.time     "to"
     t.datetime "created_at",             null: false

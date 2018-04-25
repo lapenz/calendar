@@ -17,11 +17,9 @@ pt:
       default: "%d-%m-%Y"
       short: "%d %b"
       long: "%d %B %Y"
-
-  Sunday: "Domingo"
-  Monday: "Segunda"
-  Tuesday: "Terca"
-  Wednesday: "Quarta"
-  Thursday: "Quinta"
-  Friday: "Sexta"
-  Saturday: "Sábado"
+    order:
+      - :day
+      - :month
+      - :year
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]

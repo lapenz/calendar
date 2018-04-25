@@ -47,14 +47,10 @@ en:
 
   date:
       formats:
-        default: "%d-%m-%Y"
+        default: "%b-%d-%Y"
         short: "%d %b"
-        long: "%d %B %Y"
-
-  Sunday: "Sunday"
-  Monday: "Monday"
-  Tuesday: "Tuesday"
-  Wednesday: "Wednesday"
-  Thursday: "Thursday"
-  Friday: "Friday"
-  Saturday: "Saturday"
+        long: "%B %d %Y"
+      order:
+        - :month
+        - :day
+        - :year

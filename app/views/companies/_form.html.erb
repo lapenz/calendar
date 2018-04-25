@@ -11,47 +11,98 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :plan_id %><br>
-    <%= f.number_field :plan_id %>
-  </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :slogan %><br>
-    <%= f.text_field :slogan %>
+    <%= f.text_field :slogan, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :logo %><br>
-    <%= f.text_field :logo %>
+    <%= f.text_field :logo, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :website %><br>
-    <%= f.text_field :website %>
+    <%= f.text_field :website, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :minipage_url %><br>
-    <%= f.text_field :minipage_url %>
+    <%= f.text_field :minipage_url, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :street %><br>
-    <%= f.text_field :street %>
+    <%= f.text_field :street, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :city %><br>
-    <%= f.text_field :city %>
+    <%= f.text_field :city, :class => 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.label :schedule_interval %><br>
+      <%=  f.select :schedule_interval, options_for_select([
+                                           ["5 min", 5*60],
+                                           ["10 min", 10*60],
+                                           ["15 min", 15*60],
+                                           ["20 min", 20*60],
+                                           ["30 min", 30*60],
+                                           ["40 min", 40*60],
+                                           ["50 min", 50*60],
+                                           ["1h", 60*60],
+                                           ["1h20m", 80*60]
+                                   ], selected: @company.schedule_interval
+
+                             )%>
+    </div>
+    <div class="form-group">
+      <%= f.label :min_antecedence %><br>
+      <%=  f.select :min_antecedence, options_for_select([
+                                                                   ["20min", 20*60],
+                                                                   ["40min", 40*60],
+                                                                   ["1h", 1*60*60],
+                                                                   ["2h", 2*60*60],
+                                                                   ["3h", 3*60*60],
+                                                                   ["4h", 4*60*60],
+                                                                   ["6h", 6*60*60],
+                                                                   ["8h", 8*60*60],
+                                                                   ["1d", 1*60*60*24],
+                                                                   ["2d", 2*60*60*24],
+                                                                   ["4d", 4*60*60*24],
+                                                                   ["10d", 10*60*60*24],
+                                                                   ["15d", 15*60*60*24],
+                                                                   ["30d", 30*60*60*24]
+                                                           ], selected: @company.min_antecedence
+
+                                      )%>
+    </div>
+    <div class="form-group">
+      <%= f.label :max_antecedence %><br>
+      <%=  f.select :max_antecedence, options_for_select([
+                                                                 ["1h", 1*60*60],
+                                                                 ["2h", 2*60*60],
+                                                                 ["3h", 3*60*60],
+                                                                 ["4h", 4*60*60],
+                                                                 ["6h", 6*60*60],
+                                                                 ["8h", 8*60*60],
+                                                                 ["1d", 1*60*60*24],
+                                                                 ["2d", 2*60*60*24],
+                                                                 ["4d", 4*60*60*24],
+                                                                 ["10d", 10*60*60*24],
+                                                                 ["15d", 15*60*60*24],
+                                                                 ["30d", 30*60*60*24],
+                                                                 ["40d", 40*60*60*24],
+                                                                 ["60d", 60*60*60*24],
+                                                                 ["90d", 90*60*60*24],
+                                                           ], selected: @company.max_antecedence
+
+                                      )%>
+    </div>
+    <div class="actions">
+      <%= f.submit :class => 'btn btn-primary' %>
+    </div>
 <% end %>

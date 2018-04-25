@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  include CanCan::ControllerAdditions
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to (request.referer.present? ? :back : root_url), :alert => exception.message
+  end
+
   before_action :set_locale
 
   # def default_url_options

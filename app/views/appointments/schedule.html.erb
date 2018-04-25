@@ -1,0 +1,90 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="exampleModalLabel"><b><%= @company_service.company.name %> - Agendamento Online</b></h4>
+  <h4>Step 2: select date and time</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-5 col-sm-12">
+
+      <%= form_for :appointment, :url => {action: 'checkout'} do |f| %>
+          <%= f.hidden_field(:companies_service_id, :value => @company_service.id) %>
+          <%= f.label(:provider_id) %>
+          <%= f.select :provider_id, options_from_collection_for_select(@providers, 'id', 'name'), {:prompt => 'Select a provider'} %>
+          <%= f.hidden_field(:start, :value => nil) %>
+      <% end %>
+      </br>
+      <div id="datepicker"></div>
+    </div>
+    <div class="col-md-7 col-sm-12">
+    <span id="hours"></span>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+
+    <button type="button" class="btn btn-default" data-dismiss="modal"><%= t :close %></button>
+    <button id="submit" type="button" class="btn btn-primary" ><%= t :next %></button>
+
+
+</div>
+
+<script>
+
+    $(document).ready(function() {
+
+        $("#datepicker").datepicker({
+            todayHighlight: true,
+            language: '<%= I18n.locale %>',
+//            daysOfWeekDisabled: [0,6],
+            startDate: new Date(),
+            todayBtn: true
+        }).on('changeDate', function(e) {
+            if($("#appointment_provider_id").val().length !== 0)
+                carregarHorarios(e.date, $("#appointment_provider_id").val())
+        });
+        // Seta a data default pro dia atual
+        $("#datepicker").datepicker('update', new Date());
+        // Carrega os horarios do dia atual quando abre a tela
+//        carregarHorarios($('#datepicker').datepicker('getDate'));
+        // Atualiza os horarios quando alterado o provider
+        $( "#appointment_provider_id" ).change(function() {
+            $("#appointment_start").val(null)
+            carregarHorarios($('#datepicker').datepicker('getDate'), $(this).val())
+        });
+
+        /**
+         * Faz a requisicao ajax para pegar os horarios de uma data e/ou provider e joga na tela.
+         * @param date
+         * @param provider_id
+         */
+        function carregarHorarios(date, provider_id) {
+            $.ajax({
+                url: '<%= Rails.application.routes.url_helpers.appointments_path + '/hours' %>',
+                method: "POST",
+                data: {
+                    date : date,
+                    provider_id : provider_id,
+                    companies_service_id : <%= @company_service.id %>
+                }
+            }).done(function(html) {
+                return $("#hours").html(html);
+            });
+        }
+
+        $( '#submit' ).on('click', function() {
+            if($('#appointment_provider_id').val().length === 0) {
+                alert('Por favor, selecione um provedor.')
+                return;
+            }
+            if($('#appointment_start').val().length === 0) {
+                alert('Por favor, selecione uma data.')
+                return;
+            }
+
+            $('form').submit();
+        });
+
+    });
+
+</script>

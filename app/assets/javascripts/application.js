@@ -11,15 +11,20 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui/autocomplete
+//= require jquery-ui/widgets/autocomplete
+//= require jquery-ui/widgets/selectable
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal
-//= require fullcalendar/lang-all
+//= require fullcalendar/locale-all
 //= require bootstrap-multiselect
+//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.pt.js
 //= require_tree .
 
 

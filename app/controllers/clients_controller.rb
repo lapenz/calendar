@@ -37,6 +37,7 @@ class ClientsController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
@@ -69,6 +70,7 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :email, :phone)
+      params.require(:client).permit(:name, :email, :phone, appointments_attributes: [:id, :provider_id, :companies_service_id, :start, :end, :title, :price, :obs])
     end
+
 end

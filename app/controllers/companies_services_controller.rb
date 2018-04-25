@@ -69,6 +69,7 @@ class CompaniesServicesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_companies_service
       @companies_service = CompaniesService.find(params[:id])
@@ -76,6 +77,6 @@ class CompaniesServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def companies_service_params
-      params.require(:companies_service).permit(:company_id, :service_name, :duration, :description, :price, :provider_ids => [])
+      params.require(:companies_service).permit(:company_id, :service_name, :duration, :description, :price, :date, :provider_ids => [])
     end
 end

@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  #load_and_authorize_resource
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :home]
 
   # GET /companies
   # GET /companies.json
@@ -61,6 +62,10 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def home
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
@@ -69,6 +74,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:user_id, :plan_id, :slogan, :logo, :website, :minipage_url, :name, :phone, :street, :city)
+      params.require(:company).permit(:user_id, :plan_id, :slogan, :logo, :website, :minipage_url, :name, :phone, :street, :city, :schedule_interval, :min_antecedence, :max_antecedence)
     end
 end

@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'companies/home/:id', to: 'companies#home'
+
+  get 'appointments/schedule/:id', to: 'appointments#schedule'
+  post 'appointments/hours/', to: 'appointments#hours'
+  post 'appointments/checkout/', to: 'appointments#checkout'
+  get 'appointments/resume/:id', to: 'appointments#resume', as: 'resume_appointment'
+  post 'appointments/create_appointment/', to: 'appointments#create_appointment'
+
+  resources :services
   resources :providers_services
   resources :appointments
   resources :companies_services
@@ -10,6 +19,8 @@ Rails.application.routes.draw do
   resources :companies
   resources :providers
   resources :settings
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

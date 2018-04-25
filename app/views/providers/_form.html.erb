@@ -11,23 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.number_field :company_id %>
-  </div>
-  <div class="field">
+
+    <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :class => 'form-control' %>
   </div>
-  <div class="field">
+    <div class="form-group">
     <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, :class => 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit :class => 'btn btn-primary' %>
+    </div>
 <% end %>

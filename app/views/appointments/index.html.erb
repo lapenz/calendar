@@ -9,7 +9,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#calendar').fullCalendar({
-            lang: '<%= locale %>',
+            locale: '<%= I18n.locale %>',
             events: '<%= Rails.application.routes.url_helpers.appointments_path %>',
             eventClick: function(event) {
                 window.open('<%= Rails.application.routes.url_helpers.appointments_path %>/'+event.id+'/edit');

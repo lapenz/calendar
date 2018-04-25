@@ -1,0 +1,19 @@
+<ul id="selectable">
+    <% @openHours.each do |p| %>
+        <li class="slot" data="<%= p %>"><a href="#"><%= p.strftime '%H:%M' %></a></li>
+    <% end %>
+</ul>
+
+<script>
+    $(document).ready(function() {
+        $( "#selectable" ).selectable();
+
+        var selectedItems = [];
+        $( 'li.ui-selectee' ).on('click', function() {
+
+            var selected_date = $(this).attr('data');
+            $('#appointment_start').val(selected_date);
+            console.log('selected item: ' +  selected_date);      // open the console to see the selected items after each click
+        });
+    });
+</script>

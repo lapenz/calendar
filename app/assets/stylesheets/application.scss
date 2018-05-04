@@ -12,17 +12,11 @@
  *
  *= require_tree .
  *= require fullcalendar
+ *= require fullcalendar/scheduler
  *= require jquery-ui/autocomplete
  *= require bootstrap-datepicker3
  *= require_self
  */
-
-
-body {
-
-  padding-top: 70px;
-}
-
 
 
 pre {

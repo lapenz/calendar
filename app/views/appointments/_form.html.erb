@@ -11,43 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :provider_id %><br>
-    <%= f.number_field :provider_id %>
+  <div class="form-group">
+    <%= f.label(:companies_service_id) %>
+    <%= f.select :companies_service_id, current_user.company.companies_services.collect {|copanies_service| [copanies_service.service_name, copanies_service.id]}, {}, class: 'form-control' %>
   </div>
-    <div class="field">
-      <%= f.label :companies_service_id %><br>
-      <%= f.number_field :companies_service_id %>
-    </div>
-  <div class="field">
-    <%= f.label :client_id %><br>
-    <%= f.number_field :client_id %>
+
+  <div class="form-group">
+    <%= f.label(:provider_id) %>
+    <%= f.select :provider_id, current_user.company.providers.collect { |provider| [provider.name, provider.id] }, {:prompt => 'Select a provider'}, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :start %><br>
-    <%= f.datetime_select :start %>
+    <%= f.datetime_select :start, {default: params['start'].blank? ? @appointment.start : DateTime.parse(params['start'])} %>
   </div>
-  <div class="field">
-    <%= f.label :end %><br>
-    <%= f.datetime_select :end %>
-  </div>
-  <div class="field">
-    <%= f.label :all_day %><br>
-    <%= f.number_field :all_day %>
-  </div>
-  <div class="field">
+  <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
+    <div class="form-group">
+      <%= client_fields.label :email %>
+      <%= client_fields.text_field :email, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= client_fields.label :name %>
+      <%= client_fields.text_field :name, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= client_fields.label :phone %>
+      <%= client_fields.text_field :phone, :class => 'form-control' %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
     <%= f.label :obs %><br>
-    <%= f.text_field :obs %>
+    <%= f.text_area :obs, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-primary' %>
+    <%= link_to 'Destroy', @appointment, :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Are you sure?'} %>
   </div>
 <% end %>

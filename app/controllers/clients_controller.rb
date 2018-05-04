@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
+
   # GET /clients
   # GET /clients.json
   def index
@@ -61,6 +62,14 @@ class ClientsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def findByEmail
+
+    @client = Client.where(email: params[:email]).first
+
+    render json: @client, status: :ok
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

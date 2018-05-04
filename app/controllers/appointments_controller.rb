@@ -27,7 +27,15 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
+    client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
+    client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
+    client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
+
     @appointment = Appointment.new(appointment_params)
+
+    @appointment.client = client
+    @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
+    @appointment.title = @appointment.companies_service.service.name
 
     respond_to do |format|
       if @appointment.save
@@ -43,6 +51,9 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+    @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
+    @appointment.title = @appointment.companies_service.service.name
+
     respond_to do |format|
       if @appointment.update(appointment_params)
         format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
@@ -83,10 +94,9 @@ class AppointmentsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create_appointment
-
-    client = Client.where(email: params[:email]).first_or_initialize
-    client.name = params[:name] unless params[:name].blank?
-    client.phone = params[:phone] unless params[:phone].blank?
+    client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
+    client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
+    client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
 
     @appointment = Appointment.new(appointment_params)
 
@@ -177,7 +187,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :provider_id, :client_id, :title, :start, :end, :all_day, :obs, :price, :name, :email, :phone)
+    params.require(:appointment).permit(:companies_service_id, :provider_id, :title, :start, :end, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:id, :email, :name, :phone])
   end
 
 end

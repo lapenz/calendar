@@ -19,7 +19,7 @@
       <tr>
         <td><%= companies_service.company.name %></td>
         <td><%= companies_service.service.name %></td>
-        <td><%= companies_service.duration %></td>
+        <td><%= formatted_duration companies_service.duration %></td>
         <td><%= companies_service.description %></td>
         <td><%= companies_service.price %></td>
         <td>

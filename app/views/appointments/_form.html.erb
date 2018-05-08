@@ -24,6 +24,21 @@
     <%= f.label :start %><br>
     <%= f.datetime_select :start, {default: params['start'].blank? ? @appointment.start : DateTime.parse(params['start'])} %>
   </div>
+  <div class="form-group">
+    <%= f.label :duration %><br>
+    <%= f.select :duration, options_for_select([
+                                                   ["10 min", 600],
+                                                   ["20 min", 1200],
+                                                   ["30 min", 1800],
+                                                   ["40 min", 2400],
+                                                   ["50 min", 3000],
+                                                   ["1h", 3600],
+                                                   ["1h20m", 4800]
+
+                                               ], selected: @appointment.duration
+
+    ) %>
+  </div>
   <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
     <div class="form-group">
       <%= client_fields.label :email %>

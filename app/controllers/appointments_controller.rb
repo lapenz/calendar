@@ -34,7 +34,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
 
     @appointment.client = client
-    @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
+    @appointment.end = @appointment.start + params[:duration].to_i.seconds
     @appointment.title = @appointment.companies_service.service.name
 
     respond_to do |format|
@@ -51,7 +51,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
+    @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
     @appointment.title = @appointment.companies_service.service.name
 
     respond_to do |format|
@@ -187,7 +187,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :provider_id, :title, :start, :end, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:id, :email, :name, :phone])
+    params.require(:appointment).permit(:companies_service_id, :provider_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:id, :email, :name, :phone])
   end
 
 end

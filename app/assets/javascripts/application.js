@@ -18,6 +18,7 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require fullcalendar
+//= require fullcalendar/scheduler
 //= require fullcalendar/gcal
 //= require fullcalendar/locale-all
 //= require bootstrap-multiselect

@@ -11,14 +11,11 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :company_id %><br>
-    <%= f.number_field :company_id, :class => 'form-control' %>
-  </div>
+    <%= f.hidden_field :company_id, :value => current_user.company.id %>
+
     <div class="form-group">
       <%= f.label :service_id %><br>
       <%= f.text_field :service_name, :class => 'form-control' %>
-      <!--<%= f.hidden_field :service_id %>-->
     </div>
 
     <div class="form-group">

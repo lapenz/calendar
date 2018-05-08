@@ -12,6 +12,17 @@ class Appointment < ActiveRecord::Base
   validates_presence_of :start
   validates_presence_of :end
 
+  # attr_reader
+  def resourceId
+    self[:provider_id]
+  end
 
+  def duration
+    self[:end].to_i - self[:start].to_i
+  end
+
+  def duration=(val)
+
+  end
 
 end

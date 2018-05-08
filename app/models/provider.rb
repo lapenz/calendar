@@ -4,4 +4,8 @@ class Provider < ActiveRecord::Base
 
   validates_presence_of :company
   validates_presence_of :name
+
+  def title
+    self[:name]
+  end
 end

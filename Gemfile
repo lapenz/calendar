@@ -22,7 +22,7 @@ gem 'cancancan'
 # Biblioteca necessaria para o fullcalendar
 gem 'momentjs-rails'
 # Plugin que exibe o calendario da agenda
-gem 'fullcalendar-rails'
+gem 'fullcalendar'
 
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-ui-rails'

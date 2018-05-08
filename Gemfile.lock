@@ -70,10 +70,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.23)
-    fullcalendar-rails (3.4.0.0)
-      jquery-rails (>= 4.0.5, < 5.0.0)
-      jquery-ui-rails (>= 5.0.2)
-      momentjs-rails (>= 2.9.0)
+    fullcalendar (3.9.0)
+      momentjs-rails (~> 2.20.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.5)
@@ -191,7 +189,7 @@ DEPENDENCIES
   cancancan
   coffee-rails (~> 4.1.0)
   devise
-  fullcalendar-rails
+  fullcalendar
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails

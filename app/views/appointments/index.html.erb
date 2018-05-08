@@ -2,21 +2,33 @@
 
 <h1><%=t :appointments %></h1>
 
-
 <div id='calendar'></div>
 
-
 <script type="text/javascript">
+
     $(document).ready(function() {
+
         $('#calendar').fullCalendar({
             locale: '<%= I18n.locale %>',
-            events: '<%= Rails.application.routes.url_helpers.appointments_path %>',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,timelineWeek,agendaDay,listWeek'
+            },
+            resourceAreaWidth: 120,
+            editable: true,
+            weekNumbers: false,
+            slotDuration: '00:30:00',
+            resourceLabelText: 'Providers',
+            resources: '/providers',
+            events: '<%= @appointments %>',
+
             eventClick: function(event) {
                 window.open('<%= Rails.application.routes.url_helpers.appointments_path %>/'+event.id+'/edit');
                 return false;
             },
             dayClick: function(date, jsEvent, view) {
-                //TODO window.open('<%= Rails.application.routes.url_helpers.appointments_path %>?start='+date.format());
+                window.open('<%= Rails.application.routes.url_helpers.new_appointment_path %>?start='+date.format());
                 return false;
             }
         });

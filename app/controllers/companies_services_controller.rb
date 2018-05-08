@@ -5,7 +5,7 @@ class CompaniesServicesController < ApplicationController
   # GET /companies_services
   # GET /companies_services.json
   def index
-    @companies_services = CompaniesService.all
+    @companies_services = current_user.company.companies_services
   end
 
   # GET /companies_services/1

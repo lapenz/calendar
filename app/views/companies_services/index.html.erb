@@ -1,11 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Companies Services</h1>
+<h1>Listing Services</h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Company</th>
       <th>Service</th>
       <th>Duration</th>
       <th>Description</th>
@@ -17,7 +16,6 @@
   <tbody>
     <% @companies_services.each do |companies_service| %>
       <tr>
-        <td><%= companies_service.company.name %></td>
         <td><%= companies_service.service.name %></td>
         <td><%= formatted_duration companies_service.duration %></td>
         <td><%= companies_service.description %></td>

@@ -5,7 +5,7 @@ class ProvidersController < ApplicationController
   # GET /providers
   # GET /providers.json
   def index
-    @providers = Provider.all
+    @providers = current_user.company.providers
   end
 
   # GET /providers/1

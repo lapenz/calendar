@@ -5,7 +5,7 @@ class OpeningHoursController < ApplicationController
   # GET /opening_hours
   # GET /opening_hours.json
   def index
-    @opening_hours = OpeningHour.all
+    @opening_hours = OpeningHour.where(company: current_user.company)
   end
 
   # GET /opening_hours/1

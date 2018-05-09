@@ -5,8 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Companie</th>
-      <th>Provider</th>
       <th>Weekdays</th>
       <th>From</th>
       <th>To</th>
@@ -17,8 +15,6 @@
   <tbody>
     <% @opening_hours.each do |opening_hour| %>
       <tr>
-        <td><%= opening_hour.company_id %></td>
-        <td><%= opening_hour.provider_id %></td>
         <td><% opening_hour.weekdays.each do |day_number| %>
               <%= t Date::DAYNAMES[day_number.to_i] + ', ' %>
           <% end %></td>

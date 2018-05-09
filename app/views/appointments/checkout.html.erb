@@ -39,6 +39,11 @@
       <%= @appointment.start.to_formatted_s(:long)   %>
     </h4>
 
+    <h4>
+      <strong><%= f.label :duration %>:</strong>
+      <%= formatted_duration @appointment.companies_service.duration %>
+    </h4>
+
     <% if !@appointment.price.blank? %>
         <h4>
           <strong><%= f.label :price %>:</strong>

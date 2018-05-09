@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   resources :companies_services
   resources :opening_hours
   resources :services
-  resources :clients
+  resources :clients do
+    collection do
+      get 'findByEmail/', to: 'clients#findByEmail', as: 'findClientByEmail'
+    end
+  end
   resources :providers
   resources :settings
   resources :companies

@@ -83,12 +83,10 @@ class AppointmentsController < ApplicationController
   end
 
   def checkout
-    #byebug
     @appointment = Appointment.new(appointment_params)
     @client = Client.new
     @client.appointments.build(appointment_params)
 
-    #byebug
   end
 
   # POST /clients
@@ -97,6 +95,7 @@ class AppointmentsController < ApplicationController
     client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
     client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
     client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
+    client.full_validate = true
 
     @appointment = Appointment.new(appointment_params)
 

@@ -41,15 +41,13 @@
   </div>
   <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
     <div class="form-group">
-      <%= client_fields.label :email %>
-      <%= client_fields.text_field :email, :class => 'form-control' %>
-    </div>
-
-    <div class="form-group">
       <%= client_fields.label :name %>
       <%= client_fields.text_field :name, :class => 'form-control' %>
     </div>
-
+    <div class="form-group">
+      <%= client_fields.label :email %>
+      <%= client_fields.text_field :email, :class => 'form-control' %>
+    </div>
     <div class="form-group">
       <%= client_fields.label :phone %>
       <%= client_fields.text_field :phone, :class => 'form-control' %>

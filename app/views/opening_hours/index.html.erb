@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Opening Hours</h1>
+<h1><%= OpeningHour.model_name.human %></h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Weekdays</th>
-      <th>From</th>
-      <th>To</th>
+      <th><%= OpeningHour.human_attribute_name("weekdays") %></th>
+      <th><%= OpeningHour.human_attribute_name("from") %></th>
+      <th><%= OpeningHour.human_attribute_name("to") %></th>
       <th></th>
     </tr>
   </thead>
@@ -15,16 +15,16 @@
   <tbody>
     <% @opening_hours.each do |opening_hour| %>
       <tr>
-        <td><% opening_hour.weekdays.each do |day_number| %>
-              <%= t Date::DAYNAMES[day_number.to_i] + ', ' %>
+        <td><% opening_hour.weekdays.each_with_index do |day_number, index| %>
+            <%= t('date.day_names')[index] + ', ' %>
           <% end %></td>
-        <td><%= time_format opening_hour.from %></td>
-        <td><%= time_format opening_hour.to %></td>
+        <td><%= time_format opening_hour.from %>h</td>
+        <td><%= time_format opening_hour.to %>h</td>
         <td>
           <div class="btn-group btn-group-sm" role="group">
-            <%= link_to 'Edit', edit_opening_hour_path(opening_hour), :class => 'btn btn-default', :role => 'button' %>
-            <%= link_to 'Show',opening_hour , :class => 'btn btn-default', :role => 'button' %>
-            <%= link_to 'Destroy', opening_hour, :class => 'btn btn-danger', :role => 'button', method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t(:edit), edit_opening_hour_path(opening_hour), :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to t(:show),opening_hour , :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to t(:destroy), opening_hour, :class => 'btn btn-danger', :role => 'button', method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         </td>
       </tr>

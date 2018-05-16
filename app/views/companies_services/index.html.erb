@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Services</h1>
+<h1><%= CompaniesService.model_name.human %></h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Service</th>
-      <th>Duration</th>
-      <th>Description</th>
-      <th>Price</th>
+      <th><%= CompaniesService.human_attribute_name("name") %></th>
+      <th><%= CompaniesService.human_attribute_name("duration") %></th>
+      <th><%= CompaniesService.human_attribute_name("description") %></th>
+      <th><%= CompaniesService.human_attribute_name("price") %></th>
       <th></th>
     </tr>
   </thead>
@@ -22,9 +22,9 @@
         <td><%= companies_service.price %></td>
         <td>
           <div class="btn-group btn-group-sm" role="group">
-            <%= link_to 'Edit', edit_companies_service_path(companies_service), :class => 'btn btn-default', :role => 'button' %>
-            <%= link_to 'Show',companies_service , :class => 'btn btn-default', :role => 'button' %>
-            <%= link_to 'Destroy', companies_service, :class => 'btn btn-danger', :role => 'button', method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t(:edit), edit_companies_service_path(companies_service), :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to t(:show),companies_service , :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to t(:destroy), companies_service, :class => 'btn btn-danger', :role => 'button', method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         </td>
       </tr>

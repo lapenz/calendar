@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :resume]
-
+  before_action :authenticate_user!
   helper CompaniesHelper
 
   # GET /appointments

@@ -23,15 +23,26 @@ en:
   hello: "Hello world"
   save: "Save"
   select_all: "Select all"
-  providers: "Providers"
-  appointments: "Appointments"
+  logout: 'Logout'
+  sign_up: 'Sign up'
+  login: 'Login'
+  edit_profile: 'Edit profile'
+  edit: 'Edit'
+  show: 'Show'
+  destroy: 'Destroy'
   activerecord:
-      models:
-        provider: "Provider"
-      attributes:
-        companie:
-          minipage_url: "Minipage"
+    models:
+      appointment: "Appointment"
+      client: "Client"
+      provider: "Provider"
+      companies_service: "Service"
+      company: "Business details"
+      opening_hour: "Opening hour"
+    attributes:
+      companie:
+        minipage_url: "Minipage"
   devise:
+    logout: 'Logout'
     sessions:
       signed_in: 'Signed in successfully.'
       user:

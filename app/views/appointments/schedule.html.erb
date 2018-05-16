@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-5 col-sm-12">
 
-      <%= form_for :appointment, :url => {action: 'checkout'} do |f| %>
+      <%= form_for :appointment, method: :get, :url => {action: 'checkout'} do |f| %>
           <%= f.hidden_field(:companies_service_id, :value => @company_service.id) %>
           <%= f.label(:provider_id) %>
           <%= f.select :provider_id, options_from_collection_for_select(@providers, 'id', 'name'), {:prompt => 'Select a provider'} %>

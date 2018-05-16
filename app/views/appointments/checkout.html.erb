@@ -1,7 +1,7 @@
 <div class = "page-header">
 
   <h1>
-    Step 3
+    Step 2
     <small>checkout</small>
   </h1>
 
@@ -20,6 +20,10 @@
         </div>
     <% end %>
 
+  <%= f.hidden_field(:provider_id) %>
+  <%= f.hidden_field(:companies_service_id) %>
+  <%= f.hidden_field(:start) %>
+  <%= f.hidden_field(:price) %>
 
 
     <% if !@appointment.provider.blank? %>
@@ -36,7 +40,7 @@
 
     <h4>
       <strong><%= f.label :start %>:</strong>
-      <%= @appointment.start.to_formatted_s(:long)   %>
+      <%= l @appointment.start, format: :long   %>
     </h4>
 
     <h4>
@@ -50,6 +54,7 @@
           <%= @appointment.price %>
         </h4>
     <% end %>
+
 
     <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
       <div class="form-group">
@@ -73,17 +78,9 @@
       <%= f.text_area :obs, :class => 'form-control' %>
     </div>
 
-    <%= f.hidden_field(:provider_id) %>
-    <%= f.hidden_field(:companies_service_id) %>
-    <%= f.hidden_field(:start) %>
-    <%= f.hidden_field(:price) %>
-
-
-
-
-
 
     <div class="actions">
-      <%= f.submit %>
+      <%= link_to t(:back), @appointment.companies_service.company, class: 'btn btn-primary' %>
+      <%= f.submit t(:schedule), :class => 'btn btn-success' %>
     </div>
 <% end %>

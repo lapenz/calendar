@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'companies/home/:id', to: 'companies#home'
 
   get 'appointments/schedule/:id', to: 'appointments#schedule'
   post 'appointments/hours/', to: 'appointments#hours'
@@ -31,7 +30,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root :to => "clients#index"
+  root :to => "appointments#index"
 
   devise_for :users, controllers: { sessions: "users/sessions", :registrations => "users/registrations" }
 

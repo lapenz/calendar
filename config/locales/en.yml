@@ -77,4 +77,5 @@ en:
   time:
     formats:
       short: "%m/%d/%y"
+      day_month_weekday: '%B %d - %A'
       long: '%B %d, %Y - %H:%Mh'

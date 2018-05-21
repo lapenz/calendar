@@ -1,7 +1,8 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h4 class="modal-title" id="exampleModalLabel"><b><%= @company_service.company.name %> - Agendamento Online</b></h4>
-  <h4>Step 2: select date and time</h4>
+  <h4><%= t :step1 %></h4>
+  <h5><%= CompaniesService.model_name.human + ': ' + @company_service.service.name %></h5>
 </div>
 <div class="modal-body">
   <div class="row">
@@ -10,7 +11,7 @@
       <%= form_for :appointment, method: :get, :url => {action: 'checkout'} do |f| %>
           <%= f.hidden_field(:companies_service_id, :value => @company_service.id) %>
           <%= f.label(:provider_id) %>
-          <%= f.select :provider_id, options_from_collection_for_select(@providers, 'id', 'name'), {:prompt => 'Select a provider'} %>
+          <%= f.select :provider_id, options_from_collection_for_select(@providers, 'id', 'name'), {:prompt => t(:select)} %>
           <%= f.hidden_field(:start, :value => nil) %>
       <% end %>
       </br>
@@ -74,11 +75,11 @@
 
         $( '#submit' ).on('click', function() {
             if($('#appointment_provider_id').val().length === 0) {
-                alert('Por favor, selecione um provedor.')
+                alert('<%= t :select_provider %>')
                 return;
             }
             if($('#appointment_start').val().length === 0) {
-                alert('Por favor, selecione uma data.')
+                alert('<%= t :select_date_hour %>')
                 return;
             }
 

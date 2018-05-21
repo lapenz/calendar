@@ -30,6 +30,15 @@ en:
   edit: 'Edit'
   show: 'Show'
   destroy: 'Destroy'
+  services: {
+      zero: 'No registered service', # optional
+      one: 'Service',
+      other: 'Services'
+  }
+  step1: 'Step 1/2: select date and time'
+  step2: 'Step 2/2:'
+  select_date_hour: 'Please, select date and time.'
+  select_provider: 'Please, select provider.'
   activerecord:
     models:
       appointment: "Appointment"
@@ -57,11 +66,15 @@ en:
         subject: 'Reset instructions'
 
   date:
-      formats:
-        default: "%b-%d-%Y"
-        short: "%d %b"
-        long: "%B %d %Y"
-      order:
-        - :month
-        - :day
-        - :year
+    formats:
+      default: "%b-%d-%Y"
+      short: "%d %b"
+      long: "%B %d %Y"
+    order:
+      - :month
+      - :day
+      - :year
+  time:
+    formats:
+      short: "%m/%d/%y"
+      long: '%B %d, %Y - %H:%Mh'

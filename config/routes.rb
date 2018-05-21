@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
 
-  get 'appointments/schedule/:id', to: 'appointments#schedule'
-  post 'appointments/hours/', to: 'appointments#hours'
-  post 'appointments/checkout/', to: 'appointments#checkout'
-  get 'appointments/resume/:id', to: 'appointments#resume', as: 'resume_appointment'
-  post 'appointments/create_appointment/', to: 'appointments#create_appointment'
-
   resources :services
   resources :providers_services
-  resources :appointments
+  resources :appointments do
+    collection do
+      get 'checkout'
+      post 'hours'
+      post 'create_appointment'
+    end
+
+    member do
+      get 'schedule'
+      get 'resume'
+    end
+
+  end
   resources :companies_services
   resources :opening_hours
   resources :services

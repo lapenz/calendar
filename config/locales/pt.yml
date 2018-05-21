@@ -9,6 +9,18 @@ pt:
   edit: 'Editar'
   show: 'Visualizar'
   destroy: 'Excluir'
+  schedule: 'Agendar'
+  back: 'Voltar'
+  services: {
+    zero: 'Nenhum serviço cadastrado', # optional
+    one: 'Serviço',
+    other: 'Serviços'
+  }
+  step1: 'Passo 1/2: selecione a data e horário'
+  step2: 'Passo 2/2:'
+  select: 'Selecione'
+  select_date_hour: 'Por favor, selecione uma data e horário.'
+  select_provider: 'Por favor, selecione um provedor.'
   helpers:
       submit:
         create: "Cadastrar %{model}"
@@ -23,6 +35,11 @@ pt:
       company: "Detalhes do negócio"
       opening_hour: "Horário de atendimento"
     attributes:
+      appointment:
+        provider_id: 'Provedor'
+        companies_service_id: 'Serviço'
+        start: 'Início'
+        duration: 'Duração'
       company:
         name: 'Nome'
         phone: 'Telefone'
@@ -35,6 +52,7 @@ pt:
       client:
         name: 'Nome'
         phone: 'Telefone'
+        email: 'Email'
       provider:
         name: 'Nome'
         phone: 'Telefone'
@@ -48,6 +66,14 @@ pt:
         description: 'Descrição'
         price: 'Preço'
         provider_ids: 'Provedores'
+    errors:
+      messages:
+        blank: 'deve ser preenchido.'
+      template:
+        header:
+          one:   "1 erro impediu este %{model} de ser salvo"
+          other: "%{count} erros impediram este %{model} de ser salvo"
+        body:    "Existem problemas com os seguintes campos:"
 
   devise:
     confirmations:
@@ -118,3 +144,8 @@ pt:
       - :year
     day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
     month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+  time:
+    formats:
+      short: "%d/%m/%y"
+      day_month_weekday: '%d de %B - %A'
+      long: '%d de %B de %Y - %H:%Mh'

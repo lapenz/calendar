@@ -35,7 +35,7 @@ class AppointmentsController < ApplicationController
 
     @appointment.client = client
     @appointment.end = @appointment.start + params[:duration].to_i.seconds
-    @appointment.title = @appointment.companies_service.service.name
+    @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
 
     respond_to do |format|
       if @appointment.save
@@ -101,7 +101,7 @@ class AppointmentsController < ApplicationController
 
     @appointment.client = client
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
-    @appointment.title = @appointment.companies_service.service.name
+    @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
 
 
     #byebug

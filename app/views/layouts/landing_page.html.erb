@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><%= @company.name %> - AgendaCard</title>
+  <title>AgendaCard</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -16,14 +16,34 @@
   <![endif]-->
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
 
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
 
-      <a class="navbar-brand" href="<%= root_url(subdomain: @company.minipage_url) %>"><%= @company.name %></a>
+      <a class="navbar-brand" href="/"><%= image_tag "logo_agendacard_wide.png", :width => 30, :alt => 'AgendaCard' %></a>
+
     </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+
+        <li><%= link_to 'AgendaCard', root_url %></li>
+
+    </ul>
+
+    <p class="navbar-text pull-right">
+      <% if user_signed_in? %>
+        <%= link_to current_user.email, appointments_path %> |
+        <%= link_to t(:logout), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+        <%= link_to t(:sign_up), new_user_registration_path, :class => 'navbar-link'  %> |
+        <%= link_to t(:login), new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+    </p>
+  </div><!-- /.navbar-collapse -->
 
 
   </div><!-- /.container-fluid -->
@@ -39,10 +59,6 @@
     </div>
   </div>
 </div>
-<footer class="footer">
-  <div class="container">
-    <p><a href="http://agendacard.com.br">www.agendacard.com.br</a></p>
-  </div>
-</footer>
+
 </body>
 </html>

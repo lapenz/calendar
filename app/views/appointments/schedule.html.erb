@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-5 col-sm-12 col-xs-12">
 
       <%= form_for :appointment, method: :get, :url => {action: 'checkout'} do |f| %>
           <%= f.hidden_field(:companies_service_id, :value => @company_service.id) %>
@@ -17,7 +17,7 @@
       </br>
       <div id="datepicker"></div>
     </div>
-    <div class="col-md-7 col-sm-12">
+    <div class="col-md-7 col-sm-12 col-xs-12">
     <span id="hours"></span>
     </div>
   </div>
@@ -69,7 +69,7 @@
                     companies_service_id : <%= @company_service.id %>
                 }
             }).done(function(html) {
-                return $("#hours").html(html);
+                $("#hours").html(html);
             });
         }
 

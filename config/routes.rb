@@ -30,13 +30,15 @@ Rails.application.routes.draw do
   resources :settings
 
 
+  match '/', to: 'landing_page#home', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
+  match '/', to: 'companies#show', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root :to => "appointments#index"
+  root :to => "landing_page#home"
 
   devise_for :users, controllers: { sessions: "users/sessions", :registrations => "users/registrations" }
 

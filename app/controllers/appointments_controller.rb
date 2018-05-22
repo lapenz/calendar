@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :resume]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:schedule, :hours, :checkout, :create_appointment, :resume]
   helper CompaniesHelper
 
   # GET /appointments
@@ -101,7 +101,7 @@ class AppointmentsController < ApplicationController
 
     @appointment.client = client
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
-    @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
+    @appointment.title = client.name + ': ' + @appointment.companies_service.service.name unless client.name.blank?
 
 
     #byebug

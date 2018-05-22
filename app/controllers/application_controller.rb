@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :get_minipage_url
 
   include CanCan::ControllerAdditions
   rescue_from CanCan::AccessDenied do |exception|
@@ -23,5 +24,15 @@ class ApplicationController < ActionController::Base
   private
   def extract_locale_from_accept_language_header
     request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+  end
+
+  def get_minipage_url
+
+    companies = Company.where(minipage_url: request.subdomain)
+    if companies.count > 0
+      @company = companies.first
+    elsif request.subdomain != 'www'
+      redirect_to root_url(subdomain: 'www')
+    end
   end
 end

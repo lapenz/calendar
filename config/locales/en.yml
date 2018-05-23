@@ -30,6 +30,7 @@ en:
   edit: 'Edit'
   show: 'Show'
   destroy: 'Destroy'
+  business: 'Business'
   services: {
       zero: 'No registered service', # optional
       one: 'Service',

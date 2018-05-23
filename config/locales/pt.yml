@@ -11,6 +11,7 @@ pt:
   destroy: 'Excluir'
   schedule: 'Agendar'
   back: 'Voltar'
+  business: 'Negócio'
   services: {
     zero: 'Nenhum serviço cadastrado', # optional
     one: 'Serviço',

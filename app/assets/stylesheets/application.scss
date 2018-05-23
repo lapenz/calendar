@@ -97,6 +97,14 @@ div {
   height: 88%;
 }
 
+.jumbotron {
+  background-image: url("/images/hometop.jpg");
+  background-size: cover;
+}
+
+.jumbotron h1, .jumbotron p { color: white !important;}
+
+
 .footer {
   padding: 10px;
   text-align: center;

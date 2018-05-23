@@ -5,5 +5,6 @@ class Company < ActiveRecord::Base
 
   validates_uniqueness_of :minipage_url
 
+  mount_uploader :logo, LogoUploader
 
 end

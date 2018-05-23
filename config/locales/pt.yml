@@ -10,6 +10,7 @@ pt:
   show: 'Visualizar'
   destroy: 'Excluir'
   schedule: 'Agendar'
+  remove: 'Remover'
   back: 'Voltar'
   business: 'Negócio'
   services: {

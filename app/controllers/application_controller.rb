@@ -26,13 +26,20 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
 
+  # Subdomain treatment
   def get_minipage_url
-
-    companies = Company.where(minipage_url: request.subdomain)
-    if companies.count > 0
-      @company = companies.first
-    elsif request.subdomain != 'www'
-      redirect_to root_url(subdomain: 'www')
+    if !request.subdomain.blank?
+      companies = Company.where(minipage_url: request.subdomain).where.not(minipage_url: [nil, ''])
+      if companies.count > 0
+        @companyFromDomain = companies.first
+      elsif request.subdomain != 'www'
+        redirect_to root_url(subdomain: 'www')
+      end
     end
+  end
+
+  # Redirect after sign in
+  def after_sign_in_path_for(resource_or_scope)
+    appointments_path
   end
 end

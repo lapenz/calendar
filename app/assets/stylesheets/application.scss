@@ -18,19 +18,8 @@
  *= require_self
  */
 
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
-}
-
-
-
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
+#alert {
+  color: red;
 }
 
 #notice {

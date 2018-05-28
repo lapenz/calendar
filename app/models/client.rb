@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
   has_many :appointments
+  belongs_to :company
 
   attr_accessor :full_validate
 

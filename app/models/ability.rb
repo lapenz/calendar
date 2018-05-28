@@ -45,5 +45,9 @@ class Ability
       companies_service.company == user.company
     end
 
+    can :manage, Client do |client|
+      client.company == user.company
+    end
+
   end
 end

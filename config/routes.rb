@@ -25,7 +25,11 @@ Rails.application.routes.draw do
   end
   resources :providers
   resources :settings
-  resources :companies
+  resources :companies do
+    collection do
+      get 'details'
+    end
+  end
   resources :providers
   resources :settings
 

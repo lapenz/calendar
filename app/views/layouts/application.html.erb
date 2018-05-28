@@ -16,7 +16,7 @@
   <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
 
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,7 +35,6 @@
       <ul class="nav navbar-nav">
 
 
-
         <% if current_user %>
           <li><%= nav_link(Appointment.model_name.human, appointments_path) %></li>
 
@@ -43,7 +42,7 @@
           <li class="dropdown">
             <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t :business %> <span class="caret"></span> </a>
             <ul class="dropdown-menu" aria-labelledby="drop1">
-              <li><%= nav_link(Company.model_name.human, edit_company_path(current_user.company)) %></li>
+              <li><%= nav_link(Company.model_name.human, details_companies_path) %></li>
               <li><%= nav_link(Provider.model_name.human, providers_path) %></li>
               <li><%= nav_link(OpeningHour.model_name.human, opening_hours_path) %></li>
               <li><%= nav_link(CompaniesService.model_name.human, companies_services_path) %></li>
@@ -73,7 +72,6 @@
 
 
 <div class="container">
-  <div class="alert"><%= alert %></div>
 
   <div class="row" role="main">
     <div class="col-md-12">

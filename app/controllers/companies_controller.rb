@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  #load_and_authorize_resource
+  load_and_authorize_resource
   before_action :set_company, only: [:show, :edit, :update, :destroy, :home]
 
   # GET /companies
@@ -21,6 +21,11 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+  end
+
+  def details
+    @company = current_user.company
+    render "edit"
   end
 
   # POST /companies

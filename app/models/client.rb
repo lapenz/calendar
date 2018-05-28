@@ -4,7 +4,7 @@ class Client < ActiveRecord::Base
 
   attr_accessor :full_validate
 
-  validates_uniqueness_of :email
+  validates :email, uniqueness: { scope: :company_id }
 
   validates_presence_of :name
 

@@ -34,23 +34,23 @@ class Ability
     end
 
     can :manage, Provider do |provider|
-      provider.company == user.company
+      provider.new_record? || provider.company == user.company
     end
 
     can :manage, OpeningHour do |opening_hour|
-      opening_hour.company == user.company
+      opening_hour.new_record? || opening_hour.company == user.company
     end
 
     can :manage, CompaniesService do |companies_service|
-      companies_service.company == user.company
+      companies_service.new_record? || companies_service.company == user.company
     end
 
     can :manage, Client do |client|
-      client.company == user.company
+      client.new_record? || client.company == user.company
     end
 
     can :manage, Appointment do |appointment|
-      appointment.provider.company == user.company
+      appointment.new_record? || appointment.provider.company == user.company
     end
 
   end

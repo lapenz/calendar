@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :resume]
   before_action :authenticate_user!, except: [:schedule, :hours, :checkout, :create_appointment, :resume]
+  load_and_authorize_resource
   helper CompaniesHelper
 
   # GET /appointments

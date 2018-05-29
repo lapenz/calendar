@@ -49,5 +49,9 @@ class Ability
       client.company == user.company
     end
 
+    can :manage, Appointment do |appointment|
+      appointment.provider.company == user.company
+    end
+
   end
 end

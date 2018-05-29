@@ -24,11 +24,11 @@
             events: '<%= @appointments %>',
 
             eventClick: function(event) {
-                window.open('<%= Rails.application.routes.url_helpers.appointments_path %>/'+event.id+'/edit');
+                window.location.href = '<%= Rails.application.routes.url_helpers.appointments_path %>/'+event.id+'/edit';
                 return false;
             },
             dayClick: function(date, jsEvent, view) {
-                window.open('<%= Rails.application.routes.url_helpers.new_appointment_path %>?start='+date.format());
+                window.location.href = '<%= Rails.application.routes.url_helpers.new_appointment_path %>?start='+date.format();
                 return false;
             }
         });

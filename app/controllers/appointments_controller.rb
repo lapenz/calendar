@@ -2,6 +2,7 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :resume]
   before_action :authenticate_user!, except: [:schedule, :hours, :checkout, :create_appointment, :resume]
   load_and_authorize_resource
+  skip_authorize_resource :only => [:schedule, :hours, :checkout, :create_appointment, :resume]
   helper CompaniesHelper
 
   # GET /appointments
@@ -130,7 +131,8 @@ class AppointmentsController < ApplicationController
 
     date = Date.parse(params[:date])
 
-    openingHours = OpeningHour.by_weekday(date.wday)
+    companiesService = CompaniesService.find(params[:companies_service_id])
+    openingHours = OpeningHour.by_weekday(date.wday).where(company: companiesService.company)
 
     releasedHours = []
     openingHours.each do |oh|
@@ -147,7 +149,7 @@ class AppointmentsController < ApplicationController
   # Remove os horarios ocupados da lista <releasedHours> e retorna uma lista com os horarios disponiveis
   def getOpenHours (params, releasedHours, unavailableHours)
 
-    companiesService = CompaniesService.find(params[:companies_service_id]);
+    companiesService = CompaniesService.find(params[:companies_service_id])
 
     results = Array.new
 

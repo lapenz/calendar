@@ -1,7 +1,8 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :findByEmail
   load_and_authorize_resource
+  skip_authorize_resource only: :findByEmail
 
 
   # GET /clients

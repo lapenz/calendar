@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20180528143307) do
   create_table "companies", force: :cascade do |t|
     t.integer  "user_id",           limit: 3
     t.integer  "plan_id",           limit: 3
-    t.integer  "setting_id",        limit: 3
     t.string   "name",              limit: 150
     t.string   "email",             limit: 150
     t.string   "phone",             limit: 40

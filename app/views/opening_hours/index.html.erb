@@ -15,8 +15,8 @@
   <tbody>
     <% @opening_hours.each do |opening_hour| %>
       <tr>
-        <td><% opening_hour.weekdays.each_with_index do |day_number, index| %>
-            <%= t('date.day_names')[index] + ', ' %>
+        <td><% opening_hour.weekdays.each do |day_number| %>
+            <%= t('date.day_names')[day_number.to_i] + ', ' %>
           <% end %></td>
         <td><%= time_format opening_hour.from %>h</td>
         <td><%= time_format opening_hour.to %>h</td>

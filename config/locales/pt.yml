@@ -13,6 +13,10 @@ pt:
   remove: 'Remover'
   back: 'Voltar'
   business: 'Negócio'
+  resume: 'Resumo'
+  contact: 'Contato'
+  address: 'Endereço'
+  phone: 'Telefone'
   services: {
     zero: 'Nenhum serviço cadastrado', # optional
     one: 'Serviço',

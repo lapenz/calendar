@@ -27,6 +27,7 @@ class OpeningHoursController < ApplicationController
   # POST /opening_hours.json
   def create
     @opening_hour = OpeningHour.new(opening_hour_params)
+    @opening_hour.company = current_user.company
     respond_to do |format|
       if @opening_hour.save
         format.html { redirect_to @opening_hour, notice: 'Opening hour was successfully created.' }

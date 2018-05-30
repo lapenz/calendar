@@ -31,11 +31,12 @@ class AppointmentsController < ApplicationController
     client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
     client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
     client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
+    client.company = current_user.company
 
     @appointment = Appointment.new(appointment_params)
 
     @appointment.client = client
-    @appointment.end = @appointment.start + params[:duration].to_i.seconds
+    @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
     @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
 
     respond_to do |format|
@@ -96,9 +97,12 @@ class AppointmentsController < ApplicationController
     client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
     client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
     client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
+
     client.full_validate = true
 
     @appointment = Appointment.new(appointment_params)
+
+    client.company = @appointment.companies_service.company
 
     @appointment.client = client
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds

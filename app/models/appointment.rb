@@ -12,7 +12,6 @@ class Appointment < ActiveRecord::Base
   validates_presence_of :start
   validates_presence_of :end
 
-  # attr_reader
   def resourceId
     self[:provider_id]
   end

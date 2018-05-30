@@ -11,6 +11,38 @@
     </div>
   <% end %>
 
+  <% if @appointment.client.nil? %>
+    <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
+      <div class="form-group">
+        <%= client_fields.label :name %>
+        <%= client_fields.text_field :name, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= client_fields.label :email %>
+        <%= client_fields.text_field :email, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= client_fields.label :phone %>
+        <%= client_fields.text_field :phone, :class => 'form-control' %>
+      </div>
+    <% end %>
+
+  <% else %>
+    <dl>
+      <dt>Nome</dt>
+      <dd><%= @appointment.client.name%></dd>
+    </dl>
+    <dl>
+      <dt>Email</dt>
+      <dd><%= @appointment.client.email%></dd>
+    </dl>
+    <dl>
+      <dt>Telefone</dt>
+      <dd><%= @appointment.client.phone%></dd>
+    </dl>
+
+  <% end %>
+
   <div class="form-group">
     <%= f.label(:companies_service_id) %>
     <%= f.select :companies_service_id, current_user.company.companies_services.collect {|copanies_service| [copanies_service.service_name, copanies_service.id]}, {}, class: 'form-control' %>
@@ -39,20 +71,8 @@
 
     ) %>
   </div>
-  <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
-    <div class="form-group">
-      <%= client_fields.label :name %>
-      <%= client_fields.text_field :name, :class => 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= client_fields.label :email %>
-      <%= client_fields.text_field :email, :class => 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= client_fields.label :phone %>
-      <%= client_fields.text_field :phone, :class => 'form-control' %>
-    </div>
-  <% end %>
+
+
 
   <div class="form-group">
     <%= f.label :obs %><br>
@@ -64,3 +84,36 @@
     <%= link_to 'Destroy', @appointment, :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Are you sure?'} %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $(function() {
+
+        // Below is the name of the textfield that will be autocomplete
+        $('#appointment_client_attributes_name').autocomplete({
+            // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
+            minLength: 2,
+            // This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
+            source: '<%= findByName_clients_path(:json) %>',
+            // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the person.given_name.
+            focus: function(event, ui) {
+                // $(this).val(ui.item.name);
+                return false;
+            },
+            // Once a value in the drop down list is selected, do the following:
+            select: function(event, ui) {
+                $(this).val(ui.item.name);
+                $('#appointment_client_attributes_email').val(ui.item.email)
+                $('#appointment_client_attributes_phone').val(ui.item.phone)
+                $('#appointment_client_attributes_id').val(ui.item.id)
+
+                $('#appointment_companies_service_id').focus();
+                return false;
+            }
+        }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+                .append( "<div>" + item.name + " - " + item.email + "</div>" )
+                .appendTo( ul );
+        };
+
+    });
+</script>

@@ -73,6 +73,13 @@ class ClientsController < ApplicationController
     render json: @client, status: :ok
   end
 
+  def findByName
+
+    @clients = Client.where(company: current_user.company).where("name LIKE ?", "%#{params[:term]}%").order(:name)
+
+    render json: @clients, status: :ok
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

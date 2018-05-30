@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   resources :services
   resources :clients do
     collection do
-      get 'findByEmail/', to: 'clients#findByEmail', as: 'findClientByEmail'
+      get 'findByEmail'
+      get 'findByName'
     end
   end
   resources :providers

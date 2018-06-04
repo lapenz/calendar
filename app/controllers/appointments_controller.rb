@@ -87,8 +87,10 @@ class AppointmentsController < ApplicationController
 
   def checkout
     @appointment = Appointment.new(appointment_params)
+    @company = @appointment.companies_service.company
     @client = Client.new
     @client.appointments.build(appointment_params)
+    render layout: "client"
 
   end
 
@@ -123,7 +125,8 @@ class AppointmentsController < ApplicationController
   end
 
   def resume
-
+    @company = @appointment.companies_service.company
+    render layout: "client"
   end
 
 

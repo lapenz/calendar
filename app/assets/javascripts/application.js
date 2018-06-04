@@ -14,7 +14,6 @@
 //= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/selectable
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require moment
 //= require fullcalendar

@@ -1,8 +1,8 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :resume]
-  before_action :authenticate_user!, except: [:schedule, :hours, :checkout, :create_appointment, :resume]
+  before_action :authenticate_user!, except: [:schedule, :hours, :checkout, :create_appointment, :resume, :check]
   load_and_authorize_resource
-  skip_authorize_resource :only => [:schedule, :hours, :checkout, :create_appointment, :resume]
+  skip_authorize_resource :only => [:schedule, :hours, :checkout, :create_appointment, :resume, :check]
   helper CompaniesHelper
 
   # GET /appointments
@@ -146,6 +146,25 @@ class AppointmentsController < ApplicationController
 
     @openHours = getOpenHours(params, releasedHours, unavailableHours)
     render layout: false
+  end
+
+  def check
+    company = Company.find(params[:company_id])
+    client = Client.where(email: params[:email], company: company).first
+    appointments = Appointment.where(client: client).order(:start)
+    msg = ""
+    if client.nil?
+      msg = 'Cliente não encontrado. Verifique o email e tente novamente.'
+    elsif appointments.empty?
+      msg = 'Nenhum agendamento encontrado para o email informado.'
+    else
+      AppointmentsMailer.check_appointments(client, appointments).deliver_now
+      msg = 'Os agendamentos foram enviados para o email informado!'
+    end
+
+    respond_to do |format|
+      format.json { render :json => msg.to_json }
+    end
   end
 
   private

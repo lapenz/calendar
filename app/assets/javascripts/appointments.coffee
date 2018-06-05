@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-   $('#appointment_client_attributes_email').change ->
+  $('#appointment_client_attributes_email').change ->
     $.ajax
       url: "/clients/findByEmail/"
       dataType: "json"
@@ -13,3 +13,10 @@ $(document).ready ->
       success: (data, textStatus, jqXHR) ->
         $('#appointment_client_attributes_name').val(data.name)
         $('#appointment_client_attributes_phone').val(data.phone)
+
+
+  $('.check_appointments_form').on("ajax:success", (e, data, status, xhr) ->
+    # $(element).append xhr.responseText
+    alert(xhr.responseText)
+  ).on "ajax:error", (e, xhr, status, error) ->
+    alert('Houve um problema ao responder, tente novamente.')

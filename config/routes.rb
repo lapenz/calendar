@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'checkout'
       post 'hours'
       post 'create_appointment'
+      post 'check'
     end
 
     member do

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Olá <strong><%= @client.name %></strong>, aqui estão os seus próximos agendamentos feitos em <strong><%= @client.company.name %>:</strong></h1>
+
+<% @appointments.each do |appointment| %>
+  <p>
+    <strong><%= Provider.model_name.human %>:</strong> <%= appointment.provider.name %>
+  </p>
+
+  <p>
+    <strong><%= CompaniesService.model_name.human %>:</strong> <%= appointment.companies_service.service.name %>
+  </p>
+
+  <p>
+    <strong><%= Appointment.human_attribute_name("start") %>:</strong> <%= l appointment.start, format: :long %>
+  </p>
+
+  <% if !appointment.obs.blank? %>
+    <p><strong>Obs:</strong> <%= appointment.obs %> </p>
+  <% end %>
+  <hr/>
+<% end %>
+</body>
+</html>

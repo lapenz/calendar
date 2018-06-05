@@ -24,4 +24,9 @@ class Appointment < ActiveRecord::Base
 
   end
 
+  def hashId
+    ApplicationHelper.encrypt 'agendacard', self.id.to_s
+  end
+
+
 end

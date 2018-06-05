@@ -1,9 +1,9 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :resume]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:schedule, :hours, :checkout, :create_appointment, :resume, :check]
   load_and_authorize_resource
   skip_authorize_resource :only => [:schedule, :hours, :checkout, :create_appointment, :resume, :check]
-  helper CompaniesHelper
+  helper CompaniesHelper, ApplicationHelper
 
   # GET /appointments
   # GET /appointments.json
@@ -111,11 +111,9 @@ class AppointmentsController < ApplicationController
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
     @appointment.title = client.name + ': ' + @appointment.companies_service.service.name unless client.name.blank?
 
-
-    #byebug
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to resume_appointment_path(@appointment), notice: 'Appointment was successfully created.' }
+        format.html { redirect_to resume_appointments_path(Id: @appointment.hashId), notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment}
       else
         format.html { render :checkout }
@@ -125,6 +123,8 @@ class AppointmentsController < ApplicationController
   end
 
   def resume
+    id = ApplicationHelper.decrypt('agendacard', params[:Id])
+    @appointment = Appointment.find(id.to_i)
     @company = @appointment.companies_service.company
     render layout: "client"
   end

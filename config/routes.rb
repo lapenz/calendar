@@ -7,12 +7,12 @@ Rails.application.routes.draw do
       get 'checkout'
       post 'hours'
       post 'create_appointment'
+      get 'resume'
       post 'check'
     end
 
     member do
       get 'schedule'
-      get 'resume'
     end
 
   end

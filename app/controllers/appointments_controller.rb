@@ -156,7 +156,7 @@ class AppointmentsController < ApplicationController
   def check
     company = Company.find(params[:company_id])
     client = Client.where(email: params[:email], company: company).first
-    appointments = Appointment.where(client: client).order(:start)
+    appointments = Appointment.where(client: client).where('start >= ?', Time.now).order(:start)
     msg = ""
     if client.nil?
       msg = 'Cliente não encontrado. Verifique o email e tente novamente.'

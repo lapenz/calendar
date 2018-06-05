@@ -1,5 +1,4 @@
 class AppointmentsMailer < ApplicationMailer
-  default from: "lucasarthurpenz@gmail.com"
 
   def check_appointments(client, appointments)
     @client = client

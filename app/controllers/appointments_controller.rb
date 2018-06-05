@@ -4,6 +4,7 @@ class AppointmentsController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource :only => [:schedule, :hours, :checkout, :create_appointment, :resume, :check]
   helper CompaniesHelper, ApplicationHelper
+  layout "client", only: :create_appointment
 
   # GET /appointments
   # GET /appointments.json
@@ -105,18 +106,22 @@ class AppointmentsController < ApplicationController
 
     @appointment = Appointment.new(appointment_params)
 
-    client.company = @appointment.companies_service.company
+    client.company = @company = @appointment.companies_service.company
 
     @appointment.client = client
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
-    @appointment.title = client.name + ': ' + @appointment.companies_service.service.name unless client.name.blank?
+    if client.name.blank?
+      @appointment.title = @appointment.companies_service.service.name
+    else
+      @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
+    end
 
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to resume_appointments_path(Id: @appointment.hashId), notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment}
       else
-        format.html { render :checkout }
+        format.html { render action: :checkout }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end

@@ -3,7 +3,7 @@
   <h1>Mais agendamentos, menos trabalho</h1>
   <p class="lead">Agendamento por telefone já é coisa do passado e não satisfaz mais os seus clientes.
     Obtenha agendamento poderoso com simplicidade.</p>
-  <p><a class="btn btn-lg btn-success" href="#" role="button">Comece hoje mesmo</a></p>
+  <p><%= link_to 'Comece hoje mesmo', new_user_registration_path, :class => 'btn btn-lg btn-success'  %></p>
   </div>
 </div>
 
@@ -49,7 +49,7 @@
   <div class="row featurette">
     <div class="col-md-7 col-md-push-5">
       <h2 class="featurette-heading">Um software. <span class="text-muted">Várias soluções.</span></h2>
-      <p class="lead">AgendaCard foi criado pensando em atender diversos tipos de negócio, dentre eles estão: salões de beleza, barbearias, spas, clícinas odontológicas, clínicas veterínárias, dentre outros.</p>
+      <p class="lead">AgendaCard foi criado pensando em atender diversos tipos de negócio, dentre eles estão: salões de beleza, barbearias, spas, clícinas odontológicas, clínicas veterinárias, dentre outros.</p>
     </div>
     <div class="col-md-5 col-md-pull-7">
       <%= image_tag('Haartrimmer-Test.jpg', class: 'featurette-image img-responsive center-block') %>
@@ -63,26 +63,40 @@
   <h2>Entre em contato conosco</h2>
 
   <br/>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="inputEmail3" class="col-sm-1 control-label">Email</label>
-      <div class="col-sm-4">
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword3" class="col-sm-1 control-label">Password</label>
-      <div class="col-sm-4">
-        <textarea class="form-control" rows="3"></textarea>
-      </div>
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <%= form_tag("/landing_page/contact", remote: true, :id => "contact_form") do %>
+        <div class="form-group">
+        <%= label_tag(:name, "Nome") %>
+        <%= text_field_tag(:name, nil, class: 'form-control') %>
+        </div>
+        <div class="form-group">
+        <%= label_tag(:email, "Email") %>
+        <%= text_field_tag(:email, nil, class: 'form-control') %>
+        </div>
+        <div class="form-group">
+        <%= label_tag(:message, "Mensagem") %>
+        <%= text_area_tag(:message, nil, class: 'form-control') %>
+        </div>
+
+        <%= submit_tag("Enviar", class: 'btn btn-default') %>
+
+      <% end %>
+
     </div>
 
-    <div class="form-group">
-      <div class="col-sm-offset-1 col-sm-10">
-        <button type="submit" class="btn btn-default">Enviar</button>
-      </div>
+    <div class="col-md-6">
+
+        <h2><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Comece a agendar de graça</h2>
+        <p class="box-solution-text">
+          Configure o AgendaCard em apenas alguns minutos.
+          O primeiro mês é gratuito.
+        </p>
+        <%= link_to 'Criar uma conta agora', new_user_registration_path, :class => 'btn btn-lg btn-primary'  %>
     </div>
-  </form>
+  </div>
 
   <hr class="featurette-divider">
   <!-- FOOTER -->

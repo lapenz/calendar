@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :providers
   resources :settings
 
+  post '/landing_page/contact'
 
   match '/', to: 'landing_page#home', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'companies#show', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]

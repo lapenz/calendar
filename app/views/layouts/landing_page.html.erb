@@ -51,9 +51,10 @@
 
 
 <div class="container">
-  <div class="notice"><%= notice %></div>
-  <div class="alert"><%= alert %></div>
-
+  <p id="notice"><%= notice %></p>
+  <% if !alert.blank? %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
   <div class="row" role="main">
     <div class="col-md-12">
         <%= yield %>

@@ -40,6 +40,7 @@ pt:
       companies_service: "Serviço"
       company: "Detalhes do negócio"
       opening_hour: "Horário de atendimento"
+      user: 'Usuário'
     attributes:
       appointment:
         provider_id: 'Provedor'
@@ -47,7 +48,7 @@ pt:
         start: 'Início'
         duration: 'Duração'
       company:
-        name: 'Nome'
+        name: 'Nome da empresa'
         phone: 'Telefone'
         street: 'Rua'
         city: 'Cidade'

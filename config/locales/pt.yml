@@ -74,6 +74,11 @@ pt:
         price: 'Preço'
         provider_ids: 'Provedores'
     errors:
+      models:
+        appointment:
+          attributes:
+            start:
+              taken: 'repetido para este provedor neste mesmo horário'
       messages:
         blank: 'deve ser preenchido.'
       template:

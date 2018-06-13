@@ -12,6 +12,8 @@ class Appointment < ActiveRecord::Base
   validates_presence_of :start
   validates_presence_of :end
 
+  validates :start, uniqueness: { scope: :provider_id }
+
   def resourceId
     self[:provider_id]
   end

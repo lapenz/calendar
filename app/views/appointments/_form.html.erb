@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <% if @appointment.client.nil? %>
+  <% if @appointment.new_record? %>
     <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
       <div class="form-group">
         <%= client_fields.label :name %>

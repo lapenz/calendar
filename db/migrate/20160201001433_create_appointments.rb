@@ -4,7 +4,7 @@ class CreateAppointments < ActiveRecord::Migration
       t.integer :provider_id, :limit => 3
       t.integer :companies_service_id, :limit => 3
       t.integer :client_id, :limit => 3
-      t.string :title, :limit => 45
+      t.string :title, :limit => 500
       t.timestamp :start
       t.timestamp :end
       t.integer :all_day, :limit => 1

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528143307) do
+ActiveRecord::Schema.define(version: 20180613130501) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "provider_id",          limit: 3
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180528143307) do
 
   add_index "appointments", ["client_id"], name: "index_appointments_on_client_id", using: :btree
   add_index "appointments", ["companies_service_id"], name: "index_appointments_on_companies_service_id", using: :btree
+  add_index "appointments", ["provider_id", "start"], name: "index_appointments_on_provider_id_and_start", unique: true, using: :btree
   add_index "appointments", ["provider_id"], name: "index_appointments_on_provider_id", using: :btree
 
   create_table "clients", force: :cascade do |t|

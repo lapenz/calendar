@@ -39,7 +39,12 @@ class AppointmentsController < ApplicationController
 
     @appointment.client = client
     @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
-    @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
+
+    if client.name.blank?
+      @appointment.title = @appointment.companies_service.service.name
+    else
+      @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
+    end
 
     respond_to do |format|
       if @appointment.save

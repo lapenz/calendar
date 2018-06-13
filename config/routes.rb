@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   post '/landing_page/contact'
 
+  get '/help', to: 'help#index'
+
   match '/', to: 'landing_page#home', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'companies#show', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
 

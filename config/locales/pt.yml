@@ -17,6 +17,7 @@ pt:
   contact: 'Contato'
   address: 'Endereço'
   phone: 'Telefone'
+  promote: 'Promover'
   services: {
     zero: 'Nenhum serviço cadastrado', # optional
     one: 'Serviço',

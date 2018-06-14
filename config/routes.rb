@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :companies do
     collection do
       get 'details'
+      get 'promote'
     end
   end
   resources :providers

@@ -16,7 +16,7 @@
   <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
 
   <div class="container">
 
@@ -46,9 +46,7 @@
       <% end %>
       </ul>
 
-      <ul class="nav navbar-nav">
 
-      </ul>
     </div><!-- /.navbar-collapse -->
 
 
@@ -62,11 +60,8 @@
     <p class="alert"><%= alert %></p>
   <% end %>
 
-  <div class="row" role="main">
-    <div class="col-md-12">
-        <%= yield %>
-    </div>
-  </div>
+  <%= yield %>
+
 </div>
 <footer class="footer">
   <div class="container">

@@ -78,6 +78,7 @@ pt:
       user:
         password: 'Senha'
         password_confirmation: 'Confirmação de senha'
+        remember_me: 'Lembrar senha'
     errors:
       models:
         appointment:

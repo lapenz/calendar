@@ -1,6 +1,6 @@
-class CreateProviders < ActiveRecord::Migration
+class CreateResources < ActiveRecord::Migration
   def change
-    create_table :providers do |t|
+    create_table :resources do |t|
       t.integer :company_id, :limit => 3
       t.string :name, :limit => 150
       t.string :email, :limit => 200
@@ -9,6 +9,6 @@ class CreateProviders < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :providers, :company_id
+    add_index :resources, :company_id
   end
 end

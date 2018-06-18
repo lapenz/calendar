@@ -5,7 +5,7 @@
 <p class="lead">O que é necessário fazer para começar a utilizar o AgendaCard?</p>
 <ol>
   <li>Antes de tudo é importante preencher todas as informações referentes ao seu negócio através do menu <%= link_to(Company.model_name.human, details_companies_path) %>. Estas informações serão exibidas na sua mini página.</li>
-  <li>Depois é necessário cadastrar os provedores dos serviços, ou seja, os profissionais ou locais que fornecerão determinados serviços -> <%= link_to(Provider.model_name.human, providers_path) %></li>
+  <li>Depois é necessário cadastrar os funcionários, ou seja, os profissionais ou locais que fornecerão determinados serviços -> <%= link_to(Resource.model_name.human, resources_path) %></li>
   <li>O terceiro passo é cadastrar os horários em que sua empresa estará disponível para agendamentos -> <%= link_to(OpeningHour.model_name.human, opening_hours_path) %></li>
   <li>O último passo é cadastrar os serviços que sua empresa irá oferecer e quem são os provedores que podem executar cada um -> <%= link_to(CompaniesService.model_name.human, companies_services_path) %></li>
 </ol>

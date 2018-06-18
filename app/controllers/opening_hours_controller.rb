@@ -71,6 +71,6 @@ class OpeningHoursController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def opening_hour_params
-      params.require(:opening_hour).permit(:company_id, :provider_id, :from, :to, :weekdays => [])
+      params.require(:opening_hour).permit(:company_id, :resource_id, :from, :to, :weekdays => [])
     end
 end

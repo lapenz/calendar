@@ -43,7 +43,7 @@
             <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t :business %> <span class="caret"></span> </a>
             <ul class="dropdown-menu" aria-labelledby="drop1">
               <li><%= nav_link(Company.model_name.human, details_companies_path) %></li>
-              <li><%= nav_link(Provider.model_name.human, providers_path) %></li>
+              <li><%= nav_link(Resource.model_name.human, resources_path) %></li>
               <li><%= nav_link(OpeningHour.model_name.human, opening_hours_path) %></li>
               <li><%= nav_link(CompaniesService.model_name.human, companies_services_path) %></li>
             </ul>

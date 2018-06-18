@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1><%= Resource.model_name.human %> <small></small></h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= Resource.human_attribute_name("name") %></th>
+      <th><%= Resource.human_attribute_name("email") %></th>
+      <th><%= Resource.human_attribute_name("phone") %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.name %></td>
+        <td><%= resource.email %></td>
+        <td><%= resource.phone %></td>
+        <td>
+          <div class="btn-group btn-group-sm" role="group">
+            <%= link_to t(:edit), edit_resource_path(resource), :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to t(:show), resource , :class => 'btn btn-default', :role => 'button' %>
+            <%= link_to t(:destroy), resource, :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Are you sure?' } %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo funcionário', new_resource_path, :class => 'btn btn-default' %>

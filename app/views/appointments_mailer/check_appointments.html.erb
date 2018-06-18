@@ -8,7 +8,7 @@
 
 <% @appointments.each do |appointment| %>
   <p>
-    <strong><%= Provider.model_name.human %>:</strong> <%= appointment.provider.name %>
+    <strong><%= Resource.model_name.human %>:</strong> <%= appointment.resource.name %>
   </p>
 
   <p>

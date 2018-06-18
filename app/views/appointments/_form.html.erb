@@ -49,8 +49,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label(:provider_id) %>
-    <%= f.select :provider_id, current_user.company.providers.collect { |provider| [provider.name, provider.id] }, {:prompt => 'Select a provider'}, class: 'form-control' %>
+    <%= f.label(:resource_id) %>
+    <%= f.select :resource_id, current_user.company.resources.collect { |resource| [resource.name, resource.id] }, {:prompt => 'Select a resource'}, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :start %><br>

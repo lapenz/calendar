@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  companie_id: 1
+  company_id: 1
   name: MyString
   email: MyString
   phone: MyString
 
 two:
-  companie_id: 1
+  company_id: 1
   name: MyString
   email: MyString
   phone: MyString

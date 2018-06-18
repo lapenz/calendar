@@ -10,8 +10,8 @@
 
       <%= form_for :appointment, method: :get, :url => {action: 'checkout'}, :html => { :id => "datetime" } do |f| %>
           <%= f.hidden_field(:companies_service_id, :value => @company_service.id) %>
-          <%= f.label(:provider_id) %>
-          <%= f.select :provider_id, options_from_collection_for_select(@providers, 'id', 'name'), {:prompt => t(:select)} %>
+          <%= f.label(:resource_id) %>
+          <%= f.select :resource_id, options_from_collection_for_select(@resources, 'id', 'name'), {:prompt => t(:select)} %>
           <%= f.hidden_field(:start, :value => nil) %>
       <% end %>
       </br>
@@ -41,31 +41,31 @@
             startDate: new Date(),
             todayBtn: true
         }).on('changeDate', function(e) {
-            if($("#appointment_provider_id").val().length !== 0)
-                carregarHorarios(e.date, $("#appointment_provider_id").val())
+            if($("#appointment_resource_id").val().length !== 0)
+                carregarHorarios(e.date, $("#appointment_resource_id").val())
         });
         // Seta a data default pro dia atual
         $("#datepicker").datepicker('update', new Date());
         // Carrega os horarios do dia atual quando abre a tela
 //        carregarHorarios($('#datepicker').datepicker('getDate'));
-        // Atualiza os horarios quando alterado o provider
-        $( "#appointment_provider_id" ).change(function() {
+        // Atualiza os horarios quando alterado o resource
+        $( "#appointment_resource_id" ).change(function() {
             $("#appointment_start").val(null)
             carregarHorarios($('#datepicker').datepicker('getDate'), $(this).val())
         });
 
         /**
-         * Faz a requisicao ajax para pegar os horarios de uma data e/ou provider e joga na tela.
+         * Faz a requisicao ajax para pegar os horarios de uma data e/ou resource e joga na tela.
          * @param date
-         * @param provider_id
+         * @param resource_id
          */
-        function carregarHorarios(date, provider_id) {
+        function carregarHorarios(date, resource_id) {
             $.ajax({
                 url: '<%= Rails.application.routes.url_helpers.appointments_path + '/hours' %>',
                 method: "POST",
                 data: {
                     date : date,
-                    provider_id : provider_id,
+                    resource_id : resource_id,
                     companies_service_id : <%= @company_service.id %>
                 }
             }).done(function(html) {
@@ -74,8 +74,8 @@
         }
 
         $( '#submit' ).on('click', function() {
-            if($('#appointment_provider_id').val().length === 0) {
-                alert('<%= t :select_provider %>')
+            if($('#appointment_resource_id').val().length === 0) {
+                alert('<%= t :select_resource %>')
                 return;
             }
             if($('#appointment_start').val().length === 0) {

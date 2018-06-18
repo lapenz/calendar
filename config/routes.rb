@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :services
-  resources :providers_services
   resources :appointments do
     collection do
       get 'checkout'
@@ -25,16 +24,13 @@ Rails.application.routes.draw do
       get 'findByName'
     end
   end
-  resources :providers
-  resources :settings
+  resources :resources
   resources :companies do
     collection do
       get 'details'
       get 'promote'
     end
   end
-  resources :providers
-  resources :settings
 
   post '/landing_page/contact'
 

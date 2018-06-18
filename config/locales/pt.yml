@@ -27,7 +27,7 @@ pt:
   step2: 'Passo 2/2:'
   select: 'Selecione'
   select_date_hour: 'Por favor, selecione uma data e horário.'
-  select_provider: 'Por favor, selecione um provedor.'
+  select_resource: 'Por favor, selecione um funcionário.'
   helpers:
       submit:
         create: "Cadastrar %{model}"
@@ -37,14 +37,14 @@ pt:
     models:
       appointment: "Agendamento"
       client: "Cliente"
-      provider: "Provedor"
+      resource: "Funcionário"
       companies_service: "Serviço"
       company: "Detalhes do negócio"
       opening_hour: "Horário de atendimento"
       user: 'Usuário'
     attributes:
       appointment:
-        provider_id: 'Provedor'
+        resource_id: 'Funcionário'
         companies_service_id: 'Serviço'
         start: 'Início'
         duration: 'Duração'
@@ -61,7 +61,7 @@ pt:
         name: 'Nome'
         phone: 'Telefone'
         email: 'Email'
-      provider:
+      resource:
         name: 'Nome'
         phone: 'Telefone'
       opening_hour:
@@ -73,7 +73,7 @@ pt:
         duration: 'Duração'
         description: 'Descrição'
         price: 'Preço'
-        provider_ids: 'Provedores'
+        resource_ids: 'Funcionários'
     errors:
       models:
         appointment:

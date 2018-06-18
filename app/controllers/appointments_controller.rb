@@ -87,7 +87,7 @@ class AppointmentsController < ApplicationController
   def schedule
     @appointment = Appointment.new
     @company_service = CompaniesService.find(params[:id]);
-    @providers = @company_service.providers
+    @resources = @company_service.resources
     render layout: false
   end
 
@@ -152,7 +152,7 @@ class AppointmentsController < ApplicationController
       releasedHours |= getReleasedHours(oh, date)
     end
 
-    unavailableHours = Appointment.where(:provider_id => params[:provider_id], :start => date.beginning_of_day..date.end_of_day)
+    unavailableHours = Appointment.where(:resource_id => params[:resource_id], :start => date.beginning_of_day..date.end_of_day)
 
     @openHours = getOpenHours(params, releasedHours, unavailableHours)
     render layout: false
@@ -225,7 +225,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :provider_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:id, :email, :name, :phone])
+    params.require(:appointment).permit(:companies_service_id, :resource_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:id, :email, :name, :phone])
   end
 
 end

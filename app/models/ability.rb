@@ -33,8 +33,8 @@ class Ability
       company == user.company
     end
 
-    can :manage, Provider do |provider|
-      provider.new_record? || provider.company == user.company
+    can :manage, Resource do |resource|
+      resource.new_record? || resource.company == user.company
     end
 
     can :manage, OpeningHour do |opening_hour|
@@ -50,7 +50,7 @@ class Ability
     end
 
     can :manage, Appointment do |appointment|
-      appointment.new_record? || appointment.provider.company == user.company
+      appointment.new_record? || appointment.resource.company == user.company
     end
 
   end

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @resource.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @resource.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @resource.phone %>
+</p>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>

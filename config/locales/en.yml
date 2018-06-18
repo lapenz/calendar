@@ -40,12 +40,12 @@ en:
   step1: 'Step 1/2: select date and time'
   step2: 'Step 2/2:'
   select_date_hour: 'Please, select date and time.'
-  select_provider: 'Please, select provider.'
+  select_resource: 'Please, select staff.'
   activerecord:
     models:
       appointment: "Appointment"
       client: "Client"
-      provider: "Provider"
+      resource: "Staff"
       companies_service: "Service"
       company: "Business details"
       opening_hour: "Opening hour"

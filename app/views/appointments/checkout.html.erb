@@ -20,16 +20,16 @@
         </div>
     <% end %>
 
-  <%= f.hidden_field(:provider_id) %>
+  <%= f.hidden_field(:resource_id) %>
   <%= f.hidden_field(:companies_service_id) %>
   <%= f.hidden_field(:start) %>
   <%= f.hidden_field(:price) %>
 
 
-    <% if !@appointment.provider.blank? %>
+    <% if !@appointment.resource.blank? %>
         <h4>
-          <strong><%= f.label :provider_id %>:</strong>
-          <%= @appointment.provider.name %>
+          <strong><%= f.label :resource_id %>:</strong>
+          <%= @appointment.resource.name %>
         </h4>
     <% end %>
 

@@ -78,6 +78,6 @@ class CompaniesServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def companies_service_params
-      params.require(:companies_service).permit(:company_id, :service_name, :duration, :description, :price, :date, :provider_ids => [])
+      params.require(:companies_service).permit(:company_id, :service_name, :duration, :description, :price, :date, :resource_ids => [])
     end
 end

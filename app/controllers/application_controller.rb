@@ -32,8 +32,6 @@ class ApplicationController < ActionController::Base
       companies = Company.where(minipage_url: request.subdomain).where.not(minipage_url: [nil, ''])
       if companies.count > 0
         @companyFromDomain = companies.first
-      elsif request.subdomain != 'www'
-        redirect_to root_url(subdomain: 'www')
       end
     end
   end

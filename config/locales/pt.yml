@@ -12,7 +12,7 @@ pt:
   schedule: 'Agendar'
   remove: 'Remover'
   back: 'Voltar'
-  business: 'Negócio'
+  business: 'Empresa'
   resume: 'Resumo'
   contact: 'Contato'
   address: 'Endereço'
@@ -39,7 +39,7 @@ pt:
       client: "Cliente"
       resource: "Funcionário"
       companies_service: "Serviço"
-      company: "Detalhes do negócio"
+      company: "Detalhes da empresa"
       opening_hour: "Horário de atendimento"
       user: 'Usuário'
     attributes:
@@ -53,9 +53,9 @@ pt:
         phone: 'Telefone'
         street: 'Endereço'
         city: 'Cidade'
-        schedule_interval: 'Intervalo de agendamento'
-        min_antecedence: 'Mínimo de antecedência'
-        max_antecedence: 'Máximo de antecedência'
+        schedule_interval: 'Os clientes podem agendar online a cada'
+        min_antecedence: 'Os clientes podem agendar online com antecedência de no mínimo'
+        max_antecedence: 'Os clientes podem agendar online com antecedência de no máximo'
         minipage_url: "Minipágina"
         logo: 'Logomarca'
       client:

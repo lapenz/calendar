@@ -51,12 +51,13 @@ pt:
       company:
         name: 'Nome da empresa'
         phone: 'Telefone'
-        street: 'Rua'
+        street: 'Endereço'
         city: 'Cidade'
         schedule_interval: 'Intervalo de agendamento'
         min_antecedence: 'Mínimo de antecedência'
         max_antecedence: 'Máximo de antecedência'
         minipage_url: "Minipágina"
+        logo: 'Logomarca'
       client:
         name: 'Nome'
         phone: 'Telefone'
@@ -74,12 +75,19 @@ pt:
         description: 'Descrição'
         price: 'Preço'
         resource_ids: 'Funcionários'
+      user:
+        password: 'Senha'
+        password_confirmation: 'Confirmação de senha'
     errors:
       models:
         appointment:
           attributes:
             start:
               taken: 'repetido para este provedor neste mesmo horário'
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: 'não confere com a senha'
       messages:
         blank: 'deve ser preenchido.'
       template:

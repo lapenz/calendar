@@ -39,10 +39,10 @@
         <%= form_tag("/appointments/check", remote: true, class: 'check_appointments_form navbar-form') do %>
           <%= hidden_field_tag('company_id', @company.id) %>
           <div class="form-group">
-            <%= text_field_tag(:email, nil, {class: 'form-control', placeholder: 'exemplo@mail.com'}) %>
+            <%= text_field_tag(:email, nil, {class: 'form-control', placeholder: 'exemplo@mail.com', required: true}) %>
           </div>
 
-          <%= submit_tag("Consultar agendamentos", class: 'btn btn-default') %>
+          <%= submit_tag("Consultar meus agendamentos", class: 'btn btn-default') %>
       <% end %>
       </ul>
 

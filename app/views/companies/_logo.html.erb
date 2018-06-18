@@ -4,5 +4,7 @@
 <div class="col-sm-12 col-md-10">
   <h1><%=@company.name.titleize%></h1>
   <address><%=address @company%></address>
-  <%= Company.human_attribute_name("phone") %>: <a href="tel:<%= @company.phone %>"><%= @company.phone %></a>
+  <% if !@company.phone.blank? %>
+    <%= Company.human_attribute_name("phone") %>: <a href="tel:<%= @company.phone %>"><%= @company.phone %></a>
+  <% end %>
 </div>

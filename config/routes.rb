@@ -36,8 +36,8 @@ Rails.application.routes.draw do
 
   get '/help', to: 'help#index'
 
-  match '/', to: 'landing_page#home', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
-  match '/', to: 'companies#show', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
+  #match '/', to: 'landing_page#home', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
+  #match '/', to: 'companies#show', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

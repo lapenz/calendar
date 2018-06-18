@@ -13,7 +13,7 @@ class Company < ActiveRecord::Base
 
   private
   def set_minipage_url
-    self.minipage_url = self.name.downcase.delete(' ') + rand(10).to_s
+    self.minipage_url = I18n.transliterate(self.name.downcase.delete(' ')) + rand(10).to_s
   end
 
 end

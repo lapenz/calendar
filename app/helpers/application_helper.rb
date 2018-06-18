@@ -39,4 +39,9 @@ module ApplicationHelper
   def encrypt(key, text)
     ApplicationHelper.encrypt(key, text)
   end
+
+  def domain_url
+    text = request.protocol + request.domain
+    text +=  ':' + request.port.to_s unless request.port.blank?
+  end
 end

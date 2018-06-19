@@ -30,12 +30,10 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    if !appointment_params[:client_attributes][:name].blank?
-      client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
-      client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
-      client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
-      client.company = current_user.company
-    end
+    client = Client.where(email: appointment_params[:client_attributes][:email]).where.not(email: [nil, '']).first_or_initialize
+    client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
+    client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
+    client.company = current_user.company
 
     @appointment = Appointment.new(appointment_params)
 
@@ -99,17 +97,16 @@ class AppointmentsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create_appointment
-    client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
+    @appointment = Appointment.new(appointment_params)
+    @company = @appointment.companies_service.company
+
+    client = Client.where(email: appointment_params[:client_attributes][:email]).where.not(email: [nil, '']).first_or_initialize
     client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
     client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
-
+    client.company = @appointment.companies_service.company
     client.full_validate = true
-
-    @appointment = Appointment.new(appointment_params)
-
-    client.company = @company = @appointment.companies_service.company
-
     @appointment.client = client
+
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
 
     respond_to do |format|

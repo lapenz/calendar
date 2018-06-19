@@ -32,6 +32,9 @@
 
       <% end %>
 
+    <% elsif @appointment.client.nil? %>
+      Anônimo
+
     <% else %>
       <dl>
         <dt>Nome</dt>

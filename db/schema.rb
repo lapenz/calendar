@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20180613130501) do
     t.integer  "resource_id",          limit: 3
     t.integer  "companies_service_id", limit: 3
     t.integer  "client_id",            limit: 3
-    t.string   "title",                limit: 45
     t.datetime "start"
     t.datetime "end"
     t.integer  "all_day",              limit: 1

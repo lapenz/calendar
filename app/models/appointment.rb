@@ -8,13 +8,10 @@ class Appointment < ActiveRecord::Base
   validates_presence_of :companies_service
   validates_presence_of :resource
   validates_presence_of :client
-  validates_presence_of :title
   validates_presence_of :start
   validates_presence_of :end
 
   validates :start, uniqueness: { scope: :resource_id }
-
-  before_validation :set_title, on: [:create, :update]
 
   def resourceId
     self[:resource_id]
@@ -32,14 +29,11 @@ class Appointment < ActiveRecord::Base
     ApplicationHelper.encrypt 'agendacard', self.id.to_s
   end
 
-  private
-  def set_title
-    self.title = String.new
-    self.title = self.client.name unless self.client.nil?
-    self.title += ': ' + self.companies_service.service.name unless self.companies_service.nil?
-    if self.title.blank?
-      self.title = 'Agendamento'
-    end
+  def title
+    title = String.new
+    title = self.client.nil? ? 'Anônimo' : self.client.name
+    title += ': ' + self.companies_service.service.name unless self.companies_service.nil?
+
   end
 
 

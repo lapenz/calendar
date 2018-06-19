@@ -5,9 +5,8 @@ class Appointment < ActiveRecord::Base
 
   accepts_nested_attributes_for :client
 
-  validates_presence_of :companies_service
-  validates_presence_of :resource
-  validates_presence_of :client
+  validates_presence_of :companies_service_id
+  validates_presence_of :resource_id
   validates_presence_of :start
   validates_presence_of :end
 

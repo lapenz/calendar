@@ -30,21 +30,17 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
-    client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
-    client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
-    client.company = current_user.company
+    if !appointment_params[:client_attributes][:name].blank?
+      client = Client.where(email: appointment_params[:client_attributes][:email]).first_or_initialize
+      client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
+      client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
+      client.company = current_user.company
+    end
 
     @appointment = Appointment.new(appointment_params)
 
     @appointment.client = client
     @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
-
-    if client.name.blank?
-      @appointment.title = @appointment.companies_service.service.name
-    else
-      @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
-    end
 
     respond_to do |format|
       if @appointment.save
@@ -115,11 +111,6 @@ class AppointmentsController < ApplicationController
 
     @appointment.client = client
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
-    if client.name.blank?
-      @appointment.title = @appointment.companies_service.service.name
-    else
-      @appointment.title = client.name + ': ' + @appointment.companies_service.service.name
-    end
 
     respond_to do |format|
       if @appointment.save

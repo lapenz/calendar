@@ -45,7 +45,10 @@ pt:
     attributes:
       appointment:
         resource_id: 'Funcionário'
+        resource: 'Funcionário'
+        client: "Cliente"
         companies_service_id: 'Serviço'
+        companies_service: 'Serviço'
         start: 'Início'
         duration: 'Duração'
       company:
@@ -70,7 +73,7 @@ pt:
         from: 'Das'
         to: 'Até'
       companies_service:
-        name: 'Nome'
+        name: 'Nome do serviço'
         duration: 'Duração'
         description: 'Descrição'
         price: 'Preço'

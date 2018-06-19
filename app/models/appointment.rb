@@ -14,6 +14,8 @@ class Appointment < ActiveRecord::Base
 
   validates :start, uniqueness: { scope: :resource_id }
 
+  before_validation :set_title, on: [:create, :update]
+
   def resourceId
     self[:resource_id]
   end
@@ -28,6 +30,16 @@ class Appointment < ActiveRecord::Base
 
   def hashId
     ApplicationHelper.encrypt 'agendacard', self.id.to_s
+  end
+
+  private
+  def set_title
+    self.title = String.new
+    self.title = self.client.name unless self.client.nil?
+    self.title += ': ' + self.companies_service.service.name unless self.companies_service.nil?
+    if self.title.blank?
+      self.title = 'Agendamento'
+    end
   end
 
 

@@ -1,7 +1,7 @@
 <%= form_for(@appointment) do |f| %>
   <% if @appointment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+      <h2><%= pluralize(@appointment.errors.count, "erro") %> impediram este agendamento de ser salvo:</h2>
 
       <ul>
       <% @appointment.errors.full_messages.each do |message| %>
@@ -11,73 +11,83 @@
     </div>
   <% end %>
 
-  <% if @appointment.new_record? %>
-    <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
-      <div class="form-group">
-        <%= client_fields.label :name %>
-        <%= client_fields.text_field :name, :class => 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= client_fields.label :email %>
-        <%= client_fields.text_field :email, :class => 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= client_fields.label :phone %>
-        <%= client_fields.text_field :phone, :class => 'form-control' %>
-      </div>
+  <fieldset>
+    <legend ><%= Client.model_name.human %></legend>
+    <% if @appointment.new_record? %>
+
+      <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
+        <div class="form-group">
+          <%= client_fields.label :name %>
+          <%= client_fields.text_field :name, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= client_fields.label :email %>
+          <%= client_fields.text_field :email, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= client_fields.label :phone %>
+          <%= client_fields.text_field :phone, :class => 'form-control' %>
+        </div>
+
+
+      <% end %>
+
+    <% else %>
+      <dl>
+        <dt>Nome</dt>
+        <dd><%= @appointment.client.name%></dd>
+      </dl>
+      <dl>
+        <dt>Email</dt>
+        <dd><%= @appointment.client.email%></dd>
+      </dl>
+      <dl>
+        <dt>Telefone</dt>
+        <dd><%= @appointment.client.phone%></dd>
+      </dl>
+
     <% end %>
+  </fieldset>
 
-  <% else %>
-    <dl>
-      <dt>Nome</dt>
-      <dd><%= @appointment.client.name%></dd>
-    </dl>
-    <dl>
-      <dt>Email</dt>
-      <dd><%= @appointment.client.email%></dd>
-    </dl>
-    <dl>
-      <dt>Telefone</dt>
-      <dd><%= @appointment.client.phone%></dd>
-    </dl>
+  <fieldset>
+    <legend ><%= CompaniesService.model_name.human %></legend>
 
-  <% end %>
+    <div class="form-group">
+      <%= f.label(:companies_service_id) %>
+      <%= f.select :companies_service_id, current_user.company.companies_services.collect {|copanies_service| [copanies_service.service_name, copanies_service.id]}, {}, class: 'form-control' %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label(:companies_service_id) %>
-    <%= f.select :companies_service_id, current_user.company.companies_services.collect {|copanies_service| [copanies_service.service_name, copanies_service.id]}, {}, class: 'form-control' %>
-  </div>
+    <div class="form-group">
+      <%= f.label(:resource_id) %>
+      <%= f.select :resource_id, current_user.company.resources.collect { |resource| [resource.name, resource.id] }, {:prompt => 'Select a resource'}, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :start %><br>
+      <%= f.datetime_select :start, {default: params['start'].blank? ? @appointment.start : DateTime.parse(params['start'])} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :duration %><br>
+      <%= f.select :duration, options_for_select([
+                                                     ["10 min", 600],
+                                                     ["20 min", 1200],
+                                                     ["30 min", 1800],
+                                                     ["40 min", 2400],
+                                                     ["50 min", 3000],
+                                                     ["1h", 3600],
+                                                     ["1h20m", 4800]
 
-  <div class="form-group">
-    <%= f.label(:resource_id) %>
-    <%= f.select :resource_id, current_user.company.resources.collect { |resource| [resource.name, resource.id] }, {:prompt => 'Select a resource'}, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :start %><br>
-    <%= f.datetime_select :start, {default: params['start'].blank? ? @appointment.start : DateTime.parse(params['start'])} %>
-  </div>
-  <div class="form-group">
-    <%= f.label :duration %><br>
-    <%= f.select :duration, options_for_select([
-                                                   ["10 min", 600],
-                                                   ["20 min", 1200],
-                                                   ["30 min", 1800],
-                                                   ["40 min", 2400],
-                                                   ["50 min", 3000],
-                                                   ["1h", 3600],
-                                                   ["1h20m", 4800]
+                                                 ], selected: @appointment.duration
 
-                                               ], selected: @appointment.duration
-
-    ) %>
-  </div>
+      ) %>
+    </div>
 
 
 
-  <div class="form-group">
-    <%= f.label :obs %><br>
-    <%= f.text_area :obs, class: 'form-control' %>
-  </div>
+    <div class="form-group">
+      <%= f.label :obs %><br>
+      <%= f.text_area :obs, class: 'form-control' %>
+    </div>
+  </fieldset>
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>

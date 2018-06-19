@@ -1,8 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!, except: :show
-  load_and_authorize_resource
+  load_and_authorize_resource except: :show
   before_action :set_company, only: [:show, :edit, :update, :destroy, :home]
-  after_filter :allow_iframe, only: :promote
 
   # GET /companies
   # GET /companies.json
@@ -83,10 +82,6 @@ class CompaniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
       params.require(:company).permit(:user_id, :plan_id, :slogan, :logo, :website, :minipage_url, :name, :phone, :street, :city, :schedule_interval, :min_antecedence, :max_antecedence, :remove_logo)
-    end
-
-    def allow_iframe
-      response.headers.delete "X-Frame-Options"
     end
 
 end

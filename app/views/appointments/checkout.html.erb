@@ -59,7 +59,7 @@
     <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
       <div class="form-group">
         <%= client_fields.label :email %>
-        <%= client_fields.text_field :email, :class => 'form-control' %>
+        <%= client_fields.email_field :email, :class => 'form-control' %>
       </div>
 
       <div class="form-group">
@@ -69,7 +69,7 @@
 
       <div class="form-group">
         <%= client_fields.label :phone %>
-        <%= client_fields.text_field :phone, :class => 'form-control' %>
+        <%= client_fields.phone_field :phone, :class => 'form-control' %>
       </div>
     <% end %>
 

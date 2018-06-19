@@ -42,6 +42,6 @@ module ApplicationHelper
 
   def domain_url
     text = request.protocol + request.domain
-    text +=  ':' + request.port.to_s unless request.port.blank?
+    text +=  ':' + request.port.to_s unless request.port.blank? || request.port == 80
   end
 end

@@ -8,6 +8,5 @@ class CreateClients < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :clients, :email, :unique => true
   end
 end

@@ -76,7 +76,7 @@ class ClientsController < ApplicationController
 
   def findByName
 
-    @clients = Client.where(company: current_user.company).where("name LIKE ?", "%#{params[:term]}%").order(:name)
+    @clients = Client.where(company: current_user.company).where("UPPER(name) LIKE ?", "%#{params[:term].upcase}%").order(:name)
 
     render json: @clients, status: :ok
   end

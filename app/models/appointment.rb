@@ -5,10 +5,8 @@ class Appointment < ActiveRecord::Base
 
   accepts_nested_attributes_for :client
 
-  validates_presence_of :companies_service
-  validates_presence_of :resource
-  validates_presence_of :client
-  validates_presence_of :title
+  validates_presence_of :companies_service_id
+  validates_presence_of :resource_id
   validates_presence_of :start
   validates_presence_of :end
 
@@ -28,6 +26,13 @@ class Appointment < ActiveRecord::Base
 
   def hashId
     ApplicationHelper.encrypt 'agendacard', self.id.to_s
+  end
+
+  def title
+    title = String.new
+    title = self.client.nil? ? 'Anônimo' : self.client.name
+    title += ': ' + self.companies_service.service.name unless self.companies_service.nil?
+
   end
 
 

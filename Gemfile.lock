@@ -226,7 +226,7 @@ DEPENDENCIES
   jquery-ui-rails
   mini_magick
   momentjs-rails
-  pg (~> 0.20.0)
+  pg
   rails (= 4.2.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20180613130501) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "appointments", force: :cascade do |t|
-    t.integer  "resource_id",          limit: 3
-    t.integer  "companies_service_id", limit: 3
-    t.integer  "client_id",            limit: 3
+    t.integer  "resource_id"
+    t.integer  "companies_service_id"
+    t.integer  "client_id"
     t.datetime "start"
     t.datetime "end"
-    t.integer  "all_day",              limit: 1
+    t.integer  "all_day",              limit: 2
     t.string   "obs",                  limit: 200
     t.decimal  "price",                            precision: 10, scale: 2
     t.datetime "created_at",                                                null: false
@@ -37,14 +40,14 @@ ActiveRecord::Schema.define(version: 20180613130501) do
     t.string   "phone",      limit: 40
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "company_id", limit: 4
+    t.integer  "company_id"
   end
 
   add_index "clients", ["email", "company_id"], name: "index_clients_on_email_and_company_id", unique: true, using: :btree
 
   create_table "companies", force: :cascade do |t|
-    t.integer  "user_id",           limit: 3
-    t.integer  "plan_id",           limit: 3
+    t.integer  "user_id"
+    t.integer  "plan_id"
     t.string   "name",              limit: 150
     t.string   "email",             limit: 150
     t.string   "phone",             limit: 40
@@ -55,8 +58,8 @@ ActiveRecord::Schema.define(version: 20180613130501) do
     t.string   "website",           limit: 2083
     t.string   "minipage_url",      limit: 2083
     t.integer  "schedule_interval", limit: 2,    default: 900
-    t.integer  "min_antecedence",   limit: 3,    default: 3600
-    t.integer  "max_antecedence",   limit: 4,    default: 2592000
+    t.integer  "min_antecedence",                default: 3600
+    t.integer  "max_antecedence",                default: 2592000
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
   end
@@ -65,9 +68,9 @@ ActiveRecord::Schema.define(version: 20180613130501) do
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "companies_services", force: :cascade do |t|
-    t.integer  "company_id",  limit: 3
-    t.integer  "service_id",  limit: 3
-    t.integer  "duration",    limit: 4,                            null: false
+    t.integer  "company_id"
+    t.integer  "service_id"
+    t.integer  "duration",                                         null: false
     t.string   "description", limit: 150
     t.decimal  "price",                   precision: 10, scale: 2
     t.datetime "created_at",                                       null: false
@@ -77,19 +80,29 @@ ActiveRecord::Schema.define(version: 20180613130501) do
   add_index "companies_services", ["company_id"], name: "index_companies_services_on_company_id", using: :btree
   add_index "companies_services", ["service_id"], name: "index_companies_services_on_service_id", using: :btree
 
+  create_table "companies_services_providers", force: :cascade do |t|
+    t.integer  "provider_id"
+    t.integer  "companies_service_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "companies_services_providers", ["companies_service_id"], name: "index_companies_services_providers_on_companies_service_id", using: :btree
+  add_index "companies_services_providers", ["provider_id"], name: "index_companies_services_providers_on_provider_id", using: :btree
+
   create_table "companies_services_resources", force: :cascade do |t|
-    t.integer  "resource_id",          limit: 3
-    t.integer  "companies_service_id", limit: 3
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "resource_id"
+    t.integer  "companies_service_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "companies_services_resources", ["companies_service_id"], name: "index_companies_services_resources_on_companies_service_id", using: :btree
   add_index "companies_services_resources", ["resource_id"], name: "index_companies_services_resources_on_resource_id", using: :btree
 
   create_table "opening_hours", force: :cascade do |t|
-    t.integer  "company_id",  limit: 3
-    t.integer  "resource_id", limit: 3
+    t.integer  "company_id"
+    t.integer  "resource_id"
     t.string   "weekdays",    limit: 50
     t.time     "from"
     t.time     "to"
@@ -107,7 +120,7 @@ ActiveRecord::Schema.define(version: 20180613130501) do
   end
 
   create_table "resources", force: :cascade do |t|
-    t.integer  "company_id", limit: 3
+    t.integer  "company_id"
     t.string   "name",       limit: 150
     t.string   "email",      limit: 200
     t.string   "phone",      limit: 40
@@ -131,7 +144,7 @@ ActiveRecord::Schema.define(version: 20180613130501) do
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255

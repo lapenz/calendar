@@ -45,3 +45,14 @@ set :tmp_dir, "/home/ec2-user"
 set :passenger_in_gemfile, true
 
 set :passenger_restart_with_touch, true
+
+namespace :deploy do
+  Rake::Task['deploy:compile_assets'].clear
+  desc 'Compile assets'
+  task :compile_assets => [:set_rails_env] do
+    unless fetch(:rails_env) == 'development-integration'
+      invoke 'deploy:assets:precompile'
+      invoke 'deploy:assets:backup_manifest'
+    end
+  end
+end

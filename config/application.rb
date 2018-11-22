@@ -31,7 +31,7 @@ module Calendar
     # Whitelist locales available for the application
     I18n.available_locales = [:en, :pt]
 
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
     config.serve_static_files = true
   end
 end

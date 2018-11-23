@@ -52,7 +52,7 @@ pt:
       company:
         name: 'Nome da empresa'
         phone: 'Telefone'
-        street: 'Endereço'
+        street: 'Rua'
         city: 'Cidade'
         schedule_interval: 'Os clientes podem agendar online a cada'
         min_antecedence: 'Os clientes podem agendar online com antecedência de no mínimo'

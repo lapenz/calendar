@@ -1,4 +1,4 @@
-class Company < ActiveRecord::Base
+class Company < ApplicationRecord
   has_many :companies_services
   belongs_to :user
   has_many :resources

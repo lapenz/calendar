@@ -1,4 +1,4 @@
-class OpeningHour < ActiveRecord::Base
+class OpeningHour < ApplicationRecord
   serialize :weekdays
   scope :by_weekday, -> (weekday) { where('weekdays LIKE ?', "%'#{weekday}'%") }
   belongs_to :company

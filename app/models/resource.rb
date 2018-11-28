@@ -1,4 +1,4 @@
-class Resource < ActiveRecord::Base
+class Resource < ApplicationRecord
   has_and_belongs_to_many :companies_services
   belongs_to :company
 

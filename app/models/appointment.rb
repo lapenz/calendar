@@ -1,4 +1,4 @@
-class Appointment < ActiveRecord::Base
+class Appointment < ApplicationRecord
   belongs_to :companies_service
   belongs_to :resource
   belongs_to :client, autosave: true

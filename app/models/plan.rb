@@ -1,2 +1,2 @@
-class Plan < ActiveRecord::Base
+class Plan < ApplicationRecord
 end

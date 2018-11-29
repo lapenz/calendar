@@ -90,6 +90,10 @@ pt:
           attributes:
             password_confirmation:
               confirmation: 'não confere com a senha'
+        client:
+          attributes:
+            email:
+              taken: 'já está em uso por outro cliente'
       messages:
         blank: 'deve ser preenchido.'
       template:

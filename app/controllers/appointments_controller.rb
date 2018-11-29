@@ -121,7 +121,7 @@ class AppointmentsController < ApplicationController
   end
 
   def resume
-    id = ApplicationHelper.decrypt('agendacard', params[:Id])
+    id = ApplicationHelper.decrypt('ajweidi234idfh35', params[:Id])
     @appointment = Appointment.find(id.to_i)
     @company = @appointment.companies_service.company
     render layout: "client"

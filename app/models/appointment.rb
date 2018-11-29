@@ -25,7 +25,7 @@ class Appointment < ApplicationRecord
   end
 
   def hashId
-    ApplicationHelper.encrypt 'agendacard', self.id.to_s
+    ApplicationHelper.encrypt 'ajweidi234idfh35', self.id.to_s
   end
 
   def title

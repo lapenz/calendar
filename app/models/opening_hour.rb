@@ -1,5 +1,5 @@
 class OpeningHour < ApplicationRecord
-  serialize :weekdays
+  serialize :weekdays, Array
   scope :by_weekday, -> (weekday) { where('weekdays LIKE ?', "%'#{weekday}'%") }
   belongs_to :company
 

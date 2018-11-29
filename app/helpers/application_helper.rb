@@ -1,3 +1,4 @@
+require 'openssl'
 module ApplicationHelper
   def nav_link(link_text, link_path, http_method=nil)
     class_name = current_page?(link_path) ? 'active' : ''

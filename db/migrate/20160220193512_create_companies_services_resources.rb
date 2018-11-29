@@ -1,4 +1,4 @@
-class CreateCompaniesServicesResources < ActiveRecord::Migration
+class CreateCompaniesServicesResources < ActiveRecord::Migration[4.2]
   def change
     create_table :companies_services_resources do |t|
       t.integer :resource_id, :limit => 3

@@ -38,7 +38,7 @@ set :keep_releases, 5
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 #
-set :rvm_ruby_version, '2.2.6'
+set :rvm_ruby_version, '2.5.3'
 
 set :tmp_dir, "/home/ec2-user"
 

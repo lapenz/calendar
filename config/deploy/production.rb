@@ -23,7 +23,7 @@ set :ssh_options,     { forward_agent: false, user: fetch(:user), keys: %w(~/luc
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
-set :tmp_dir, "/home/#{fetch(:user)}"
+set :tmp_dir, "/home/#{fetch(:user)}/cap-tmp"
 
 ## Defaults:
 # set :scm,           :git

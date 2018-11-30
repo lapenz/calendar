@@ -199,7 +199,7 @@ class AppointmentsController < ApplicationController
     # Enquanto o tempHour estiver no intervalo do OpeningHour e o interval for maior que 0 vai incrementando o tempHour
     while tempHour.between?(openingHour.from, openingHour.to) && interval > 0  do
       #byebug
-      releasedHours << Time.new(date.year, date.month, date.day, tempHour.hour, tempHour.min, tempHour.sec)
+      releasedHours << Time.zone.local(date.year, date.month, date.day, tempHour.hour, tempHour.min, tempHour.sec)
       tempHour += interval
     end
 

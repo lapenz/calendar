@@ -30,6 +30,7 @@ en:
   edit: 'Edit'
   show: 'Show'
   destroy: 'Destroy'
+  schedule: 'Schedule'
   business: 'Business'
   remove: 'Remove'
   services: {

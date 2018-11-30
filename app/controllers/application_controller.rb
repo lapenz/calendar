@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   # Subdomain treatment
   def get_minipage_url
-    if !request.subdomain.blank?
+    if !request.subdomain.blank? && request.subdomain != 'www'
       companies = Company.where(minipage_url: request.subdomain).where.not(minipage_url: [nil, ''])
       if companies.count > 0
         @companyFromDomain = companies.first

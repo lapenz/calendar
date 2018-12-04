@@ -28,6 +28,8 @@ class CompaniesServicesController < ApplicationController
   def create
     @companies_service = CompaniesService.new(companies_service_params)
 
+    @companies_service.company = current_user.company
+
     service = Service.find_by(name: companies_service_params['service_name'])
     if service.nil?
       service = Service.create(:name => companies_service_params['service_name'])

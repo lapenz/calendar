@@ -21,6 +21,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    @appointment.client = Client.new
   end
 
   # GET /appointments/1/edit
@@ -30,12 +31,11 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
+    @appointment = Appointment.new(appointment_params)
     client = Client.where(email: appointment_params[:client_attributes][:email]).where.not(email: [nil, '']).first_or_initialize
+    client.company = current_user.company
     client.name = appointment_params[:client_attributes][:name] unless appointment_params[:client_attributes][:name].blank?
     client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
-    client.company = current_user.company
-
-    @appointment = Appointment.new(appointment_params)
 
     @appointment.client = client
     @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
@@ -55,7 +55,6 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
     @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
-    @appointment.title = @appointment.companies_service.service.name
 
     respond_to do |format|
       if @appointment.update(appointment_params)
@@ -198,7 +197,6 @@ class AppointmentsController < ApplicationController
 
     # Enquanto o tempHour estiver no intervalo do OpeningHour e o interval for maior que 0 vai incrementando o tempHour
     while tempHour.between?(openingHour.from, openingHour.to) && interval > 0  do
-      #byebug
       releasedHours << Time.zone.local(date.year, date.month, date.day, tempHour.hour, tempHour.min, tempHour.sec)
       tempHour += interval
     end
@@ -213,7 +211,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :resource_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:id, :email, :name, :phone])
+    params.require(:appointment).permit(:companies_service_id, :resource_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone])
   end
 
 end

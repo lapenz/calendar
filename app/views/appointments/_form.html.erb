@@ -15,10 +15,10 @@
     <legend ><%= Client.model_name.human %></legend>
     <% if @appointment.new_record? %>
 
-      <%= f.fields_for :client, @appointment.client ||= Client.new do |client_fields| %>
+      <%= f.fields_for :client, @appointment.client do |client_fields| %>
         <div class="form-group">
           <%= client_fields.label :name %>
-          <%= client_fields.text_field :name, :class => 'form-control' %>
+          <%= client_fields.text_field :name, :class => 'form-control', :autocomplete => :off %>
         </div>
         <div class="form-group">
           <%= client_fields.label :email %>
@@ -29,6 +29,7 @@
           <%= client_fields.text_field :phone, :class => 'form-control' %>
         </div>
 
+        <%= f.hidden_field(:client_id) %>
 
       <% end %>
 
@@ -117,7 +118,7 @@
                 $(this).val(ui.item.name);
                 $('#appointment_client_attributes_email').val(ui.item.email)
                 $('#appointment_client_attributes_phone').val(ui.item.phone)
-                $('#appointment_client_attributes_id').val(ui.item.id)
+                $('#appointment_client_id').val(ui.item.id)
 
                 $('#appointment_companies_service_id').focus();
                 return false;

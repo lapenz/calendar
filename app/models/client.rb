@@ -10,11 +10,11 @@ class Client < ApplicationRecord
 
   validates_uniqueness_of :email, scope: :company_id
 
-  before_validation :checkEmptyEmail
+  before_save :checkEmptyEmail
 
 
   def checkEmptyEmail
-    self.email = nil unless !self.email.blank?
+    self.email = nil if self.email.blank?
 
   end
 end

@@ -50,7 +50,7 @@ class Ability
     end
 
     can :manage, Appointment do |appointment|
-      appointment.new_record? || appointment.resource.company == user.company
+      appointment.new_record? || appointment.company == user.company
     end
 
   end

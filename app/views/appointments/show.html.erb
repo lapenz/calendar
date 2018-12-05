@@ -1,20 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-
 
 <p>
   <strong>Resource service:</strong>
-  <%= @appointment.companies_service_id %>
+  <%= @appointment.companies_service.service.name unless @appointment.companies_service.nil? %>
 </p>
 
 <p>
   <strong>Resource:</strong>
-  <%= @appointment.resource.name %>
+  <%= @appointment.resource.name unless @appointment.resource.nil? %>
 </p>
 
 <p>
   <strong>Client:</strong>
-  <%= @appointment.client_id %>
+  <%= @appointment.client.name unless @appointment.client.nil? %>
 </p>
 
 <p>
@@ -32,10 +29,10 @@
   <%= @appointment.end %>
 </p>
 
-<p>
-  <strong>All day:</strong>
-  <%= @appointment.all_day %>
-</p>
+<!--<p>-->
+<!--  <strong>All day:</strong>-->
+  <%#= @appointment.all_day %>
+<!--</p>-->
 
 <p>
   <strong>Obs:</strong>

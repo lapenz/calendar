@@ -1,12 +1,11 @@
 class Appointment < ApplicationRecord
-  belongs_to :companies_service
-  belongs_to :resource
+  belongs_to :companies_service, required: false
+  belongs_to :resource, required: false
   belongs_to :client, autosave: true
+  belongs_to :company
 
   accepts_nested_attributes_for :client
 
-  validates_presence_of :companies_service_id
-  validates_presence_of :resource_id
   validates_presence_of :start
   validates_presence_of :end
 
@@ -31,8 +30,8 @@ class Appointment < ApplicationRecord
   def title
     title = String.new
     title = self.client.nil? ? 'Anônimo' : self.client.name
-    title += ': ' + self.companies_service.service.name unless self.companies_service.nil?
-
+    title.concat ': ' + self.companies_service.service.name unless self.companies_service.nil?
+    return title
   end
 
 

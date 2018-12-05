@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_130501) do
     t.integer "resource_id"
     t.integer "companies_service_id"
     t.integer "client_id"
+    t.integer "company_id"
     t.datetime "start"
     t.datetime "end"
     t.integer "all_day", limit: 2
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_130501) do
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["companies_service_id"], name: "index_appointments_on_companies_service_id"
+    t.index ["company_id"], name: "index_appointments_on_company_id"
     t.index ["resource_id", "start"], name: "index_appointments_on_resource_id_and_start", unique: true
     t.index ["resource_id"], name: "index_appointments_on_resource_id"
   end

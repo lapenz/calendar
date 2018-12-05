@@ -58,12 +58,12 @@
 
     <div class="form-group">
       <%= f.label(:companies_service_id) %>
-      <%= f.select :companies_service_id, current_user.company.companies_services.collect {|copanies_service| [copanies_service.service_name, copanies_service.id]}, {}, class: 'form-control' %>
+      <%= f.select :companies_service_id, current_user.company.companies_services.collect {|copanies_service| [copanies_service.service_name, copanies_service.id]}, {:prompt => 'Selecione um serviço'}, class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <%= f.label(:resource_id) %>
-      <%= f.select :resource_id, current_user.company.resources.collect { |resource| [resource.name, resource.id] }, {:prompt => 'Select a resource'}, class: 'form-control' %>
+      <%= f.select :resource_id, current_user.company.resources.collect { |resource| [resource.name, resource.id] }, {:prompt => 'Selecione um funcionário'}, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :start %><br>

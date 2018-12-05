@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments.json
   #/myfeed.php?start=2013-12-01&end=2014-01-12&_=1386054751381
   def index
-    @appointments = Appointment.joins(:companies_service).where(companies_services: { company_id: current_user.company.id}, :start => params[:start]..params[:end])
+    @appointments = Appointment.where(company: current_user.company, :start => params[:start]..params[:end])
   end
 
   # GET /appointments/1
@@ -38,6 +38,7 @@ class AppointmentsController < ApplicationController
     client.phone = appointment_params[:client_attributes][:phone] unless appointment_params[:client_attributes][:phone].blank?
 
     @appointment.client = client
+    @appointment.company = current_user.company
     @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
 
     respond_to do |format|
@@ -105,6 +106,7 @@ class AppointmentsController < ApplicationController
     client.company = @appointment.companies_service.company
     client.full_validate = true
     @appointment.client = client
+    @appointment.company = @appointment.companies_service.company
 
     @appointment.end = @appointment.start + @appointment.companies_service.duration.seconds
 
@@ -211,7 +213,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :resource_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone])
+    params.require(:appointment).permit(:companies_service_id, :resource_id, :client_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone])
   end
 
 end

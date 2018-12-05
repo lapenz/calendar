@@ -9,4 +9,12 @@ class Client < ApplicationRecord
   validates_presence_of :email, :phone, if: -> { self.full_validate.present? }
 
   validates_uniqueness_of :email, scope: :company_id
+
+  before_validation :checkEmptyEmail
+
+
+  def checkEmptyEmail
+    self.email = nil unless !self.email.blank?
+
+  end
 end

@@ -31,8 +31,6 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     @client.company = current_user.company
 
-    @client.email = nil unless !@client.email.blank?
-
     respond_to do |format|
       if @client.save
         format.html { redirect_to @client, notice: 'Client was successfully created.' }

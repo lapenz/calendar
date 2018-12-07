@@ -34,9 +34,9 @@ en:
   business: 'Business'
   remove: 'Remove'
   services: {
-      zero: 'No registered service', # optional
-      one: 'Service',
-      other: 'Services'
+      zero: 'No registered service yet', # optional
+      one: 'Choose service and schedule',
+      other: 'Choose service and schedule'
   }
   step1: 'Step 1/2: select date and time'
   step2: 'Step 2/2:'

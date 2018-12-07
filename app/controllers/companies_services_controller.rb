@@ -17,6 +17,7 @@ class CompaniesServicesController < ApplicationController
   # GET /companies_services/new
   def new
     @companies_service = CompaniesService.new
+    @companies_service.visible = true
   end
 
   # GET /companies_services/1/edit
@@ -80,6 +81,6 @@ class CompaniesServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def companies_service_params
-      params.require(:companies_service).permit(:company_id, :service_name, :duration, :description, :price, :date, :resource_ids => [])
+      params.require(:companies_service).permit(:company_id, :service_name, :duration, :description, :price, :date, :visible, :resource_ids => [])
     end
 end

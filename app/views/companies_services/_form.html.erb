@@ -43,6 +43,10 @@
     <%= f.label :price %><br>
     <%= f.text_field :price, :class => 'form-control' %>
   </div>
+  <div class="form-group">
+    <%= f.check_box :visible %>
+    <%= f.label :visible, "Os clientes podem agendar este serviço" %>
+  </div>
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
   </div>

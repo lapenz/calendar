@@ -19,9 +19,9 @@ pt:
   phone: 'Telefone'
   promote: 'Promover'
   services: {
-    zero: 'Nenhum serviço cadastrado', # optional
-    one: 'Serviço',
-    other: 'Serviços'
+    zero: 'Nenhum serviço cadastrado ainda', # optional
+    one: 'Escolha o serviço e agende seu horário',
+    other: 'Escolha o serviço e agende seu horário'
   }
   step1: 'Passo 1/2: selecione a data e horário'
   step2: 'Passo 2/2:'

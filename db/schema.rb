@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_07_184801) do
+ActiveRecord::Schema.define(version: 2018_12_08_122702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 2018_12_07_184801) do
     t.integer "company_id"
     t.datetime "start"
     t.datetime "end"
-    t.integer "all_day", limit: 2
     t.string "obs", limit: 200
     t.decimal "price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "allday"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["companies_service_id"], name: "index_appointments_on_companies_service_id"
     t.index ["company_id"], name: "index_appointments_on_company_id"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_12_07_184801) do
     t.decimal "price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "visible"
+    t.boolean "visible", default: true
     t.index ["company_id"], name: "index_companies_services_on_company_id"
     t.index ["service_id"], name: "index_companies_services_on_service_id"
   end

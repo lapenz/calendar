@@ -43,6 +43,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
+        AppointmentsMailer.confirm_appointment(@appointment).deliver_now
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
@@ -55,7 +56,12 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
+    start = Time.zone.local(appointment_params["start(1i)"].to_i,
+                                        appointment_params["start(2i)"].to_i,
+                                        appointment_params["start(3i)"].to_i,
+                                        appointment_params["start(4i)"].to_i,
+                                        appointment_params["start(5i)"].to_i)
+    @appointment.end = start + appointment_params[:duration].to_i.seconds
 
     respond_to do |format|
       if @appointment.update(appointment_params)
@@ -213,7 +219,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :resource_id, :client_id, :title, :start, :end, :duration, :all_day, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone])
+    params.require(:appointment).permit(:companies_service_id, :resource_id, :client_id, :title, :start, :end, :duration, :allday, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone])
   end
 
 end

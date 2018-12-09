@@ -44,6 +44,8 @@ gem 'jquery-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 
+gem 'google-analytics-rails'
+
 gem 'mini_racer'
 
 # for railties app_generator_test

@@ -1,10 +1,10 @@
 Olá <%= @client.name %>, aqui estão os seus próximos agendamentos feitos em <%= @client.company.name %>:
 
 <% @appointments.each do |appointment| %>
-  <%= Resource.model_name.human %>: <%= appointment.resource.name %>
-
-  <%= CompaniesService.model_name.human %>: <%= appointment.companies_service.service.name %>
-
+  <% if !appointment.resource.nil? %><%= Resource.model_name.human %>: <%= appointment.resource.name %>
+  <% end %>
+  <% if !appointment.companies_service.nil? %><%= CompaniesService.model_name.human %>: <%= appointment.companies_service.service.name %>
+  <% end %>
   <%= Appointment.human_attribute_name("start") %>: <%= l appointment.start, format: :long %>
 
   <% if !appointment.obs.blank? %>Obs: <%= appointment.obs %>

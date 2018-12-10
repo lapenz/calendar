@@ -43,7 +43,8 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'confirmado')
+        format.html { redirect_to @appointment, notice: 'Agendamento criado com sucesso.' }
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new }
@@ -64,7 +65,8 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'reprogramado')
+        format.html { redirect_to @appointment, notice: 'Agendamento atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit }
@@ -78,7 +80,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to appointments_url, notice: 'Agendamento destruído com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -117,7 +119,8 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to resume_appointments_path(Id: @appointment.hashId), notice: 'Appointment was successfully created.' }
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'confirmado')
+        format.html { redirect_to resume_appointments_path(Id: @appointment.hashId), notice: 'Agendamento criado com sucesso.' }
         format.json { render :show, status: :created, location: @appointment}
       else
         format.html { render action: :checkout }

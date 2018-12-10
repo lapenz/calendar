@@ -46,6 +46,9 @@ gem 'mini_magick'
 
 gem 'google-analytics-rails'
 
+gem 'sidekiq'
+gem 'redis'
+
 gem 'mini_racer'
 
 # for railties app_generator_test

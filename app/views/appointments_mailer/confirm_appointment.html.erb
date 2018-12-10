@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h2>Olá <strong><%= @appointment.client.name %></strong>, seu agendamento em <strong><%= @appointment.company.name %></strong> foi <%=@type%>! Veja os detalhes abaixo.</h2>
+
+  <% if !@appointment.resource.nil? %>
+    <p>
+      <strong><%= Resource.model_name.human %>:</strong> <%= @appointment.resource.name %>
+    </p>
+  <% end %>
+
+  <% if !@appointment.companies_service.nil? %>
+    <p>
+      <strong><%= CompaniesService.model_name.human %>:</strong> <%= @appointment.companies_service.service.name %>
+    </p>
+  <% end %>
+
+  <p>
+    <strong><%= Appointment.human_attribute_name("start") %>:</strong> <%= l @appointment.start, format: :long %>
+  </p>
+
+  <% if !@appointment.obs.blank? %>
+    <p><strong>Obs:</strong> <%= @appointment.obs %> </p>
+  <% end %>
+
+  <h3><%= t :contact %>:</h3>
+  <%=(@appointment.company.name) %><br/>
+  <%=(@appointment.company.street) %><br/>
+  <%=(@appointment.company.city) %><br/>
+  <%= @appointment.company.phone %><br/>
+
+  <%= link_to root_url(subdomain: @appointment.company.minipage_url), root_url(subdomain: @appointment.company.minipage_url) %>
+</body>
+</html>

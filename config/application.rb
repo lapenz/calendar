@@ -23,5 +23,7 @@ module Calendar
 
     # Whitelist locales available for the application
     I18n.available_locales = [:en, :pt]
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

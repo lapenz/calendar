@@ -1,0 +1,17 @@
+Olá <%= @appointment.client.name %>, seu agendamento em <%= @appointment.company.name %> foi <%=@type%>! Veja os detalhes abaixo.
+
+<% if !@appointment.resource.nil? %><%= Resource.model_name.human %>: <%= @appointment.resource.name %>
+<% end %>
+<% if !@appointment.companies_service.nil? %><%= CompaniesService.model_name.human %>: <%= @appointment.companies_service.service.name %>
+<% end %>
+<%= Appointment.human_attribute_name("start") %>: <%= l @appointment.start, format: :long %>
+
+<% if !@appointment.obs.blank? %>Obs: <%= @appointment.obs %>
+<% end %>
+<%= t :contact %>:
+<%=(@appointment.company.name) %>
+<%=(@appointment.company.street) %>
+<%=(@appointment.company.city) %>
+<%= @appointment.company.phone %>
+
+<%= root_url(subdomain: @appointment.company.minipage_url) %>

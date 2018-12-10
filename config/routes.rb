@@ -48,6 +48,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "users/sessions", :registrations => "users/registrations" }
 
+  require 'sidekiq/web'
+
+  Rails.application.routes.draw do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

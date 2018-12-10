@@ -48,6 +48,7 @@ gem 'google-analytics-rails'
 
 gem 'sidekiq'
 gem 'redis'
+gem 'capistrano-sidekiq'
 
 gem 'mini_racer'
 

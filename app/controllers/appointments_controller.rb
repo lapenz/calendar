@@ -43,7 +43,6 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        AppointmentsMailer.confirm_appointment(@appointment).deliver_now
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else

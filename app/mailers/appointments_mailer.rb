@@ -10,6 +10,7 @@ class AppointmentsMailer < ApplicationMailer
     @appointment = appointment
     @type = type
     mail(to: appointment.client.email, subject: "Agendamento #{@type} - #{appointment.company.name}")
+
   end
 
 

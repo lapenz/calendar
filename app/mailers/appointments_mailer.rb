@@ -9,7 +9,7 @@ class AppointmentsMailer < ApplicationMailer
   def confirm_appointment(appointment, type)
     @appointment = appointment
     @type = type
-    mail(to: appointment.client.email, subject: "Agendamento #{@type} - #{appointment.company.name}")
+    mail(to: appointment.client.email, subject: "Agendamento #{@type} - #{appointment.company.name}") unless appointment.client.email.blank?
   end
 
 

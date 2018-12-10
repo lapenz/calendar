@@ -61,11 +61,12 @@ class AppointmentsController < ApplicationController
                                         appointment_params["start(3i)"].to_i,
                                         appointment_params["start(4i)"].to_i,
                                         appointment_params["start(5i)"].to_i)
+    reprogrammed = start != @appointment.start
     @appointment.end = start + appointment_params[:duration].to_i.seconds
 
     respond_to do |format|
       if @appointment.update(appointment_params)
-        AppointmentConfirmMailerJob.perform_later(@appointment, 'reprogramado')
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'reprogramado') if reprogrammed
         format.html { redirect_to @appointment, notice: 'Agendamento atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @appointment }
       else

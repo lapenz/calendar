@@ -1,5 +1,7 @@
 <p class="text-center">
-  <% if !@openHours.empty? %>
+  <% if @openHours.empty? %>
+    Nenhum horário disponível nesta data.
+  <% else %>
     <%= l @openHours.first, format: :day_month_weekday %>
   <% end %>
 </p>
@@ -10,17 +12,15 @@
     <% end %>
 </ul>
 
-
 <script>
     $(document).ready(function() {
-        $( "#selectable" ).selectable();
-
-        var selectedItems = [];
-        $( 'li.ui-selectee' ).on('click', function() {
-
-            var selected_date = $(this).attr('data');
-            $('#appointment_start').val(selected_date);
-            // console.log('selected item: ' +  selected_date);      // open the console to see the selected items after each click
+        $( "#selectable" ).selectable({
+            selected: function( event, ui ) {
+                var selected_date = $(ui.selected).attr('data');
+                // console.log('selected item: ' +  selected_date); // open the console to see the selected items after each click
+                $('#appointment_start').val(selected_date);
+            }
         });
+
     });
 </script>

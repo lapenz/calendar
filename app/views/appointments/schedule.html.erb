@@ -1,12 +1,9 @@
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h4 class="modal-title" id="exampleModalLabel"><b><%= @company_service.company.name %> - Agendamento Online</b></h4>
-  <h4><%= t :step1 %></h4>
-  <h5><%= CompaniesService.model_name.human + ': ' + @company_service.service.name %></h5>
-</div>
-<div class="modal-body">
+
+  <h3><%= t :step1 %></h3>
+  <h4><%= CompaniesService.model_name.human + ': ' + @company_service.service.name %></h4>
+
   <div class="row">
-    <div class="col-md-5 col-sm-12 col-xs-12">
+    <div class="col-sm-4 col-xs-12">
 
       <%= form_for :appointment, method: :get, :url => {action: 'checkout'}, :html => { :id => "datetime" } do |f| %>
           <%= f.hidden_field(:companies_service_id, :value => @company_service.id) %>
@@ -17,18 +14,15 @@
       </br>
       <div id="datepicker"></div>
     </div>
-    <div class="col-md-7 col-sm-12 col-xs-12">
+    <div class="col-sm-8 col-xs-12">
     <span id="hours"></span>
     </div>
   </div>
-</div>
-<div class="modal-footer">
 
-    <button type="button" class="btn btn-default" data-dismiss="modal"><%= t :close %></button>
-    <button id="submit" type="button" class="btn btn-primary" ><%= t :next %></button>
-
-
-</div>
+  <div class="actions">
+    <%= link_to t(:back), root_url(subdomain: @company_service.company.minipage_url), class: 'btn btn-primary' %>
+    <button id="submit" type="button" class="btn btn-success" ><%= t :next %></button>
+  </div>
 
 <script>
 

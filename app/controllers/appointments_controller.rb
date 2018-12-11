@@ -89,8 +89,9 @@ class AppointmentsController < ApplicationController
   def schedule
     @appointment = Appointment.new
     @company_service = CompaniesService.find(params[:id]);
+    @company = @company_service.company
     @resources = @company_service.resources
-    render layout: false
+    render layout: "client"
   end
 
   def checkout

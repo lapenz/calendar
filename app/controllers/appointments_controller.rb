@@ -89,7 +89,7 @@ class AppointmentsController < ApplicationController
     repeat = @appointment.repeat
     @appointment.destroy
 
-    repeat.destroy if repeat.appointments.empty?
+    repeat.destroy if !repeat.nil? && repeat.appointments.empty?
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Agendamento destruído com sucesso.' }
       format.json { head :no_content }

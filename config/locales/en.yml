@@ -56,6 +56,11 @@ en:
         schedule_interval: 'Clients can book online every'
         min_antecedence: 'Clients can book online in advance for at least'
         max_antecedence: 'Clients can book online in advance for a maximum of'
+      repeat:
+        typerepeat: 'Repeat'
+        interval: 'Repeat once per'
+        weekdays: 'Week days'
+        end: 'Ends'
   devise:
     logout: 'Logout'
     sessions:

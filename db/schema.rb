@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_122702) do
+ActiveRecord::Schema.define(version: 2018_12_12_124916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2018_12_08_122702) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "allday"
+    t.integer "repeat_id"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["companies_service_id"], name: "index_appointments_on_companies_service_id"
     t.index ["company_id"], name: "index_appointments_on_company_id"
@@ -101,6 +102,15 @@ ActiveRecord::Schema.define(version: 2018_12_08_122702) do
 
   create_table "plans", id: :serial, force: :cascade do |t|
     t.string "name", limit: 45
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "repeats", force: :cascade do |t|
+    t.string "typerepeat", limit: 45
+    t.integer "interval", limit: 2
+    t.string "weekdays", limit: 50
+    t.date "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

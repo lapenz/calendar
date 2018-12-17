@@ -42,6 +42,7 @@ pt:
       company: "Detalhes da empresa"
       opening_hour: "Horário de atendimento"
       user: 'Usuário'
+      repeat: 'Repetição'
     attributes:
       appointment:
         resource_id: 'Funcionário'
@@ -80,6 +81,11 @@ pt:
         password: 'Senha'
         password_confirmation: 'Confirmação de senha'
         remember_me: 'Lembrar senha'
+      repeat:
+        typerepeat: 'Repetir'
+        interval: 'Repetir uma vez a cada'
+        weekdays: 'Dias da semana'
+        end: 'Termina em'
     errors:
       models:
         appointment:

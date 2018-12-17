@@ -3,8 +3,9 @@ class Appointment < ApplicationRecord
   belongs_to :resource, required: false
   belongs_to :client, autosave: true
   belongs_to :company
+  belongs_to :repeat, required: false
 
-  accepts_nested_attributes_for :client
+  accepts_nested_attributes_for :client, :repeat
 
   validates_presence_of :start
   validates_presence_of :end

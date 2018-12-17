@@ -101,17 +101,84 @@
       <%= f.label :obs %><br>
       <%= f.text_area :obs, class: 'form-control' %>
     </div>
+
   </fieldset>
+
+  <fieldset>
+    <legend >Repetição</legend>
+
+      <% if @appointment.new_record? || @appointment.repeat.nil? %>
+        <%= f.fields_for :repeat, @appointment.repeat ||= Repeat.new do |repeat_fields| %>
+          <div class="form-group">
+            <%= repeat_fields.select :typerepeat, options_for_select([['Semanalmente', 'weekly'], ['Mensalmente', 'monthly']]), {:prompt => 'Nunca'} %>
+
+          </div>
+          <span id="repeat">
+            <div class="form-group">
+              <%= repeat_fields.label :interval %><br>
+              <%= repeat_fields.text_field :interval, value: 1 %> <span id="interval-label" />
+
+            </div>
+
+            <span id="weekdays">
+              <div class="form-group">
+                <%= repeat_fields.label :weekdays %><br>
+                <% Date::DAYNAMES.each_with_index do |day, index| %>
+                  <%= check_box_tag "appointment[repeat_attributes][weekdays][]", index, @appointment.repeat.weekdays.nil? ? false : @appointment.repeat.weekdays.include?(index.to_s) %>
+                  <%= t('date.day_names')[index] %>
+                <% end %>
+
+              </div>
+            </span>
+
+            <div class="form-group">
+              <%= repeat_fields.label :end %><br>
+              <%= repeat_fields.date_select :end %>
+
+            </div>
+          </span>
+        <% end %>
+      <% else %>
+        <div class="form-group">
+          <%= @appointment.repeat.typerepeat == 'weekly' ? 'Semanalmente' : 'Mensalmente' %>, <% @appointment.repeat.weekdays.each do |day_number| %>
+            <%= t('date.day_names')[day_number.to_i] + ', ' %>
+          <% end %> até <%= l @appointment.repeat.end, format: :long  %>
+        </div>
+      <% end %>
+  </fieldset>
+
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
-    <%= link_to 'Excluir', @appointment, :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Are you sure?'} unless @appointment.new_record? %>
+    <%= link_to 'Excluir', @appointment, :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Tem certeza?'} unless @appointment.new_record? %>
+    <%= link_to 'Excluir este e os seguintes', destroy_repeat_appointments_path(id: @appointment.id, repeats: true), :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Tem certeza?'} unless @appointment.new_record? || @appointment.repeat.id.nil? %>
   </div>
 <% end %>
 
 <script type="text/javascript">
-    $(function() {
+    $(document).ready(function() {
 
+        function checkRepeatType() {
+            if($('#appointment_repeat_attributes_typerepeat').val() == '') {
+                $('#repeat').hide();
+            } else if($('#appointment_repeat_attributes_typerepeat').val() == 'weekly') {
+                $('#repeat').show();
+                $('#weekdays').show();
+                $('#interval-label').text('semanas');
+            } else {
+                $('#repeat').show();
+                $('#weekdays').hide();
+                $('#interval-label').text('meses');
+
+            }
+        }
+
+        checkRepeatType();
+
+        $('#appointment_repeat_attributes_typerepeat').change(function() {
+            checkRepeatType();
+        });
+        
         // Below is the name of the textfield that will be autocomplete
         $('#appointment_client_attributes_name').autocomplete({
             // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
@@ -138,6 +205,9 @@
                 .append( "<div>" + item.name + " - " + item.email + "</div>" )
                 .appendTo( ul );
         };
+
+
+
 
     });
 </script>

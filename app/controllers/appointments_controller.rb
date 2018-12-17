@@ -41,8 +41,15 @@ class AppointmentsController < ApplicationController
     @appointment.company = current_user.company
     @appointment.end = @appointment.start + appointment_params[:duration].to_i.seconds
 
+    @appointment.repeat = nil if(@appointment.repeat.present? && @appointment.repeat.typerepeat.blank?)
+
     respond_to do |format|
       if @appointment.save
+
+        if (@appointment.repeat.present? && !@appointment.repeat.typerepeat.blank?)
+          repeatAppointments = createRepeats @appointment
+          repeatAppointments.each {|o| o.save}
+        end
         AppointmentConfirmMailerJob.perform_later(@appointment, 'confirmado')
         format.html { redirect_to @appointment, notice: 'Agendamento criado com sucesso.' }
         format.json { render :show, status: :created, location: @appointment }
@@ -79,9 +86,24 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1
   # DELETE /appointments/1.json
   def destroy
+    repeat = @appointment.repeat
     @appointment.destroy
+
+    repeat.destroy if repeat.appointments.empty?
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Agendamento destruído com sucesso.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def destroyRepeat
+    repeat = @appointment.repeat
+    appointments = repeat.appointments
+    appointments = appointments.where('start >= ? ', @appointment.start)
+    appointments.destroy_all
+    repeat.destroy if repeat.appointments.empty?
+    respond_to do |format|
+      format.html { redirect_to appointments_url, notice: 'Agendamentos destruídos com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -216,6 +238,69 @@ class AppointmentsController < ApplicationController
     return releasedHours
   end
 
+  def createRepeats(appointment)
+    if(appointment.repeat.typerepeat == 'monthly')
+      occurencys = (appointment.repeat.end.year * 12 + appointment.repeat.end.month) - (appointment.start.year * 12 + appointment.start.month)
+      appointments = Array.new
+      intervalCount = 0
+      for i in 1..occurencys
+        intervalCount += 1
+        if(appointment.repeat.interval == intervalCount)
+          appointmentAux = appointment.dup
+          appointmentAux.start = appointment.start + i.month
+          appointmentAux.end = appointment.end + i.month
+          appointments << appointmentAux
+          intervalCount = 0
+
+        end
+      end
+
+      return appointments
+    end
+
+    if(appointment.repeat.typerepeat == 'weekly')
+      appointments = Array.new
+      dates = []
+
+      appointment.repeat.weekdays.each {|weekday|
+        dates += (appointment.start.to_date..appointment.repeat.end.to_date).select{|x| x.wday == weekday.to_i }
+      }
+
+      calendarWeeks = []
+      (appointment.start.to_date..appointment.repeat.end.to_date).each {|date|
+        calendarWeeks.push(date.cweek) unless calendarWeeks.include?(date.cweek)
+      }
+
+      return appointments if dates.empty?
+
+      interval = appointment.repeat.interval
+
+      intervalCount = interval
+      calendarWeeksWithInterval = []
+      calendarWeeks.each {|week|
+        if intervalCount == interval
+          calendarWeeksWithInterval << week
+          intervalCount = 0
+        end
+
+        intervalCount += 1
+
+      }
+
+      dates.each {|date|
+        next if !calendarWeeksWithInterval.include? date.cweek
+
+        appointmentAux = appointment.dup
+        appointmentAux.start = appointment.start.change(day: date.day, year: date.year, month: date.month)
+        appointmentAux.end = appointment.end.change(day: date.day, year: date.year, month: date.month)
+        appointments << appointmentAux
+
+      }
+
+      return appointments
+    end
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_appointment
     @appointment = Appointment.find(params[:id])
@@ -223,7 +308,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :resource_id, :client_id, :title, :start, :end, :duration, :allday, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone])
+    params.require(:appointment).permit(:companies_service_id, :resource_id, :client_id, :repeat_id, :title, :start, :end, :duration, :allday, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone], repeat_attributes: [:typerepeat, :interval, :end, weekdays: []])
   end
 
 end

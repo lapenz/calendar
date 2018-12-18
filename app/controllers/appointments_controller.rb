@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments.json
   #/myfeed.php?start=2013-12-01&end=2014-01-12&_=1386054751381
   def index
-    @appointments = Appointment.where(company: current_user.company, :start => params[:start]..params[:end])
+    @appointments = Appointment.where(active: true, company: current_user.company, :start => params[:start]..params[:end])
   end
 
   # GET /appointments/1
@@ -73,12 +73,41 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.update(appointment_params)
+        if (@appointment.repeat.present? && !@appointment.repeat.typerepeat.blank?)
+          repeatAppointments = createRepeats @appointment
+          repeatAppointments.each {|o| o.save}
+        end
         AppointmentConfirmMailerJob.perform_later(@appointment, 'reprogramado') if reprogrammed
         format.html { redirect_to @appointment, notice: 'Agendamento atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def cancel
+
+    respond_to do |format|
+      if @appointment.update(active: false)
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
+        format.html { redirect_to appointments_url, notice: 'Agendamento cancelado com sucesso.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
+  def cancelRepeat
+    repeat = @appointment.repeat
+    appointments = repeat.appointments
+    appointments = appointments.where('start >= ? ', @appointment.start)
+
+    respond_to do |format|
+      if appointments.update_all(active: false)
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
+        format.html { redirect_to appointments_url, notice: 'Agendamento cancelado com sucesso.' }
+        format.json { head :no_content }
       end
     end
   end
@@ -90,6 +119,8 @@ class AppointmentsController < ApplicationController
     @appointment.destroy
 
     repeat.destroy if !repeat.nil? && repeat.appointments.empty?
+
+    AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Agendamento destruído com sucesso.' }
       format.json { head :no_content }
@@ -101,7 +132,9 @@ class AppointmentsController < ApplicationController
     appointments = repeat.appointments
     appointments = appointments.where('start >= ? ', @appointment.start)
     appointments.destroy_all
-    repeat.destroy if repeat.appointments.empty?
+    repeat.destroy if !repeat.nil? && repeat.appointments.empty?
+
+    AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Agendamentos destruídos com sucesso.' }
       format.json { head :no_content }
@@ -173,7 +206,7 @@ class AppointmentsController < ApplicationController
       releasedHours |= getReleasedHours(oh, date)
     end
 
-    unavailableHours = Appointment.where(:resource_id => params[:resource_id], :start => date.beginning_of_day..date.end_of_day)
+    unavailableHours = Appointment.where(active: true, :resource_id => params[:resource_id], :start => date.beginning_of_day..date.end_of_day)
 
     @openHours = getOpenHours(params, releasedHours, unavailableHours)
     render layout: false

@@ -8,10 +8,12 @@ Rails.application.routes.draw do
       post 'create_appointment'
       get 'resume'
       post 'check'
-      delete 'destroyRepeat', as: 'destroy_repeat'
+
     end
 
     member do
+      delete 'cancelRepeat', as: 'cancel_repeat'
+      delete 'cancel', as: 'cancel'
       get 'schedule'
     end
 

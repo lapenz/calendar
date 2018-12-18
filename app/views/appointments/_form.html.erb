@@ -150,8 +150,8 @@
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
-    <%= link_to 'Excluir', @appointment, :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Tem certeza?'} unless @appointment.new_record? %>
-    <%= link_to 'Excluir este e os seguintes', destroy_repeat_appointments_path(id: @appointment.id, repeats: true), :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Tem certeza?'} unless @appointment.new_record? || @appointment.repeat.id.nil? %>
+    <%= link_to 'Excluir', cancel_appointment_path(@appointment), :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Tem certeza?'} unless @appointment.new_record? %>
+    <%= link_to 'Excluir este e os seguintes', cancel_repeat_appointment_path(@appointment), :class => 'btn btn-danger', :role => 'button', method: :delete, data: {confirm: 'Tem certeza?'} unless @appointment.new_record? || @appointment.repeat.id.nil? %>
   </div>
 <% end %>
 

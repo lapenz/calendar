@@ -50,6 +50,10 @@ gem 'sidekiq'
 gem 'redis'
 gem 'capistrano-sidekiq'
 
+gem 'aws-sdk', '~> 3'
+
+gem 'dynamic_sitemaps'
+
 gem 'mini_racer'
 
 # for railties app_generator_test

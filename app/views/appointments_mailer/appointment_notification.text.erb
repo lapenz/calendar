@@ -1,4 +1,4 @@
-Olá <%= @appointment.client.name %>, seu agendamento em <%= @appointment.company.name %> foi <%=@type%>! Veja os detalhes abaixo.
+<%=@title%>
 
 <% if !@appointment.resource.nil? %><%= Resource.model_name.human %>: <%= @appointment.resource.name %>
 <% end %>

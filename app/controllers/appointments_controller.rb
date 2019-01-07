@@ -50,7 +50,7 @@ class AppointmentsController < ApplicationController
           repeatAppointments = createRepeats @appointment
           repeatAppointments.each {|o| o.save}
         end
-        AppointmentConfirmMailerJob.perform_later(@appointment, 'confirmado')
+        AppointmentConfirmMailerJob.set(wait_until: @appointment.start - 2.hour).perform_later(@appointment, 'Lembrete de Agendamento')
         format.html { redirect_to @appointment, notice: 'Agendamento criado com sucesso.' }
         format.json { render :show, status: :created, location: @appointment }
       else
@@ -71,13 +71,16 @@ class AppointmentsController < ApplicationController
     reprogrammed = start != @appointment.start
     @appointment.end = start + appointment_params[:duration].to_i.seconds
 
+    params[:appointment].delete :repeat_attributes if(appointment_params[:repeat_attributes].present? && appointment_params[:repeat_attributes][:typerepeat].blank?)
+
     respond_to do |format|
       if @appointment.update(appointment_params)
         if (@appointment.repeat.present? && !@appointment.repeat.typerepeat.blank?)
           repeatAppointments = createRepeats @appointment
           repeatAppointments.each {|o| o.save}
         end
-        AppointmentConfirmMailerJob.perform_later(@appointment, 'reprogramado') if reprogrammed
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'Agendamento reprogramado') if reprogrammed
+        AppointmentConfirmMailerJob.set(wait_until: @appointment.start - @appointment.remindertime.seconds).perform_later(@appointment, 'Lembrete de Agendamento') if reprogrammed
         format.html { redirect_to @appointment, notice: 'Agendamento atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @appointment }
       else
@@ -91,7 +94,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.update(active: false)
-        AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'Agendamento cancelado')
         format.html { redirect_to appointments_url, notice: 'Agendamento cancelado com sucesso.' }
         format.json { head :no_content }
       end
@@ -105,7 +108,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if appointments.update_all(active: false)
-        AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
+        AppointmentConfirmMailerJob.perform_later(@appointment, 'Agendamento cancelado')
         format.html { redirect_to appointments_url, notice: 'Agendamento cancelado com sucesso.' }
         format.json { head :no_content }
       end
@@ -120,7 +123,6 @@ class AppointmentsController < ApplicationController
 
     repeat.destroy if !repeat.nil? && repeat.appointments.empty?
 
-    AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Agendamento destruído com sucesso.' }
       format.json { head :no_content }
@@ -134,7 +136,6 @@ class AppointmentsController < ApplicationController
     appointments.destroy_all
     repeat.destroy if !repeat.nil? && repeat.appointments.empty?
 
-    AppointmentConfirmMailerJob.perform_later(@appointment, 'cancelado')
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Agendamentos destruídos com sucesso.' }
       format.json { head :no_content }
@@ -176,7 +177,8 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        AppointmentConfirmMailerJob.perform_later(@appointment, 'confirmado')
+        # AppointmentConfirmMailerJob.perform_later(@appointment, 'Agendamento confirmado')
+        AppointmentConfirmMailerJob.set(wait_until: @appointment.start - appointment_params[:reminder].to_i.seconds).perform_later(@appointment, 'Lembrete de Agendamento')
         format.html { redirect_to resume_appointments_path(Id: @appointment.hashId), notice: 'Agendamento criado com sucesso.' }
         format.json { render :show, status: :created, location: @appointment}
       else
@@ -341,7 +343,7 @@ class AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:companies_service_id, :resource_id, :client_id, :repeat_id, :title, :start, :end, :duration, :allday, :obs, :price, :name, :email, :phone, client_attributes: [:email, :name, :phone], repeat_attributes: [:typerepeat, :interval, :end, weekdays: []])
+    params.require(:appointment).permit(:companies_service_id, :resource_id, :client_id, :repeat_id, :title, :start, :end, :duration, :allday, :obs, :price, :name, :email, :phone, :remindertime, client_attributes: [:email, :name, :phone], repeat_attributes: [:typerepeat, :interval, :end, weekdays: []])
   end
 
 end

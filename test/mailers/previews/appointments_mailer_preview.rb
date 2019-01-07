@@ -5,14 +5,18 @@ class AppointmentsMailerPreview < ActionMailer::Preview
   end
 
   def confirm_appointment_preview
-    AppointmentsMailer.appointment_notification(Appointment.first, 'confirmado')
+    AppointmentsMailer.appointment_notification(Appointment.first, 'Agendamento confirmado')
   end
 
   def reprogrammed_appointment_preview
-    AppointmentsMailer.appointment_notification(Appointment.first, 'reprogramado')
+    AppointmentsMailer.appointment_notification(Appointment.first, 'Agendamento reprogramado')
   end
 
   def cancel_appointment_preview
-    AppointmentsMailer.appointment_notification(Appointment.first, 'cancelado')
+    AppointmentsMailer.appointment_notification(Appointment.first, 'Agendamento cancelado')
+  end
+
+  def remind_appointment_preview
+    AppointmentsMailer.appointment_notification(Appointment.first, 'Lembrete de Agendamento')
   end
 end

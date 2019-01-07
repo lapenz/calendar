@@ -3,13 +3,13 @@ class AppointmentsMailer < ApplicationMailer
   def check_appointments(client, appointments)
     @client = client
     @appointments = appointments
-    mail(to: client.email, subject: "Agendamentos - #{client.company.name}")
+    mail(from: "#{appointment.company.name}", to: client.email, subject: "Agendamentos")
   end
 
-  def appointment_notification(appointment, type)
+  def appointment_notification(appointment, title)
     @appointment = appointment
-    @type = type
-    mail(to: appointment.client.email, subject: "Agendamento #{@type} - #{appointment.company.name}")
+    @title = title
+    mail(from: "#{appointment.company.name}", to: appointment.client.email, subject: "#{title}")
 
   end
 

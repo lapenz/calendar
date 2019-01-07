@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_133502) do
+ActiveRecord::Schema.define(version: 2018_12_26_125835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 2018_12_17_133502) do
     t.boolean "allday"
     t.integer "repeat_id"
     t.boolean "active", default: true
+    t.integer "remindertime"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["companies_service_id"], name: "index_appointments_on_companies_service_id"
     t.index ["company_id"], name: "index_appointments_on_company_id"
-    t.index ["resource_id", "start"], name: "index_appointments_on_resource_id_and_start", unique: true
     t.index ["resource_id"], name: "index_appointments_on_resource_id"
   end
 

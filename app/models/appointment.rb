@@ -7,6 +7,8 @@ class Appointment < ApplicationRecord
 
   accepts_nested_attributes_for :client, :repeat
 
+  after_initialize :set_defaults
+
   validates_presence_of :start
   validates_presence_of :end
 
@@ -33,6 +35,10 @@ class Appointment < ApplicationRecord
     title = self.client.nil? ? 'Anônimo' : self.client.name
     title.concat ': ' + self.companies_service.service.name unless self.companies_service.nil?
     return title
+  end
+
+  def set_defaults
+    self.remindertime = 7200 if self.new_record?
   end
 
 

@@ -78,9 +78,35 @@
       <%= f.text_area :obs, :class => 'form-control' %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :remindertime %><br>
+      <%= f.select :remindertime, options_for_select([
+                                                     ["40 min", 40*60],
+                                                     ["1h", 60*60],
+                                                     ["1h20m", 80*60],
+                                                     ["1h40m", 100*60],
+                                                     ["2h", 2*60*60],
+                                                     ["3h", 3*60*60],
+                                                     ["4h", 4*60*60],
+                                                     ["5h", 5*60*60],
+                                                     ["6h", 6*60*60],
+                                                     ["7h", 7*60*60],
+                                                     ["8h", 8*60*60],
+                                                     ["9h", 9*60*60],
+                                                     ["10h", 10*60*60],
+                                                     ["11h", 11*60*60],
+                                                     ["12h", 12*60*60],
+                                                     ["14h", 14*60*60],
+                                                     ["18h", 18*60*60]
+
+                                                 ], @appointment.remindertime
+
+      ) %>
+    </div>
+
 
     <div class="actions">
-      <%= link_to t(:back), :back, class: 'btn btn-primary' %>
+      <%= link_to t(:back), appointments_path + '/' + @appointment.companies_service.id.to_s + '/schedule/', class: 'btn btn-primary' %>
       <%= f.submit t(:schedule), :class => 'btn btn-success' %>
     </div>
 <% end %>

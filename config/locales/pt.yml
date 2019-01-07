@@ -50,6 +50,7 @@ pt:
         companies_service_id: 'Serviço'
         start: 'Início'
         duration: 'Duração'
+        remindertime: 'Enviar lembrete com antecedência de '
       company:
         name: 'Nome da empresa'
         phone: 'Telefone'

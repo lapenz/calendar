@@ -61,6 +61,8 @@ en:
         interval: 'Repeat once per'
         weekdays: 'Week days'
         end: 'Ends'
+      appointment:
+        remindertime: 'Send reminder in'
   devise:
     logout: 'Logout'
     sessions:

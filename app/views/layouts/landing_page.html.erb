@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AgendaCard</title>
+  <title>AgendaCard - Agendamento Online</title>
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -14,6 +14,9 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+  <meta name="keywords" content="agendamento online, agenda, agendamento de serviços online,"/>
+  <meta name="description" content="Agendamento por telefone já é coisa do passado e não satisfaz mais os seus clientes. Obtenha agendamento poderoso com simplicidade."/>
 
   <%= analytics_init if GoogleAnalytics.valid_tracker? %>
 </head>
@@ -36,7 +39,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
 
-        <li><%= link_to 'AgendaCard', root_url %></li>
+        <li><%= link_to 'Início', root_url %></li>
+<!--        <li><%#= link_to 'Preços', landing_page_price_url %></li>-->
 
     </ul>
 
@@ -64,6 +68,12 @@
 
   <%= yield %>
 
+</div>
+
+<div class="footer">
+  <div class="container">
+    <p class="text-muted">© 2018 AgendaCard.</p>
+  </div>
 </div>
 
 </body>

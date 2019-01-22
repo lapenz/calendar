@@ -9,7 +9,7 @@ class LandingPageController < ApplicationController
   end
 
   def contact
-    LandingPageContactMailerJob.perform_later(params[:name], params[:email], params[:message])
+    LandingPageContactMailerJob.perform_later(params[:name], params[:phone], params[:email], params[:message])
 
     respond_to do |format|
       format.json { render :json => 'Mensagem enviada!'.to_json }

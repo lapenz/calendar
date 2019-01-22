@@ -61,7 +61,7 @@
 
   <!-- /END THE FEATURETTES -->
 
-  <h2>Entre em contato conosco</h2>
+  <h2>Mande uma mensagem para nós. Teremos o prazer de dar todo suporte necessário.</h2>
 
   <br/>
 
@@ -76,6 +76,11 @@
         <div class="form-group">
         <%= label_tag(:email, "Email") %>
         <%= text_field_tag(:email, nil, class: 'form-control') %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag(:phone, "Telefone") %>
+          <%= text_field_tag(:phone, nil, class: 'form-control') %>
         </div>
         <div class="form-group">
         <%= label_tag(:message, "Mensagem") %>
@@ -93,7 +98,7 @@
         <h2><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Comece a agendar de graça</h2>
         <p class="box-solution-text">
           Configure o AgendaCard em apenas alguns minutos.
-          O primeiro mês é gratuito.
+          Os primeiros 100 agendamentos são gratuitos.
         </p>
         <%= link_to 'Criar uma conta agora', new_user_registration_path, :class => 'btn btn-lg btn-primary'  %>
     </div>

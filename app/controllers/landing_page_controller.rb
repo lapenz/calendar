@@ -4,6 +4,10 @@ class LandingPageController < ApplicationController
     render layout: 'landing_page'
   end
 
+  def price
+
+  end
+
   def contact
     LandingPageContactMailerJob.perform_later(params[:name], params[:email], params[:message])
 

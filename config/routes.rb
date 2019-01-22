@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   post '/landing_page/contact'
 
+  get '/price', to: 'landing_page#price', as: 'landing_page_price'
+
   get '/help', to: 'help#index'
 
   match '/', to: 'landing_page#home', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
@@ -54,7 +56,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
 
   Rails.application.routes.draw do
-    mount Sidekiq::Web => '/sidekiq'
+     mount Sidekiq::Web => '/sidekiq'
   end
 
   # Example of regular route:
@@ -64,10 +66,10 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  #   invoice_items :products
 
   # Example resource route with options:
-  #   resources :products do
+  #   invoice_items :products do
   #     member do
   #       get 'short'
   #       post 'toggle'
@@ -78,16 +80,16 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
+  # Example resource route with sub-invoice_items:
+  #   invoice_items :products do
+  #     invoice_items :comments, :sales
   #     resource :seller
   #   end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  # Example resource route with more complex sub-invoice_items:
+  #   invoice_items :products do
+  #     invoice_items :comments
+  #     invoice_items :sales do
   #       get 'recent', on: :collection
   #     end
   #   end
@@ -96,13 +98,13 @@ Rails.application.routes.draw do
   #   concern :toggleable do
   #     post 'toggle'
   #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  #   invoice_items :posts, concerns: :toggleable
+  #   invoice_items :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
+  #     invoice_items :products
   #   end
 end

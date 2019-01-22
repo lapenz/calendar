@@ -1,0 +1,137 @@
+<div class="page-header">
+  <h1 class="text-center">Preço <small></small></h1>
+</div>
+
+<p class="lead text-center">Os primeiros 100 agendamentos são gratuitos!</p>
+
+<div class="row">
+  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+
+    <!-- PRICE ITEM -->
+    <div class="panel price panel-red">
+      <div class="panel-heading  text-center">
+        <h3>Plano Básico</h3>
+      </div>
+      <div class="panel-body text-center">
+        <p class="lead" style="font-size:40px"><strong>R$ 30 / mês</strong></p>
+      </div>
+      <ul class="list-group list-group-flush text-center">
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> 200 agendamentos mensais</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Página de agendamentos personalizada</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Notificações por SMS*</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Notificações por Email</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Domínio personalizado</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Clientes ilimitados</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Histórico de clientes ilimitado</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Sem taxa de configuração</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Suporte premium</li>
+      </ul>
+<!--      <div class="panel-footer">-->
+        <%#= form_for Subscription.new, :url => new_subscription_path, method: :get do |f| %>
+          <%#= f.hidden_field :plan_id, value: Plan.find_by(code: 'basic-monthly').id %>
+          <%#= f.submit "Comprar agora", class: "btn btn-lg btn-block btn-primary" %>
+        <%# end %>
+<!--      </div>-->
+    </div>
+    <!-- /PRICE ITEM -->
+
+
+  </div>
+
+  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+
+    <!-- PRICE ITEM -->
+    <div class="panel price panel-blue">
+      <div class="panel-heading arrow_box text-center">
+        <h3>Plano Médio</h3>
+      </div>
+      <div class="panel-body text-center">
+        <p class="lead" style="font-size:40px"><strong>R$ 50 / mês</strong></p>
+      </div>
+      <ul class="list-group list-group-flush text-center">
+        <li class="list-group-item"><i class="icon-ok text-info"></i> 500 agendamentos mensais</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Página de agendamentos personalizada</li>
+        <li class="list-group-item"><i class="icon-ok text-info"></i> Notificações por SMS*</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Notificações por Email</li>
+        <li class="list-group-item"><i class="icon-ok text-info"></i> Domínio personalizado</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Clientes ilimitados</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Histórico de clientes ilimitado</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Sem taxa de configuração</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Suporte premium</li>
+      </ul>
+<!--      <div class="panel-footer">-->
+        <%#= link_to 'Comprar agora', nil, class: 'btn btn-lg btn-block btn-success' %>
+<!--      </div>-->
+    </div>
+    <!-- /PRICE ITEM -->
+
+
+  </div>
+
+  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+
+    <!-- PRICE ITEM -->
+    <div class="panel price panel-green">
+      <div class="panel-heading arrow_box text-center">
+        <h3>Plano Avançado</h3>
+      </div>
+      <div class="panel-body text-center">
+        <p class="lead" style="font-size:40px"><strong>R$ 90 / mês</strong></p>
+      </div>
+      <ul class="list-group list-group-flush text-center">
+        <li class="list-group-item"><i class="icon-ok text-success"></i> agendamentos ilimitados</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Página de agendamentos personalizada</li>
+        <li class="list-group-item"><i class="icon-ok text-success"></i> Notificações por SMS*</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Notificações por Email</li>
+        <li class="list-group-item"><i class="icon-ok text-success"></i> Domínio personalizado</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Clientes ilimitados</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Histórico de clientes ilimitado</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Sem taxa de configuração</li>
+        <li class="list-group-item"><i class="icon-ok text-danger"></i> Suporte premium</li>
+      </ul>
+<!--      <div class="panel-footer">-->
+        <%#= link_to 'Comprar agora', nil, class: 'btn btn-lg btn-block btn-primary' %>
+<!--      </div>-->
+    </div>
+    <!-- /PRICE ITEM -->
+
+
+  </div>
+  * São aplicadas taxas adicionais de SMS no valor de R$ 0,10 por envio.
+
+
+</div>
+<hr/>
+
+<div class="row">
+  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Comece a agendar gratuitamente!</h4>
+        <p class="box-solution-text">Os primeiros 150 agendamentos são gratuitos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> 100% seguro</h4>
+        <p class="box-solution-text">Compra Online. Estamos 100% comprometidos com segurança online.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Aceitamos diversas formas de pagamento</h4>
+        <p class="box-solution-text">Planos de assinatura no cartão de crédito ou boleto.</p>
+      </div>
+    </div>
+  </div>
+
+</div>

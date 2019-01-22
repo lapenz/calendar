@@ -45,4 +45,8 @@ module ApplicationHelper
     text = request.protocol + request.domain
     text +=  ':' + request.port.to_s unless request.port.blank? || request.port == 80
   end
+
+  def number_to_currency_br(number)
+    number_to_currency(number, :unit => "R$ ", :separator => ",", :delimiter => ".")
+  end
 end

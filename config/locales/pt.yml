@@ -101,6 +101,10 @@ pt:
           attributes:
             email:
               taken: 'já está em uso por outro cliente'
+        company:
+          attributes:
+            minipage_url:
+              taken: 'já está em uso. É necessário informar outro valor.'
       messages:
         blank: 'deve ser preenchido.'
       template:

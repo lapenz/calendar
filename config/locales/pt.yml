@@ -3,7 +3,7 @@ pt:
   save: "Salvar"
   select_all: "Selecionar todos"
   logout: 'Sair'
-  sign_up: 'Cadastrar'
+  sign_up: 'Criar uma conta'
   login: 'Logar'
   edit_profile: 'Editar a conta'
   edit: 'Editar'

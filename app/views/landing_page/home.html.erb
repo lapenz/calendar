@@ -1,10 +1,22 @@
 <div class="jumbotron">
   <div class="container">
-  <h1>AgendaCard</h1>
-  <h2>Mais agendamentos, menos trabalho.</h2>
-  <p class="lead">Agendamento por telefone e Whatsapp já é coisa do passado e não satisfaz mais os seus clientes.
-    Obtenha agendamento poderoso com simplicidade.</p>
-  <p><%= link_to 'Comece aqui', new_user_registration_path, :class => 'btn btn-lg btn-success'  %></p>
+
+    <div itemscope itemtype="http://schema.org/Service">
+      <meta itemprop="name" content="Agendacard" />
+      <meta itemprop="description" content="Software de agendamento online." />
+      <meta itemprop="serviceType" content="Agendamento online" />
+
+    </div>
+
+    <div itemscope itemtype="http://schema.org/Organization">
+
+      <h1 itemprop="name">AgendaCard</h1>
+
+      <h2>Mais agendamentos, menos trabalho.</h2>
+      <p class="lead">Agendamento por telefone e Whatsapp já é coisa do passado e não satisfaz mais os seus clientes.
+        Obtenha agendamento online simples e poderoso.</p>
+      <p><%= link_to 'Comece aqui', new_user_registration_path, :class => 'btn btn-lg btn-success'  %></p>
+    </div>
   </div>
 </div>
 

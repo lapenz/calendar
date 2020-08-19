@@ -1,0 +1,49 @@
+<div class = "page-header">
+
+  <h1>
+    <%= t :resume %>
+  </h1>
+
+</div>
+
+<h3><%= Appointment.model_name.human %>:</h3>
+
+<h4>
+  <%= Resource.model_name.human %>: <%= @appointment.resource.name %>
+</h4>
+
+<h4>
+  <%= CompaniesService.model_name.human %>: <%= @appointment.companies_service.service.name %>
+</h4>
+
+<h4>
+  <%= Client.model_name.human %>: <%= @appointment.client.name %>
+</h4>
+
+<h4>
+  <%= Appointment.human_attribute_name("start") %>: <%= l @appointment.start, format: :long %>
+</h4>
+
+<% if !@appointment.obs.blank? %>
+  <h4>Obs: <%= @appointment.obs %> </h4>
+<% end %>
+
+<% if !@appointment.price.blank? %>
+  <h4>Price: <%= @appointment.price %> </h4>
+<% end %>
+
+<h3><%= t :contact %>:</h3>
+<h4><%= t :address %>: <%=address(@appointment.companies_service.company) %></h4>
+<h4><%= t :phone %>: <%= @appointment.companies_service.company.phone %></h4>
+
+<%= link_to t(:back), root_url(subdomain: @appointment.companies_service.company.minipage_url) %>
+
+<br/><br/>
+
+<% if(!@company.street.blank? || !@company.city.blank?) %>
+  <!-- Responsive iFrame -->
+  <div id="map" class="Flexible-container">
+    <iframe width="425" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= address_url @company %>&key=<%=ENV["GOOGLE-MAPS-KEY"] %>" allowfullscreen></iframe>
+
+  </div>
+<% end %>

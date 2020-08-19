@@ -1,0 +1,35 @@
+<% if(!@company.street.blank? || !@company.city.blank?) %>
+  <!-- Responsive iFrame -->
+  <div id="map" class="Flexible-container">
+    <iframe width="425" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= address_url @company %>&key=<%=ENV["GOOGLE-MAPS-KEY"] %>>" allowfullscreen></iframe>
+
+  </div>
+<% end %>
+
+<div class="row hidden-xs">
+  <%= render 'logo' %>
+</div>
+
+<div class="row visible-xs-block text-center">
+  <%= render 'logo' %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h2><%= t :services, count: @company.companies_services.length %></h2>
+    </div>
+
+    <div class="list-group">
+      <% @company.companies_services.each do |company_service| %>
+
+        <a href="<%= company_service.visible ? appointments_path + '/' + company_service.id.to_s + '/schedule/' : '#' %>" class="list-group-item <%= company_service.visible ? '' : 'disabled' %>" >
+          <h4 class="list-group-item-heading"><%= company_service.service.name %> <%= raw company_service.visible ? '' : '<small>- Não está disponível para agendamento online.</small>' %></h4>
+          <p class="list-group-item-text"><%= company_service.description %></p>
+        </a>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+

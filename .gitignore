@@ -72,6 +72,7 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 .idea
+/public/uploads
 
 config/environments/production.rb
 config/environments/development.rb

@@ -1,7 +1,7 @@
 <% if(!@company.street.blank? || !@company.city.blank?) %>
   <!-- Responsive iFrame -->
   <div id="map" class="Flexible-container">
-    <iframe width="425" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= address_url @company %>&key=<%=ENV["GOOGLE-MAPS-KEY"] %>>" allowfullscreen></iframe>
+    <iframe width="425" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= address_url @company %>&key=<%=ENV["GOOGLE_MAPS_KEY"] %>" allowfullscreen></iframe>
 
   </div>
 <% end %>

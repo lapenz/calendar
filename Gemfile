@@ -54,7 +54,7 @@ gem 'aws-sdk', '~> 3'
 
 gem 'dynamic_sitemaps'
 
-gem 'mini_racer'
+gem 'mini_racer', '~> 0.3.1'
 
 # for railties app_generator_test
 gem 'bootsnap', '>= 1.1.0', require: false

@@ -825,7 +825,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    libv8 (6.7.288.46.1)
+    libv8 (8.4.255.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -845,8 +845,8 @@ GEM
     mini_magick (4.9.2)
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
-    mini_racer (0.2.4)
-      libv8 (>= 6.3)
+    mini_racer (0.3.1)
+      libv8 (~> 8.4.255)
     minitest (5.11.3)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
@@ -986,7 +986,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   mini_magick
-  mini_racer
+  mini_racer (~> 0.3.1)
   momentjs-rails
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
@@ -1005,4 +1005,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
